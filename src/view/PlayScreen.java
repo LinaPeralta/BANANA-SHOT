@@ -1,5 +1,7 @@
 package view;
 
+
+import model.Interaction;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -9,9 +11,13 @@ public class PlayScreen {
 	private PImage screenOne;
 	private PImage screenTwo;
 	private PImage screenThree;
+	
+	private Interaction interaction;
 
 	public PlayScreen(PApplet app) {
 		this.app = app;
+		
+		interaction = new Interaction (app);
 
 		// game screen one level 1
 		screenOne = app.loadImage("./data/images/juego1.png");
@@ -27,6 +33,7 @@ public class PlayScreen {
 	public void drawlevel1() {
 
 		app.image(screenOne, 0, 0, 1300, 700);
+		interaction.draw();
 
 	}
 	
