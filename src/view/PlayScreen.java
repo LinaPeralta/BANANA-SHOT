@@ -1,5 +1,6 @@
 package view;
 
+
 import controller.PlayController;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -30,7 +31,6 @@ public class PlayScreen {
 		controller = new PlayController(app);
 
 	}
-
 	
 	public void levelScreens() {
 		
