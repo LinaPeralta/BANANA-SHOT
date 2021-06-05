@@ -6,31 +6,42 @@ import processing.core.PFont;
 public class Interaction {
 	
 	private PApplet app;
-	
+	private Monkey monkey;
 	private PFont font;
-	
-	private int min,seg;
+	private int min, seg;
 	private boolean time;
-	
+
 	public Interaction(PApplet app) {
 		
 		this.app = app;
-		
+
+		//Classes
+		monkey = new Monkey(app);
+
 		//timer
 		min = 0;
 		seg = 0;
 		time = false;
 		
+<<<<<<< HEAD
 		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 17);
+=======
+		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 12);
+>>>>>>> c98b1a43b230866ee3d9b1f7ff9f483c8cb6b27d
 		
 	}
 	
 	public void draw() {
-		
+		monkey.draw();
 		time = true;
+<<<<<<< HEAD
 		
 		timer();
 		
+=======
+		drawTimer();
+
+>>>>>>> c98b1a43b230866ee3d9b1f7ff9f483c8cb6b27d
 	}
 	
 	
