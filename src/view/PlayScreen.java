@@ -14,13 +14,13 @@ public class PlayScreen {
 		this.app = app;
 
 		// game screen one level 1
-		screenOne = app.loadImage("./data/images/juego1.jpg");
+		screenOne = app.loadImage("./data/images/juego1.png");
 		
 		// game screen two level 2
-		screenOne = app.loadImage("./data/images/juego1.jpg");
+		screenOne = app.loadImage("./data/images/juego1.png");
 		
 		// game screen three level 3
-		screenOne = app.loadImage("./data/images/juego1.jpg");
+		screenOne = app.loadImage("./data/images/juego1.png");
 
 	}
 
