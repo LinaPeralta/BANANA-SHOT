@@ -5,13 +5,17 @@ import processing.core.PApplet;
 public class Interaction {
 	
 	private PApplet app;
+	private Monkey monkey;
 
 	public Interaction(PApplet app) {
 		this.app = app;
+		
+		//Classes
+		monkey = new Monkey(app);
 	}
 	
 	public void draw() {
-		
+		monkey.draw();
 
 	}
 	

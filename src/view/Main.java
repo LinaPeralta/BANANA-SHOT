@@ -70,6 +70,7 @@ public class Main extends PApplet{
 		//Play screen
 		case 2:
 			playScreen.levelScreens();
+			playScreen.drawController();
 			break;
 		//Game over screen
 		case 3:
