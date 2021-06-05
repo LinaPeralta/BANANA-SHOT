@@ -1,13 +1,24 @@
 package controller;
 
+import java.util.ArrayList;
+
+import model.User;
 import processing.core.PApplet;
 
 public class StartController {
-	
-	private PApplet app;
 
-	public StartController(PApplet app) {
-		this.app = app;
+	private ArrayList <User> users;
+
+	public StartController() {
+		users = new ArrayList<>();
+	}
+	
+	public void addUser(String name) {
+		users.add(new User(name));
+	}
+	
+	public ArrayList<User> getUsers() {
+		return users;
 	}
 
 }
