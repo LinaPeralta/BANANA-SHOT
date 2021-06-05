@@ -12,7 +12,7 @@ public class Main extends PApplet{
 	//Instruction screen
 	
 	//Play screen
-	
+	PlayScreen playScreen;
 	//Stat screen
 	
 	//Game over screen
@@ -20,7 +20,7 @@ public class Main extends PApplet{
 	
 	//Variables
 	private int screen;
-	
+	private int level;
 	
 	public static void main(String[] args) {
 		PApplet.main("view.Main");
@@ -42,15 +42,15 @@ public class Main extends PApplet{
 		//Instruction screen
 		
 		//Play screen
-		
+		playScreen = new PlayScreen (this);
 		//Stat screen
 		
 		//Game over screen
 		
 		
 		//Variables
-		screen = 0;
-		
+		screen = 2;
+		level = 0;
 		
 	}
 	
@@ -69,6 +69,23 @@ public class Main extends PApplet{
 			break;
 		//Play screen
 		case 2:
+			
+			switch (level) {
+			//level1
+			case 0:
+				playScreen.drawlevel1();
+				break;
+			//level2
+            case 1:
+            	playScreen.drawlevel2();
+				break;
+			//level3	
+            case 2:
+            	playScreen.drawlevel3();
+				break;
+			}
+			
+			
 			
 			break;
 		//Game over screen
