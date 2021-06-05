@@ -69,24 +69,7 @@ public class Main extends PApplet{
 			break;
 		//Play screen
 		case 2:
-			
-			switch (level) {
-			//level1
-			case 0:
-				playScreen.drawlevel1();
-				break;
-			//level2
-            case 1:
-            	playScreen.drawlevel2();
-				break;
-			//level3	
-            case 2:
-            	playScreen.drawlevel3();
-				break;
-			}
-			
-			
-			
+			playScreen.levelScreens();
 			break;
 		//Game over screen
 		case 3:

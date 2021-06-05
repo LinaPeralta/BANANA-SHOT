@@ -9,37 +9,54 @@ public class PlayScreen {
 	private PImage screenOne;
 	private PImage screenTwo;
 	private PImage screenThree;
+	private int level;
 
 	public PlayScreen(PApplet app) {
 		this.app = app;
+		level = 0;
 
 		// game screen one level 1
 		screenOne = app.loadImage("./data/images/juego1.png");
 		
 		// game screen two level 2
-		screenOne = app.loadImage("./data/images/juego1.png");
+		screenTwo = app.loadImage("./data/images/juego2.png");
 		
 		// game screen three level 3
-		screenOne = app.loadImage("./data/images/juego1.png");
+		screenThree = app.loadImage("./data/images/juego3.png");
 
 	}
 
-	public void drawlevel1() {
-
-		app.image(screenOne, 0, 0, 1300, 700);
-
+	
+	public void levelScreens() {
+		
+		switch (level) {
+		//level1
+		case 0:
+			app.image(screenOne, 0, 0, 1300, 700);
+			break;
+		//level2
+        case 1:
+        	app.image(screenTwo, 0, 0, 1300, 700);
+			break;
+		//level3	
+        case 2:
+        	app.image(screenThree, 0, 0, 1300, 700);
+			break;
+		}
 	}
 	
-	public void drawlevel2() {
-
-		app.image(screenTwo, 0, 0, 1300, 700);
-
-	}
 	
-	public void drawlevel3() {
-
-		app.image(screenThree, 0, 0, 1300, 700);
-
+	public void drawController () {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }
