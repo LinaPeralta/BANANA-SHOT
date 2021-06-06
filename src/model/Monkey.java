@@ -54,7 +54,6 @@ public class Monkey{
 		//Drawing bullets, moving bullets and eliminating
 		shoot();
 		eliminateBullet();
-	
 		
 	}
 	

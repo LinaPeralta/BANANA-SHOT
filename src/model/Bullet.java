@@ -9,7 +9,7 @@ public class Bullet implements Runnable{
 	private PApplet app;
 	private Monkey monkey;
 	private PImage bullet;
-	private int x, y, speed, damage;
+	private int x, y, width, height, speed, damage;
 	private boolean visible, dir;
 
 	public Bullet(PApplet app, int x, int y, boolean dir) {
@@ -19,6 +19,8 @@ public class Bullet implements Runnable{
 		this.dir = dir;
 		
 		//Attributes
+		width = 80;
+		height = 55;
 		speed = 25;
 		visible = true;
 		damage = 2;
@@ -33,7 +35,7 @@ public class Bullet implements Runnable{
 	public void draw() {
 		if (visible) {
 			app.imageMode(PConstants.CENTER);
-			app.image(bullet, x, y, 80, 55);
+			app.image(bullet, x, y, width, height);
 		}
 
 	}

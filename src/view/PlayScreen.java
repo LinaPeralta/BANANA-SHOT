@@ -58,7 +58,7 @@ public class PlayScreen {
 	
 	public void drawController () {
 		controller.draw();
-		
+		controller.drawLevels(level);
 		
 		
 		
