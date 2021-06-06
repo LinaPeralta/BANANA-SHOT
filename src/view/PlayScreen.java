@@ -11,6 +11,7 @@ public class PlayScreen {
 	private PImage screenOne;
 	private PImage screenTwo;
 	private PImage screenThree;
+
 	private int level;
 	private PlayController controller;
 
@@ -18,6 +19,8 @@ public class PlayScreen {
 		this.app = app;
 		level = 0;
 
+		
+		
 		// game screen one level 1
 		screenOne = app.loadImage("./data/images/juego1.png");
 		
@@ -31,6 +34,17 @@ public class PlayScreen {
 		controller = new PlayController(app);
 
 	}
+
+
+
+	public void drawlevel1() {
+
+		
+		app.image(screenOne, 0, 0, 1300, 700);
+		
+
+	}
+
 	
 	public void levelScreens() {
 		
