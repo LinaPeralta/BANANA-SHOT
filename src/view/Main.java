@@ -1,5 +1,6 @@
 package view;
 import controlP5.ControlP5;
+import model.Interaction;
 import processing.core.PApplet;
 
 public class Main extends PApplet{
@@ -16,7 +17,7 @@ public class Main extends PApplet{
 	//Stat screen
 	
 	//Game over screen
-	
+	private Interaction interaction;
 	
 	//Variables
 	private int screen;
@@ -47,6 +48,7 @@ public class Main extends PApplet{
 		
 		//Game over screen
 		
+		interaction = new Interaction (this);
 		
 		//Variables
 		screen = 0;
@@ -70,6 +72,7 @@ public class Main extends PApplet{
 		//Play screen
 		case 2:
 			playScreen.levelScreens();
+			playScreen.drawController();
 			break;
 		//Game over screen
 		case 3:
@@ -123,7 +126,7 @@ public class Main extends PApplet{
 		//Play screen
 		case 2:
 			
-			
+			interaction.platforms();
 			
 			
 			
@@ -153,7 +156,9 @@ public class Main extends PApplet{
 			
 			
 			break;
-		}	
+		}
+		
+		//System.out.println(mouseX + "," + mouseY);
 
 	}
 

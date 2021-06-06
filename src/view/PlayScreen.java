@@ -1,5 +1,7 @@
 package view;
 
+
+import controller.PlayController;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -9,12 +11,16 @@ public class PlayScreen {
 	private PImage screenOne;
 	private PImage screenTwo;
 	private PImage screenThree;
+
 	private int level;
+	private PlayController controller;
 
 	public PlayScreen(PApplet app) {
 		this.app = app;
 		level = 0;
 
+		
+		
 		// game screen one level 1
 		screenOne = app.loadImage("./data/images/juego1.png");
 		
@@ -23,6 +29,9 @@ public class PlayScreen {
 		
 		// game screen three level 3
 		screenThree = app.loadImage("./data/images/juego3.png");
+		
+		//Controller
+		controller = new PlayController(app);
 
 	}
 
@@ -47,15 +56,8 @@ public class PlayScreen {
 	
 	
 	public void drawController () {
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		controller.draw();
+
 		
 	}
 

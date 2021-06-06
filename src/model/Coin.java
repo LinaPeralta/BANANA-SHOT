@@ -11,7 +11,16 @@ public class Coin {
 	public Coin(PApplet app) {
 		this.app = app;
 		
+	coin = app.loadImage("./data/images/coin.png");
 		
 	}
+	
+	
+	public void draw() {
+		app.image(coin, 0, 0);
+		
+	}
+	
+	
 
 }
