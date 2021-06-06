@@ -22,6 +22,11 @@ public class StatController {
 	
 	}
 	
+	public void charts() {
+		
+		interaction.charts();
+	}
+	
 	public void Names() {
 		
 		interaction.organizeName();

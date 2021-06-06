@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 
 import processing.core.PApplet;
@@ -12,10 +13,16 @@ public class Interaction {
 	private PApplet app;
 	private Monkey monkey;
 	private Name name;
+	
+	private String temporalName;
+	
 	private static Interaction oneInstance;
+	
 	private LinkedList<User> user;
 	private ArrayList<Banana> bananas;
+	
 	private PFont font;
+	
 	private int min, seg,playTime ;
 	private boolean time;
 
@@ -31,13 +38,11 @@ public class Interaction {
 		min = 0;
 		seg = 0;
 		time = false;
-<<<<<<< HEAD
 		playTime = 0;
 		
-=======
+		temporalName="";
 
 		//Lists
->>>>>>> 62aaaed54748a5ecbdd93dba4f8bb77828e4cfb5
 		user = new LinkedList<User>();
 		bananas = new ArrayList<>();
 
@@ -66,17 +71,37 @@ public class Interaction {
 	public void draw() {
 		monkey.draw();
 		time = true;
-<<<<<<< HEAD
 
-		
-		
-=======
->>>>>>> 62aaaed54748a5ecbdd93dba4f8bb77828e4cfb5
 		timer();
 		
 
+	}
+	
+	public void registerPlayer(String name) {
+		temporalName=name;
+	}
 
+	
+	public void charts(){
+		
+		time = false;
+		
+		String m= Integer.toString(min);
+		String s= Integer.toString(seg);
+		
+		String time = m+":"+s;
+		
+		Date date = new Date();
+		
+		for (int i = 0; i < 1; i++) {
 
+			User newUser = new User (app, temporalName, time);
+			
+			user.add(newUser);
+
+			System.out.println("user" + user.size());
+		}
+		
 	}
 	
 	//Draw and move bananas based on the level they're on

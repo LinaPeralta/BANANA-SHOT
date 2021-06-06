@@ -8,22 +8,22 @@ public class User implements Comparable<User> {
 	
 	private PApplet app;
 	
-	private String name, date, time, points;
+	private String name, date, time, score;
 	
 
-	public User(PApplet app, String name) {
+	public User(PApplet app, String name, String time ) {
 		
 		this.app = app;
 		
 		this.name = name;
-		//this.time = time;
+		this.time = time;
 		
 		//VARIABLES
 		//The variables are blank for now, to later be filled with the information from the game
 		
 //		date = "";
 //		time = "";
-//		points = "";
+//		score = "";
 		
 	}
 	
@@ -34,9 +34,32 @@ public class User implements Comparable<User> {
 		app.text(name, x, y);
 		app.text(time, x+ 45*4, y );
 		
-		//app.text(date2, x+ 120*4, y );
-		//app.text(score, x+ 180*4, y);
+		//app.text(score, x+ 120*4, y );
 
+	}
+	
+	public PApplet getApp() {
+		return app;
+	}
+
+	public void setApp(PApplet app) {
+		this.app = app;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public String getScore() {
+		return score;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public String getName() {
@@ -51,8 +74,8 @@ public class User implements Comparable<User> {
 		this.time = time;
 	}
 	
-	public void setPoints(String points) {
-		this.points = points;
+	public void setScore(String score) {
+		this.score = score;
 	}
 
 	@Override
