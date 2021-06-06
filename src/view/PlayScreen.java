@@ -64,4 +64,8 @@ public class PlayScreen {
 		
 	}
 
+	public void monkeyMove(char key) {
+		controller.monkeyMove(key);
+
+	}
 }

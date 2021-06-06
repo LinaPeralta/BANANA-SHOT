@@ -160,7 +160,9 @@ public class Main extends PApplet{
 
 	@Override
 	public void keyPressed() {
-
+		if (screen == 2) {
+			playScreen.monkeyMove(key);
+		}
 	}
 
 	

@@ -91,8 +91,8 @@ public class Interaction {
 
 	}
 	
-	public void monkeyMove() {
-		
+	public void monkeyMove(char key) {
+		monkey.move(key);
 
 	}
 
