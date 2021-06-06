@@ -20,8 +20,8 @@ public class PlayController {
 
 	}
 	
-	public void monkeyMove(char key) {
-		interaction.monkeyMove(key);
+	public void monkeyMove(int movement) {
+		interaction.monkeyMove(movement);
 
 	}
 

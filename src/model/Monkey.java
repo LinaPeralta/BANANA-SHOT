@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Monkey implements Runnable{
+public class Monkey{
 
 	private PApplet app;
 	private PImage monkeyL, monkeyR;
-	private int x, y, width, height, speedX, speedY, dirX, dirY;
+	private int x, y, width, height, speedX, speedY, coolDown, vulnerable;
 	private boolean dir;
 	private ArrayList<Bullet> bullets;
 	private float gravity;
@@ -26,9 +26,8 @@ public class Monkey implements Runnable{
 		dir = true; //Boolean for the direction of the image
 		speedX = 0;
 		speedY = 0;
-		dirX = 1;
-		dirY = 1;
 		gravity = (float) 0.6;
+		coolDown = 10;
 		
 		//Images
 		monkeyL = app.loadImage("./data/images/monkeyL.png");
@@ -39,44 +38,71 @@ public class Monkey implements Runnable{
 	}
 	
 	public void draw() {
+		//Cool down for shooting bananas
+		if (coolDown > 0) {
+			coolDown--;
+		}
+		
+		//Set direction in which the monkey is looking to switch image
 		if (dir) {
 			app.image(monkeyR, x, y, width, height);
 		} else {
 			app.image(monkeyL, x, y, width, height);
 		}
+		
+		
+		//Drawing bullets, moving bullets and eliminating
+		shoot();
+		eliminateBullet();
+	
+		
 	}
 	
-	public void move(char key) {
-		
-		switch (key) {
-		//Left
-		case 'a':
-			dir = false;
-			speedX = -20;
-			break;
-		//Right
-		case 'd':
-			dir = true;
-			speedX = 20;
-			break;
-		//Up
-		/*case 'w':
-			speedY = -15;
-			break;*/
-		}
-		
-		//Gravity for jumping
-		//speedY += gravity;
-		
+	public void moveLeft() {
+		dir = false;
+		speedX = -20;
 		x += speedX;
 		y += speedY;
 	}
+	
+	public void moveRight() {
+		dir = true;
+		speedX = 20;
+		x += speedX;
+		y += speedY;
+	}
+	
+	public void jump() {
+		//Gravity for jumping
+		//speedY = -15;
+		//speedY += gravity;
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
+	}
+	
+	//In key pressed to create the bullet and add it to the list
+	public void initShoot() {
+		if (coolDown == 0) {
+			Bullet bullet = new Bullet(app, x+100, y+150, dir);
+			bullets.add(bullet);
+			coolDown = 10;
+		}
 	}
 
+	//In draw to actually paint the bullets
+	public void shoot() {
+		for (int i = 0; i < bullets.size(); i++) {
+			bullets.get(i).draw();
+			new Thread(bullets.get(i)).start();
+		}
+	}
+	
+	//Eliminates the bullet after passing the limit of the screen (for space)
+	public void eliminateBullet() {
+		for (int i = 0; i < bullets.size(); i++) {
+			if (bullets.get(i).getX() > 1300 || bullets.get(i).getX() < 0) {
+				bullets.remove(i);
+			}
+		}
+	}
 
 }

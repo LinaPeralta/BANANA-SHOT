@@ -4,6 +4,7 @@ import controlP5.ControlP5;
 import controlP5.Textfield;
 import controller.StartController;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PFont;
 import processing.core.PImage;
 
@@ -62,6 +63,7 @@ public class StartScreen {
 	
 	public void draw() {
 		//Background for the start screen
+		app.imageMode(PConstants.CORNER);
 		app.image(start, 0, 0, 1300, 700);
 		
 		fillConfirmation();

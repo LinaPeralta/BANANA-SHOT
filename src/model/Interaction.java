@@ -124,8 +124,25 @@ public class Interaction {
 
 	}
 	
-	public void monkeyMove(char key) {
-		monkey.move(key);
+	public void monkeyMove(int movement) {
+		switch (movement) {
+		//For left movement
+		case 1:
+			monkey.moveLeft();
+			break;
+		//For right movement
+		case 2:
+			monkey.moveRight();
+			break;
+		//For jumping
+		case 3:
+			monkey.jump();
+			break;
+		//For shooting
+		case 4:
+			monkey.initShoot();
+			break;
+		}
 
 	}
 
