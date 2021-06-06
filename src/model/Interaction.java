@@ -45,7 +45,10 @@ public class Interaction {
 	public void platforms() {
 		
 		
+			
 	}
+		
+	
 	
 	public void initCoins() {
 		
