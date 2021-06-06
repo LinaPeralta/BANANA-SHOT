@@ -19,5 +19,10 @@ public class PlayController {
 		interaction.draw();
 
 	}
+	
+	public void monkeyMove(char key) {
+		interaction.monkeyMove(key);
+
+	}
 
 }

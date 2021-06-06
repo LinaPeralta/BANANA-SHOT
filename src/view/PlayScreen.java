@@ -34,7 +34,6 @@ public class PlayScreen {
 		controller = new PlayController(app);
 
 	}
-
 	
 	public void levelScreens() {
 		
@@ -61,4 +60,8 @@ public class PlayScreen {
 		
 	}
 
+	public void monkeyMove(char key) {
+		controller.monkeyMove(key);
+
+	}
 }
