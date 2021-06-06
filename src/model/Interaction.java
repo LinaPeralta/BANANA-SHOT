@@ -9,9 +9,13 @@ import processing.core.PApplet;
 import processing.core.PFont;
 
 public class Interaction {
-	
+
 	private PApplet app;
 	private Monkey monkey;
+
+	//private  double gravity;
+	//private User user;
+
 	private Name name;
 	
 	private String temporalName;
@@ -25,24 +29,42 @@ public class Interaction {
 	
 	private int min, seg,playTime ;
 	private boolean time;
+	//private  boolean connected;
 
 	public Interaction(PApplet app) {
-		
+
 		this.app = app;
 
-		//Classes
+		// Classes
 		monkey = new Monkey(app);
 		name = new Name();
 
-		//timer
+		// timer
 		min = 0;
 		seg = 0;
 		time = false;
+<<<<<<< HEAD
 		playTime = 0;
 		
 		temporalName="";
 
 		//Lists
+=======
+
+		//gravity = 0.6;
+		//connected = false;
+
+
+		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 17);
+
+		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 12);
+
+		playTime = 0;
+
+
+		//Lists
+
+>>>>>>> da24ebf03c7becec1ce4e07a7efb6c553da9b086
 		user = new LinkedList<User>();
 		bananas = new ArrayList<>();
 
@@ -65,14 +87,15 @@ public class Interaction {
 		}
 		
 		return oneInstance;
-		
+
 	}
-	
+
 	public void draw() {
 		monkey.draw();
 		time = true;
 
 		timer();
+<<<<<<< HEAD
 		
 
 	}
@@ -98,11 +121,16 @@ public class Interaction {
 			User newUser = new User (app, temporalName, time);
 			
 			user.add(newUser);
+=======
+
+		// drawTimer();
+>>>>>>> da24ebf03c7becec1ce4e07a7efb6c553da9b086
 
 			System.out.println("user" + user.size());
 		}
 		
 	}
+
 	
 	//Draw and move bananas based on the level they're on
 	public void drawBananas(int level) {
@@ -120,7 +148,7 @@ public class Interaction {
 			}
 			break;
 		case 2: 
-			for (int i = 4; i < 7; i++) {
+			for (int i = 4; i < 6; i++) {
 				bananas.get(i).draw();
 				new Thread(bananas.get(i)).start();
 			}
@@ -129,73 +157,88 @@ public class Interaction {
 	}
 	
 	
+
 	public void coinMonkey() {
-		
-
 
 	}
-	
+
 	public void monkeyBanana() {
-		
-		
+
 	}
-	
+
 	public void bananaBullet() {
-		
-		
 
 	}
-	
+
 	public void monkeyBullet() {
-		
 
 	}
-	
+
 	public void gorillaBullet() {
-		
 
 	}
-	
+
 	public void platforms() {
 		
+	//if(mouseX>x1 && mouseX<x2 && mouseY>y1 && mouseY<y2)
+
 		
+		if(app.mouseX>354 && app.mouseX< 677 && app.mouseY> 430 && app.mouseY< 477){
+			System.out.println("holaaaa");
+		}
+		
+//		// first platform
+		if (monkey.getX() < 345 && monkey.getY() >  430 && monkey.getX() > 677 && monkey.getY() < 477) {
+		
+			
+		}
+//		
+//		if (app.mouseX < 345 && app.mouseY >  430 && app.mouseX > 677 && app.mouseY < 477) {
+//			System.out.println("holaaaa");
+//		}
+//
+//		// second platform
+//		if (monkey.getX() < 1030 && monkey.getY() > 260 && monkey.getX() > 840 && monkey.getY() < 430) {
+//			// moverAr1N1 = false;
+//		}
+
 	}
-	
+
+
 	public void initCoins() {
-		
 
 	}
-	
+
 	public void removeCoins() {
-		
 
 	}
-	
+
 	public void initCoinsGrabbed() {
-		
 
 	}
-	
+
 	public void initBananas() {
+
 		//Bananas for level one
 		bananas.add(new Banana(app, 682, 588, 682, 400));
 		bananas.add(new Banana(app, 700, 201, 700, 400));
 		
 		//Bananas for level two
 		bananas.add(new Banana(app, 160, 588, 160, 280));
-		bananas.add(new Banana(app, 1011, 588, 1011, 225));
+		bananas.add(new Banana(app, 1011, 323, 1011, 225));
 		
 		//Bananas for level three
 		bananas.add(new Banana(app, 425, 148, 425, 285));
 		bananas.add(new Banana(app, 688, 588, 688, 400));
 
-	}
-	
-	public void initPlatforms() {
-		
 
 	}
-	
+
+	public void initPlatforms() {
+
+	}
+
+
 	public void monkeyMove(int movement) {
 		switch (movement) {
 		//For left movement
@@ -208,17 +251,25 @@ public class Interaction {
 			break;
 		//For jumping
 		case 3:
-			monkey.jump();
+			//monkey.jump();
 			break;
 		//For shooting
 		case 4:
 			monkey.initShoot();
 			break;
+			
+		//For fall
+		case 5:
+			//monkey.land();
+			//monkey.connect();
+			break;	
 		}
-
+		
 	}
 
-	public void timer() {
+	
+
+      public void timer() {
 
 		if (time==true) {	
 	
@@ -252,6 +303,7 @@ public class Interaction {
 		
 		
 }
+
 	
 	public void drawData() {
 
@@ -273,6 +325,14 @@ public class Interaction {
 		Collections.sort(user, name);
 		
 	}
+
+	public Monkey getMonkey() {
+		return monkey;
+	}
+
+	public void setMonkey(Monkey monkey) {
+		this.monkey = monkey;
+	}
 	
-	
+
 }

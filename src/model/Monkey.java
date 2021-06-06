@@ -14,6 +14,8 @@ public class Monkey{
 	private boolean dir;
 	private ArrayList<Bullet> bullets;
 	private float gravity;
+	private boolean connected;
+	private boolean up;
 
 	public Monkey(PApplet app) {
 		this.app = app;
@@ -28,7 +30,8 @@ public class Monkey{
 		speedY = 0;
 		gravity = (float) 0.6;
 		coolDown = 10;
-		
+		connected = false;
+		up = true;
 		//Images
 		monkeyL = app.loadImage("./data/images/monkeyL.png");
 		monkeyR = app.loadImage("./data/images/monkeyR.png");
@@ -71,12 +74,36 @@ public class Monkey{
 		y += speedY;
 	}
 	
-	public void jump() {
-		//Gravity for jumping
-		//speedY = -15;
-		//speedY += gravity;
-
-	}
+//	public void jump() {
+//	//	Gravity for jumping
+////		if (up) {
+//		speedY = -15;
+//		y += speedY;
+//		//connected = false;
+//		
+//		//speedY += gravity;
+////		}
+//		
+////		if (connected == false) {
+////			speedY += gravity;
+////		}
+//		
+//	}
+//	
+////	public void connect() {
+////		if (connected == false) {
+////			speedY += gravity;
+////		}
+////	}
+//	
+//
+//	public void land() {
+//		
+//		speedY = 0;
+//		//y = 485;
+//		//connected = true;
+//		
+//	}
 	
 	//In key pressed to create the bullet and add it to the list
 	public void initShoot() {
@@ -103,5 +130,38 @@ public class Monkey{
 			}
 		}
 	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getSpeedX() {
+		return speedX;
+	}
+
+	public void setSpeedX(int speedX) {
+		this.speedX = speedX;
+	}
+
+	public int getSpeedY() {
+		return speedY;
+	}
+
+	public void setSpeedY(int speedY) {
+		this.speedY = speedY;
+	}
+	
 
 }

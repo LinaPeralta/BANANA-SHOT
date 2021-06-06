@@ -30,4 +30,14 @@ public class PlayController {
 
 	}
 
+	public Interaction getInteraction() {
+		return interaction;
+	}
+
+	public void setInteraction(Interaction interaction) {
+		this.interaction = interaction;
+	}
+	
+	
+
 }
