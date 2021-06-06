@@ -3,6 +3,7 @@ package view;
 
 import controller.PlayController;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PImage;
 
 public class PlayScreen {
@@ -34,19 +35,9 @@ public class PlayScreen {
 		controller = new PlayController(app);
 
 	}
-
-
-
-	public void drawlevel1() {
-
-		
-		app.image(screenOne, 0, 0, 1300, 700);
-		
-
-	}
-
 	
 	public void levelScreens() {
+		app.imageMode(PConstants.CORNER);
 		
 		switch (level) {
 		//level1
@@ -67,7 +58,7 @@ public class PlayScreen {
 	
 	public void drawController () {
 		controller.draw();
-		
+		controller.drawLevels(level);
 		
 		
 		
@@ -78,4 +69,8 @@ public class PlayScreen {
 		
 	}
 
+	public void monkeyMove(int movement) {
+		controller.monkeyMove(movement);
+
+	}
 }

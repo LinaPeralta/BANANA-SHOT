@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 
@@ -10,14 +11,10 @@ public class Interaction {
 	
 	private PApplet app;
 	private Monkey monkey;
-	//private User user;
-	
 	private Name name;
-	
 	private static Interaction oneInstance;
-	
 	private LinkedList<User> user;
-	
+	private ArrayList<Banana> bananas;
 	private PFont font;
 	private int min, seg,playTime ;
 	private boolean time;
@@ -28,19 +25,29 @@ public class Interaction {
 
 		//Classes
 		monkey = new Monkey(app);
+		name = new Name();
 
 		//timer
 		min = 0;
 		seg = 0;
 		time = false;
+<<<<<<< HEAD
 		playTime = 0;
 		
+=======
+
+		//Lists
+>>>>>>> 62aaaed54748a5ecbdd93dba4f8bb77828e4cfb5
 		user = new LinkedList<User>();
-		
-		name = new Name();
+		bananas = new ArrayList<>();
 
+		//Fonts
 		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 17);
+		
+		//Inits
+		initBananas();
 
+		System.out.println(bananas.size());
 		
 	}
 	
@@ -59,13 +66,41 @@ public class Interaction {
 	public void draw() {
 		monkey.draw();
 		time = true;
+<<<<<<< HEAD
 
 		
 		
+=======
+>>>>>>> 62aaaed54748a5ecbdd93dba4f8bb77828e4cfb5
 		timer();
+		
 
 
 
+	}
+	
+	//Draw and move bananas based on the level they're on
+	public void drawBananas(int level) {
+		switch (level) {
+		case 0:
+			for (int i = 0; i < 2; i++) {
+				bananas.get(i).draw();
+				new Thread(bananas.get(i)).start();
+			}
+			break;
+		case 1:
+			for (int i = 2; i < 4; i++) {
+				bananas.get(i).draw();
+				new Thread(bananas.get(i)).start();
+			}
+			break;
+		case 2: 
+			for (int i = 4; i < 7; i++) {
+				bananas.get(i).draw();
+				new Thread(bananas.get(i)).start();
+			}
+			break;
+		}
 	}
 	
 	
@@ -117,7 +152,17 @@ public class Interaction {
 	}
 	
 	public void initBananas() {
+		//Bananas for level one
+		bananas.add(new Banana(app, 682, 588, 682, 400));
+		bananas.add(new Banana(app, 700, 201, 700, 400));
 		
+		//Bananas for level two
+		bananas.add(new Banana(app, 160, 588, 160, 280));
+		bananas.add(new Banana(app, 1011, 588, 1011, 225));
+		
+		//Bananas for level three
+		bananas.add(new Banana(app, 425, 148, 425, 285));
+		bananas.add(new Banana(app, 688, 588, 688, 400));
 
 	}
 	
@@ -126,8 +171,25 @@ public class Interaction {
 
 	}
 	
-	public void monkeyMove() {
-		
+	public void monkeyMove(int movement) {
+		switch (movement) {
+		//For left movement
+		case 1:
+			monkey.moveLeft();
+			break;
+		//For right movement
+		case 2:
+			monkey.moveRight();
+			break;
+		//For jumping
+		case 3:
+			monkey.jump();
+			break;
+		//For shooting
+		case 4:
+			monkey.initShoot();
+			break;
+		}
 
 	}
 
