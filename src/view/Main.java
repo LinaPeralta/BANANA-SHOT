@@ -1,6 +1,10 @@
 package view;
 import controlP5.ControlP5;
+
 import model.Interaction;
+
+import model.Monkey;
+
 import processing.core.PApplet;
 
 public class Main extends PApplet{
@@ -18,10 +22,10 @@ public class Main extends PApplet{
 	private StatScreen statScreen;
 	//Game over screen
 	private Interaction interaction;
-	
 	//Variables
 	private int screen;
-	private int level;
+	private boolean left, right, jump, shoot, land;
+	
 	
 	public static void main(String[] args) {
 		PApplet.main("view.Main");
@@ -55,10 +59,15 @@ public class Main extends PApplet{
 		
 		interaction = new Interaction (this);
 		
+		
+		
 		//Variables
 		screen = 0;
-		level = 0;
-		
+		left = false;
+		right = false;
+		shoot = false;
+		jump = false;
+		land = false;
 	}
 	
 	@Override
@@ -78,6 +87,9 @@ public class Main extends PApplet{
 		case 2:
 			playScreen.levelScreens();
 			playScreen.drawController();
+			keyMovements();
+			//playScreen.pass();
+
 			break;
 		//Game over screen
 		case 3:
@@ -170,7 +182,62 @@ public class Main extends PApplet{
 	@Override
 	public void keyPressed() {
 		if (screen == 2) {
-			playScreen.monkeyMove(key);
+			switch (key) {
+			case 'a':
+				left = true;
+				break;
+			case 'd':
+				right = true;
+				break;
+			case 'w':
+				jump = true;
+				break;
+			case ' ':
+				shoot = true;
+				break;
+			}
+		}
+	}
+	
+	@Override
+	public void keyReleased() {
+		if (screen == 2) {
+			switch (key) {
+			case 'a':
+				left = false;
+				break;
+			case 'd':
+				right = false;
+				break;
+			case 'w':
+				jump = false;
+				land = true;
+				break;
+			}
+		}
+	}
+	
+	//Allows smoother movements 
+	private void keyMovements() {
+		
+		if (left) {
+			playScreen.monkeyMove(1);
+		}
+		
+		if (right) {
+			playScreen.monkeyMove(2);
+		}
+		
+		if (jump) {
+			playScreen.monkeyMove(3);
+		}
+		
+		if (shoot) {
+			playScreen.monkeyMove(4);
+			shoot = false;
+		}
+		if  (land) {
+			playScreen.monkeyMove(5);
 		}
 	}
 

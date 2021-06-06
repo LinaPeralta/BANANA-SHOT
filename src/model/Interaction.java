@@ -10,7 +10,7 @@ public class Interaction {
 
 	private PApplet app;
 	private Monkey monkey;
-	private  double gravity;
+	//private  double gravity;
 	//private User user;
 	
 	private Name name;
@@ -22,7 +22,7 @@ public class Interaction {
 	private PFont font;
 	private int min, seg;
 	private boolean time;
-	private  boolean connected;
+	//private  boolean connected;
 
 	public Interaction(PApplet app) {
 
@@ -35,8 +35,8 @@ public class Interaction {
 		min = 0;
 		seg = 0;
 		time = false;
-		gravity = 0.6;
-		connected = false;
+		//gravity = 0.6;
+		//connected = false;
 
 
 		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 17);
@@ -97,7 +97,7 @@ public class Interaction {
 
 	public void platforms() {
 		
-		//if(mouseX>x1 && mouseX<x2 && mouseY>y1 && mouseY<y2)
+	//if(mouseX>x1 && mouseX<x2 && mouseY>y1 && mouseY<y2)
 
 		
 		if(app.mouseX>354 && app.mouseX< 677 && app.mouseY> 430 && app.mouseY< 477){
@@ -105,9 +105,10 @@ public class Interaction {
 		}
 		
 //		// first platform
-//		if (monkey.getX() < 345 && monkey.getY() >  430 && monkey.getX() > 677 && monkey.getY() < 477) {
-//			// moverAr1N1 = false;
-//		}
+		if (monkey.getX() < 345 && monkey.getY() >  430 && monkey.getX() > 677 && monkey.getY() < 477) {
+		
+			
+		}
 //		
 //		if (app.mouseX < 345 && app.mouseY >  430 && app.mouseX > 677 && app.mouseY < 477) {
 //			System.out.println("holaaaa");
@@ -119,6 +120,7 @@ public class Interaction {
 //		}
 
 	}
+
 
 	public void initCoins() {
 
@@ -141,10 +143,34 @@ public class Interaction {
 	}
 
 
+	public void monkeyMove(int movement) {
+		switch (movement) {
+		//For left movement
+		case 1:
+			monkey.moveLeft();
+			break;
+		//For right movement
+		case 2:
+			monkey.moveRight();
+			break;
+		//For jumping
+		case 3:
+			//monkey.jump();
+			break;
+		//For shooting
+		case 4:
+			monkey.initShoot();
+			break;
+			
+		//For fall
+		case 5:
+			//monkey.land();
+			//monkey.connect();
+			break;	
+		}
+		
 
-	
-	public void monkeyMove(char key) {
-		monkey.move(key);
+
 	}
 
 	
@@ -239,6 +265,14 @@ public class Interaction {
 		
 		Collections.sort(user, name);
 		
+	}
+
+	public Monkey getMonkey() {
+		return monkey;
+	}
+
+	public void setMonkey(Monkey monkey) {
+		this.monkey = monkey;
 	}
 	
 

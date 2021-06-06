@@ -20,9 +20,19 @@ public class PlayController {
 
 	}
 	
-	public void monkeyMove(char key) {
-		interaction.monkeyMove(key);
+	public void monkeyMove(int movement) {
+		interaction.monkeyMove(movement);
 
 	}
+
+	public Interaction getInteraction() {
+		return interaction;
+	}
+
+	public void setInteraction(Interaction interaction) {
+		this.interaction = interaction;
+	}
+	
+	
 
 }
