@@ -19,7 +19,7 @@ public class Interaction {
 	private LinkedList<User> user;
 	
 	private PFont font;
-	private int min, seg;
+	private int min, seg,playTime ;
 	private boolean time;
 
 	public Interaction(PApplet app) {
@@ -33,7 +33,8 @@ public class Interaction {
 		min = 0;
 		seg = 0;
 		time = false;
-
+		playTime = 0;
+		
 		user = new LinkedList<User>();
 		
 		name = new Name();
@@ -59,6 +60,7 @@ public class Interaction {
 		monkey.draw();
 		time = true;
 
+		
 		
 		timer();
 
@@ -132,36 +134,36 @@ public class Interaction {
 	public void timer() {
 
 		if (time==true) {	
-		
-		if (app.frameCount % 60 == 0 && min >= 0) {
-		      seg++;
-		  }
-		  if (seg == 60) {
-		      min++;
-		      seg = 0;
-		  }
-		  if (min < 0) {
-		    app.fill(0);
-		    app.textFont(font);
-		    app.textSize(30);
-		    app.text("0:00", 310, 35);
-		    
-		  } else if (seg <= 9) {
-			  
-			app.fill(0);
-			app.textFont(font);
-			app.textSize(30);
-			app.text(min + ":0" + seg, 310, 35);
-		    
-		  } else if (seg > 9) {
-			  
-			  app.fill(0);
-				app.textFont(font);
-				app.textSize(30);
-				app.text(min + ":" + seg, 310, 35);
-		    
-		  }
+	
+			playTime++;
+			if(playTime %20 == 0) {
+				seg++;
+				playTime = 0;
+			}if(seg==20) {
+				seg = 0;
+				min++;
+			}
+			 app.fill(0);
+			 app.textFont(font);
+			 app.textSize(30);
+			
+			if(min<10 && seg<10) {
+				
+				app.text("0"+min+":0"+seg, 310, 35);
+				
+			}else if(min<10 && seg>10){
+				
+				app.text("0"+min+":"+seg, 310, 35);
+				
+			}else {
+				
+				app.text(min+":"+seg, 310, 35);
+				
+			}
+
 	}
+		
+		
 }
 	
 	public void drawData() {

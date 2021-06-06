@@ -54,7 +54,7 @@ public class Main extends PApplet{
 		
 		
 		//Variables
-		screen = 0;
+		screen = 2;
 		level = 0;
 		
 	}
