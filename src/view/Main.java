@@ -62,6 +62,7 @@ public class Main extends PApplet{
 		
 		
 		//Variables
+
 		screen = 0;
 		left = false;
 		right = false;
