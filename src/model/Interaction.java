@@ -1,5 +1,8 @@
 package model;
 
+import java.util.Collections;
+import java.util.LinkedList;
+
 import processing.core.PApplet;
 import processing.core.PFont;
 
@@ -7,6 +10,14 @@ public class Interaction {
 	
 	private PApplet app;
 	private Monkey monkey;
+	//private User user;
+	
+	private Name name;
+	
+	private static Interaction oneInstance;
+	
+	private LinkedList<User> user;
+	
 	private PFont font;
 	private int min, seg;
 	private boolean time;
@@ -22,26 +33,37 @@ public class Interaction {
 		min = 0;
 		seg = 0;
 		time = false;
+
+		user = new LinkedList<User>();
 		
-<<<<<<< HEAD
+		name = new Name();
+
 		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 17);
-=======
-		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 12);
->>>>>>> c98b1a43b230866ee3d9b1f7ff9f483c8cb6b27d
+
+		
+	}
+	
+	public static Interaction getInstance(PApplet app) {
+		
+		if(oneInstance == null) {
+			
+			oneInstance = new Interaction(app);
+			
+		}
+		
+		return oneInstance;
 		
 	}
 	
 	public void draw() {
 		monkey.draw();
 		time = true;
-<<<<<<< HEAD
+
 		
 		timer();
-		
-=======
-		drawTimer();
 
->>>>>>> c98b1a43b230866ee3d9b1f7ff9f483c8cb6b27d
+
+
 	}
 	
 	
@@ -107,25 +129,6 @@ public class Interaction {
 
 	}
 
-//	public void drawTimer() {
-//
-//		if (time==true) {
-//
-//
-//			if (app.frameCount % 60 == 0) {
-//				seg += 1;
-//			}
-//			if (seg == 60) {
-//				seg = 0;
-//				min += 1;
-//			}
-//		}
-//		app.fill(255);
-//		app.textFont(font);
-//		app.textSize(40);
-//		app.text("Time: "+ min + ":" + seg, 210, 15);
-//	}
-
 	public void timer() {
 
 		if (time==true) {	
@@ -141,24 +144,46 @@ public class Interaction {
 		    app.fill(0);
 		    app.textFont(font);
 		    app.textSize(30);
-		    app.text("0:00", 540, 42);
+		    app.text("0:00", 310, 35);
 		    
 		  } else if (seg <= 9) {
 			  
 			app.fill(0);
 			app.textFont(font);
 			app.textSize(30);
-			app.text(min + ":0" + seg, 540, 42);
+			app.text(min + ":0" + seg, 310, 35);
 		    
 		  } else if (seg > 9) {
 			  
 			  app.fill(0);
 				app.textFont(font);
 				app.textSize(30);
-				app.text(min + ":" + seg, 540, 42);
+				app.text(min + ":" + seg, 310, 35);
 		    
 		  }
 	}
 }
+	
+	public void drawData() {
+
+		for (int i = 0; i < user.size(); i++) {
+			user.get(i).drawData(180, 370+(50*i));
+		}
+	}
+	
+	public LinkedList<User> getUser() {
+		return user;
+	}
+
+	public void setUser(LinkedList<User> user) {
+		this.user = user;
+	}
+	
+	public void organizeName() {
+		
+		Collections.sort(user, name);
+		
+	}
+	
 	
 }

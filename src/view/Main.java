@@ -14,7 +14,7 @@ public class Main extends PApplet{
 	//Play screen
 	private PlayScreen playScreen;
 	//Stat screen
-	
+	private StatScreen statScreen;
 	//Game over screen
 	
 	
@@ -37,13 +37,18 @@ public class Main extends PApplet{
 		
 		//Library
 		cp5 = new ControlP5(this);
+		
 		//Start screen
 		start = new StartScreen(this, cp5);
+		
 		//Instruction screen
 		instructions = new InstructionScreen(this);
+		
 		//Play screen
 		playScreen = new PlayScreen (this);
+		
 		//Stat screen
+		statScreen = new StatScreen (this);
 		
 		//Game over screen
 		
@@ -78,7 +83,7 @@ public class Main extends PApplet{
 			break;
 		//Stat screen
 		case 4:
-	
+			statScreen.draw();
 			break;
 		}	
 		
