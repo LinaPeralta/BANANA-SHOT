@@ -3,8 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.LinkedList;
-
 import processing.core.PApplet;
 import processing.core.PFont;
 
@@ -12,20 +10,13 @@ public class Interaction {
 
 	private PApplet app;
 	private Monkey monkey;
-
-	// private double gravity;
-	// private User user;
-
 	private Name name;
-	
 	private String temporalName;
-	
 	//private static Interaction oneInstance;
-	
 	private ArrayList<User> users;
-	
 	private ArrayList<Banana> bananas;
-	
+	private ArrayList<Plataform> platforms;
+	private Plataform goldPlatform;
 	private PFont font;
 	private int min, seg, playTime;
 	private boolean time;
@@ -41,35 +32,20 @@ public class Interaction {
 		// Classes
 		monkey = new Monkey(app);
 		name = new Name();
-		
+		goldPlatform = new Plataform(app, 939, 286, 195, 50);
 
 		// timer
 		min = 0;
 		seg = 0;
 		time = false;
 		playTime = 0;
-		
 		temporalName="";
-
-		//Lists
-
-
-		// gravity = 0.6;
-		// connected = false;
-
-		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 17);
-
-		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 12);
-
 		playTime = 0;
 
-
 		//Lists
-
-
 		users = new ArrayList<>();
-
 		bananas = new ArrayList<>();
+		platforms = new ArrayList<>();
 
 		// Fonts
 		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 17);
@@ -77,14 +53,12 @@ public class Interaction {
 		// Inits
 		initBananas();
 
-		System.out.println(bananas.size());
 
 	}
 
 	public void draw() {
 		monkey.draw();
 		time = true;
-
 		timer();
 
 	}
@@ -152,12 +126,29 @@ public class Interaction {
 		}
 		
 		removeBananas();
-		System.out.println(bananas.size());
 	}
 	
-	
-	
-	
+	//Assigning the interaction between platforms based on the level
+	public void interactionPlatforms(int level) {
+		switch (level) {
+		case 0:
+			for (int i = 0; i < 2; i++) {
+				
+			}
+			break;
+		case 1:
+			for (int i = 2; i < 4; i++) {
+				
+			}
+			break;
+		case 2:
+			for (int i = 4; i < 5; i++) {
+				
+			}
+			break;
+		}
+
+	}
 
 	public void coinMonkey() {
 
@@ -181,25 +172,6 @@ public class Interaction {
 
 	public void platforms() {
 
-		// if(mouseX>x1 && mouseX<x2 && mouseY>y1 && mouseY<y2)
-
-		if (app.mouseX > 354 && app.mouseX < 677 && app.mouseY > 430 && app.mouseY < 477) {
-			System.out.println("holaaaa");
-		}
-
-//		// first platform
-		if (monkey.getX() < 345 && monkey.getY() > 430 && monkey.getX() > 677 && monkey.getY() < 477) {
-
-		}
-//		
-//		if (app.mouseX < 345 && app.mouseY >  430 && app.mouseX > 677 && app.mouseY < 477) {
-//			System.out.println("holaaaa");
-//		}
-//
-//		// second platform
-//		if (monkey.getX() < 1030 && monkey.getY() > 260 && monkey.getX() > 840 && monkey.getY() < 430) {
-//			// moverAr1N1 = false;
-//		}
 
 	}
 
@@ -250,6 +222,33 @@ public class Interaction {
 	}
 
 	public void initPlatforms() {
+		//Platforms for level one
+		//Floor
+		platforms.add(new Plataform(app, 0, 675, 1300, 25));
+		//Platforms
+		platforms.add(new Plataform(app, 353, 427, 330, 50));
+		platforms.add(new Plataform(app, 699, 267, 461, 50));
+		
+		//Platforms for level two
+		//Floors
+		platforms.add(new Plataform(app, 0, 675, 506, 25));
+		platforms.add(new Plataform(app, 661, 504, 197, 196));
+		platforms.add(new Plataform(app, 1011, 421, 289, 279));
+		//Platforms
+		platforms.add(new Plataform(app, 76, 268, 330, 50));
+		platforms.add(new Plataform(app, 430, 151, 330, 50));
+		
+		//Platforms for level three
+		//Floors
+		platforms.add(new Plataform(app, 0, 421, 214, 279));
+		platforms.add(new Plataform(app, 214, 675, 1086, 25));
+		//Platform
+		platforms.add(new Plataform(app, 434, 213, 330, 50));
+		
+	}
+	
+	public boolean intersectPlatforms() {
+		return dir;
 
 	}
 
