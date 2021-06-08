@@ -73,37 +73,10 @@ public class Monkey{
 		x += speedX;
 		y += speedY;
 	}
-	
-//	public void jump() {
-//	//	Gravity for jumping
-////		if (up) {
-//		speedY = -15;
-//		y += speedY;
-//		//connected = false;
-//		
-//		//speedY += gravity;
-////		}
-//		
-////		if (connected == false) {
-////			speedY += gravity;
-////		}
-//		
-//	}
-//	
-////	public void connect() {
-////		if (connected == false) {
-////			speedY += gravity;
-////		}
-////	}
-//	
-//
-//	public void land() {
-//		
-//		speedY = 0;
-//		//y = 485;
-//		//connected = true;
-//		
-//	}
+
+	public void jump() {
+		
+	}
 	
 	//In key pressed to create the bullet and add it to the list
 	public void initShoot() {
@@ -131,6 +104,7 @@ public class Monkey{
 		}
 	}
 
+	
 	public int getX() {
 		return x;
 	}
@@ -162,6 +136,16 @@ public class Monkey{
 	public void setSpeedY(int speedY) {
 		this.speedY = speedY;
 	}
+
+	public ArrayList<Bullet> getBullets() {
+		return bullets;
+	}
+
+	public void setBullets(ArrayList<Bullet> bullets) {
+		this.bullets = bullets;
+	}
+	
+	
 	
 
 }

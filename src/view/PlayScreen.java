@@ -45,9 +45,14 @@ public class PlayScreen {
 		case 0:
 			app.image(screenOne, 0, 0, 1300, 700);
 			
+			//Border
+			if (controller.getInteraction().getMonkey().getX() < -10 && level == 0) {
+				controller.getInteraction().getMonkey().setX(75);
+			}
+			
 			if (controller.getInteraction().getMonkey().getX() > 1300 && level == 0) {
 				level = 1;
-				controller.getInteraction().getMonkey().setX(75);
+				controller.getInteraction().getMonkey().setX(35);
 			}
 
 			break;
@@ -57,7 +62,7 @@ public class PlayScreen {
         	
         	if (controller.getInteraction().getMonkey().getX() > 1300 && level == 1) {
 				level = 2;
-				controller.getInteraction().getMonkey().setX(75);
+				controller.getInteraction().getMonkey().setX(35);
 			}
         	
         	if (controller.getInteraction().getMonkey().getX() < 0 && level == 1) {
@@ -65,40 +70,29 @@ public class PlayScreen {
 				controller.getInteraction().getMonkey().setX(1280);
 			}
 
-        	
 			break;
 		//level3	
         case 2:
         	app.image(screenThree, 0, 0, 1300, 700);
         	
+        	//Border
+			if (controller.getInteraction().getMonkey().getX() > 1200 && level == 2) {
+				controller.getInteraction().getMonkey().setX(1100);
+			}
+        	
         	if (controller.getInteraction().getMonkey().getX() < 0 && level == 2) {
 				level = 1;
 				controller.getInteraction().getMonkey().setX(1280);
 			}
-
 			break;
-			
-			
 		}
+		
+
 	}
 	
-//	public void pass () {
-//		
-//		
-//		if (level == 0 && monkey.getX() > 1300) {
-//		     level = 1; //pasar nivel 2
-//		}
-//		
-//
-//		if (level == 1 && monkey.getX() > 1300) {
-//		     level = 2; //pasar nivel 3
-//		}
-//	}
-//	
-	
+
 	public void drawController () {
 		controller.draw();
-
 		controller.drawLevels(level);
 		
 		

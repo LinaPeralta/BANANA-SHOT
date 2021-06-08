@@ -17,8 +17,6 @@ public class StatController {
 	}
 	
 	public void drawData() {
-		
-	interaction.drawData();
 	
 	}
 	

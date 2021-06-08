@@ -83,7 +83,7 @@ public class StartScreen {
 	}
 	
 	public void addUser() {
-		controller.addUser(cp5.get(Textfield.class, "username").getText());
+		//controller.addUser(cp5.get(Textfield.class, "username").getText());
 	}
 	
 	public boolean isBoxFilled() {

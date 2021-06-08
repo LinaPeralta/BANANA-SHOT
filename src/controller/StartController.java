@@ -22,7 +22,7 @@ public class StartController {
 	public void addUser(String name) {
 		
 		interaction.addUser(name);
-		
+
 	}
 	
 
