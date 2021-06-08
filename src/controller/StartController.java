@@ -14,7 +14,7 @@ public class StartController {
 	}
 	
 	public void addUser(String name) {
-		users.add(new User(null, name));
+		//users.add(new User(null, name));
 	}
 	
 	public ArrayList<User> getUsers() {

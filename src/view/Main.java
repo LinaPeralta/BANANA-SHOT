@@ -62,7 +62,6 @@ public class Main extends PApplet{
 		
 		
 		//Variables
-
 		screen = 0;
 		left = false;
 		right = false;
@@ -73,6 +72,9 @@ public class Main extends PApplet{
 	
 	@Override
 	public void draw() {
+		
+		System.out.println(mouseX+","+mouseY);
+		
 		background(255);
 		
 		switch (screen) {
@@ -98,7 +100,9 @@ public class Main extends PApplet{
 			break;
 		//Stat screen
 		case 4:
+			
 			statScreen.draw();
+			statScreen.charts();
 			break;
 		}	
 		
@@ -114,7 +118,7 @@ public class Main extends PApplet{
 			start.showText();
 			//If to hide text, add user and switch to the following screen
 			if (mouseX > 540 && mouseX < 765 && mouseY > 580 && mouseY < 637 && start.isBoxFilled()) {
-				start.addUser();
+				//start.addUser();
 				start.hideText();
 				screen = 1;
 			}
@@ -129,7 +133,7 @@ public class Main extends PApplet{
 		//Instructions screen
 		case 1:
 			if (mouseX > 530 && mouseX < 775 && mouseY > 590 && mouseY < 650) {
-				screen = 2;
+				screen = 4;
 			}
 			
 			
@@ -166,8 +170,13 @@ public class Main extends PApplet{
 			break;
 		//Stat screen
 		case 4:
-	
 			
+			
+			if(mouseX > 528 && mouseX < 771 && mouseY > 589 && mouseY < 647) {
+				
+				screen = 0;
+				
+			}
 			
 			
 			

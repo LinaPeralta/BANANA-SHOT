@@ -26,17 +26,29 @@ public class StatScreen {
 		
 		//Image
 		chart = app.loadImage("./data/images/chart.png");
+		
+		//font
 
 		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 12);
-
 		
 	}
 
 	public void draw() {
 		app.imageMode(PConstants.CORNER);
 		app.image(chart, 0, 0, 1300, 700);
+		
+		controller.drawData();
 
 	}
+	
+	public void charts() {
+		
+		controller.charts();
+
+	}
+	
+	
+
 	
 	
 }
