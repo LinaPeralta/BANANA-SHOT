@@ -12,7 +12,7 @@ public class StatController {
 		
 		this.app = app;
 		
-		interaction = Interaction.getInstance(app);
+		interaction = new Interaction(app);
 		
 	}
 	

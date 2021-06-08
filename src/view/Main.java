@@ -62,13 +62,10 @@ public class Main extends PApplet{
 		
 		
 		//Variables
-<<<<<<< HEAD
-		screen = 4;
-		level = 0;
-=======
 
 		screen = 0;
->>>>>>> da24ebf03c7becec1ce4e07a7efb6c553da9b086
+		//level = 0;
+
 		left = false;
 		right = false;
 		shoot = false;

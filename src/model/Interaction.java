@@ -20,9 +20,10 @@ public class Interaction {
 	
 	private String temporalName;
 	
-	private static Interaction oneInstance;
+	//private static Interaction oneInstance;
 	
-	private LinkedList<User> user;
+	private ArrayList<User> users;
+	
 	private ArrayList<Banana> bananas;
 	
 	private PFont font;
@@ -43,13 +44,12 @@ public class Interaction {
 		min = 0;
 		seg = 0;
 		time = false;
-<<<<<<< HEAD
+
 		playTime = 0;
 		
 		temporalName="";
 
 		//Lists
-=======
 
 		//gravity = 0.6;
 		//connected = false;
@@ -64,8 +64,8 @@ public class Interaction {
 
 		//Lists
 
->>>>>>> da24ebf03c7becec1ce4e07a7efb6c553da9b086
-		user = new LinkedList<User>();
+
+		users = new ArrayList<>();
 		bananas = new ArrayList<>();
 
 		//Fonts
@@ -77,33 +77,28 @@ public class Interaction {
 		System.out.println(bananas.size());
 		
 	}
-	
-	public static Interaction getInstance(PApplet app) {
-		
-		if(oneInstance == null) {
-			
-			oneInstance = new Interaction(app);
-			
-		}
-		
-		return oneInstance;
 
-	}
 
 	public void draw() {
 		monkey.draw();
 		time = true;
 
 		timer();
-<<<<<<< HEAD
-		
+
 
 	}
 	
 	public void registerPlayer(String name) {
+		
 		temporalName=name;
+		
 	}
 
+	public void addUser(String name) {
+		
+		users.add(new User(app, name));
+		
+	}
 	
 	public void charts(){
 		
@@ -116,17 +111,16 @@ public class Interaction {
 		
 		Date date = new Date();
 		
-		for (int i = 0; i < 1; i++) {
+		String score = Integer.toString(score);
+		//date = date.toString();
+		
+		for (int i = 0; i < users.size(); i++) {
 
-			User newUser = new User (app, temporalName, time);
-			
-			user.add(newUser);
-=======
+			//users.get(i).setDate();
+			users.get(i).setTime(time);
+			users.get(i).setScore(score);
 
-		// drawTimer();
->>>>>>> da24ebf03c7becec1ce4e07a7efb6c553da9b086
-
-			System.out.println("user" + user.size());
+			System.out.println("user" + users.size());
 		}
 		
 	}
@@ -287,7 +281,7 @@ public class Interaction {
 			
 			if(min<10 && seg<10) {
 				
-				app.text("0"+min+":0"+seg, 310, 35);
+				app.text("0"+min+":00"+seg, 310, 35);
 				
 			}else if(min<10 && seg>10){
 				

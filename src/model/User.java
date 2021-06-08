@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Set;
 
 import processing.core.PApplet;
 
@@ -8,33 +10,34 @@ public class User implements Comparable<User> {
 	
 	private PApplet app;
 	
-	private String name, date, time, score;
+	private String name, time, date, score;
 	
 
-	public User(PApplet app, String name, String time ) {
+	public User(PApplet app, String name ) {
 		
 		this.app = app;
 		
 		this.name = name;
-		this.time = time;
+				
+		date = "";
+		time = "";
+		score = "";
+
 		
 		//VARIABLES
 		//The variables are blank for now, to later be filled with the information from the game
-		
-//		date = "";
-//		time = "";
-//		score = "";
+
 		
 	}
 	
 	public void drawData(int x, int y) {
 		
 		app.fill(0);
-		app.textSize(15);
+		app.textSize(25);
 		app.text(name, x, y);
-		app.text(time, x+ 45*4, y );
-		
-		//app.text(score, x+ 120*4, y );
+		app.text(time, x + 800 , 200 );
+		app.text(date, 400, 200);
+		app.text(score, x+ 600, 200 );
 
 	}
 	
