@@ -131,6 +131,7 @@ public class Monkey{
 		}
 	}
 
+	
 	public int getX() {
 		return x;
 	}
@@ -162,6 +163,16 @@ public class Monkey{
 	public void setSpeedY(int speedY) {
 		this.speedY = speedY;
 	}
+
+	public ArrayList<Bullet> getBullets() {
+		return bullets;
+	}
+
+	public void setBullets(ArrayList<Bullet> bullets) {
+		this.bullets = bullets;
+	}
+	
+	
 	
 
 }

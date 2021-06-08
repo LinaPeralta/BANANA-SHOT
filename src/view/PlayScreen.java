@@ -82,20 +82,7 @@ public class PlayScreen {
 		}
 	}
 	
-//	public void pass () {
-//		
-//		
-//		if (level == 0 && monkey.getX() > 1300) {
-//		     level = 1; //pasar nivel 2
-//		}
-//		
-//
-//		if (level == 1 && monkey.getX() > 1300) {
-//		     level = 2; //pasar nivel 3
-//		}
-//	}
-//	
-	
+
 	public void drawController () {
 		controller.draw();
 

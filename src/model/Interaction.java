@@ -12,17 +12,20 @@ public class Interaction {
 	private PApplet app;
 	private Monkey monkey;
 
-	//private  double gravity;
-	//private User user;
+	// private double gravity;
+	// private User user;
 
 	private Name name;
 	private static Interaction oneInstance;
 	private LinkedList<User> user;
 	private ArrayList<Banana> bananas;
 	private PFont font;
-	private int min, seg,playTime ;
+	private int min, seg, playTime;
 	private boolean time;
-	//private  boolean connected;
+	private int x, y;
+	private boolean dir;
+
+	// private boolean connected;
 
 	public Interaction(PApplet app) {
 
@@ -31,15 +34,15 @@ public class Interaction {
 		// Classes
 		monkey = new Monkey(app);
 		name = new Name();
+		
 
 		// timer
 		min = 0;
 		seg = 0;
 		time = false;
 
-		//gravity = 0.6;
-		//connected = false;
-
+		// gravity = 0.6;
+		// connected = false;
 
 		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 17);
 
@@ -47,30 +50,29 @@ public class Interaction {
 
 		playTime = 0;
 
-
-		//Lists
+		// Lists
 
 		user = new LinkedList<User>();
 		bananas = new ArrayList<>();
 
-		//Fonts
+		// Fonts
 		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 17);
-		
-		//Inits
+
+		// Inits
 		initBananas();
 
 		System.out.println(bananas.size());
-		
+
 	}
-	
+
 	public static Interaction getInstance(PApplet app) {
-		
-		if(oneInstance == null) {
-			
+
+		if (oneInstance == null) {
+
 			oneInstance = new Interaction(app);
-			
+
 		}
-		
+
 		return oneInstance;
 
 	}
@@ -85,8 +87,7 @@ public class Interaction {
 
 	}
 
-	
-	//Draw and move bananas based on the level they're on
+	// Draw and move bananas based on the level they're on
 	public void drawBananas(int level) {
 		switch (level) {
 		case 0:
@@ -101,14 +102,19 @@ public class Interaction {
 				new Thread(bananas.get(i)).start();
 			}
 			break;
-		case 2: 
+		case 2:
 			for (int i = 4; i < 6; i++) {
 				bananas.get(i).draw();
 				new Thread(bananas.get(i)).start();
 			}
 			break;
 		}
+		
+		removeBananas();
+		System.out.println(bananas.size());
 	}
+	
+	
 	
 	
 
@@ -133,18 +139,16 @@ public class Interaction {
 	}
 
 	public void platforms() {
-		
-	//if(mouseX>x1 && mouseX<x2 && mouseY>y1 && mouseY<y2)
 
-		
-		if(app.mouseX>354 && app.mouseX< 677 && app.mouseY> 430 && app.mouseY< 477){
+		// if(mouseX>x1 && mouseX<x2 && mouseY>y1 && mouseY<y2)
+
+		if (app.mouseX > 354 && app.mouseX < 677 && app.mouseY > 430 && app.mouseY < 477) {
 			System.out.println("holaaaa");
 		}
-		
+
 //		// first platform
-		if (monkey.getX() < 345 && monkey.getY() >  430 && monkey.getX() > 677 && monkey.getY() < 477) {
-		
-			
+		if (monkey.getX() < 345 && monkey.getY() > 430 && monkey.getX() > 677 && monkey.getY() < 477) {
+
 		}
 //		
 //		if (app.mouseX < 345 && app.mouseY >  430 && app.mouseX > 677 && app.mouseY < 477) {
@@ -157,7 +161,6 @@ public class Interaction {
 //		}
 
 	}
-
 
 	public void initCoins() {
 
@@ -173,18 +176,35 @@ public class Interaction {
 
 	public void initBananas() {
 
-		//Bananas for level one
+		// Bananas for level one
 		bananas.add(new Banana(app, 682, 588, 682, 400));
 		bananas.add(new Banana(app, 700, 201, 700, 400));
-		
-		//Bananas for level two
+
+		// Bananas for level two
 		bananas.add(new Banana(app, 160, 588, 160, 280));
 		bananas.add(new Banana(app, 1011, 323, 1011, 225));
-		
-		//Bananas for level three
+
+		// Bananas for level three
 		bananas.add(new Banana(app, 425, 148, 425, 285));
 		bananas.add(new Banana(app, 688, 588, 688, 400));
 
+	}
+
+	public void removeBananas() {
+
+		for (int i = 0; i < bananas.size(); i++) {
+			
+			for (int j = 0; j < monkey.getBullets().size(); j++) {
+				
+				if (app.dist(monkey.getBullets().get(j).getX(),monkey.getBullets().get(j).getY(), bananas.get(i).getX(), bananas.get(i).getY()) < 60) {
+					bananas.get(i).setVisible(false);
+				//	bananas.remove(i);
+					
+					
+				}
+				
+			}
+		}
 
 	}
 
@@ -192,80 +212,76 @@ public class Interaction {
 
 	}
 
-
 	public void monkeyMove(int movement) {
 		switch (movement) {
-		//For left movement
+		// For left movement
 		case 1:
 			monkey.moveLeft();
 			break;
-		//For right movement
+		// For right movement
 		case 2:
 			monkey.moveRight();
 			break;
-		//For jumping
+		// For jumping
 		case 3:
-			//monkey.jump();
+			// monkey.jump();
 			break;
-		//For shooting
+		// For shooting
 		case 4:
 			monkey.initShoot();
 			break;
-			
-		//For fall
+
+		// For fall
 		case 5:
-			//monkey.land();
-			//monkey.connect();
-			break;	
+			// monkey.land();
+			// monkey.connect();
+			break;
 		}
-		
+
 	}
 
-	
+	public void timer() {
 
-      public void timer() {
+		if (time == true) {
 
-		if (time==true) {	
-	
 			playTime++;
-			if(playTime %20 == 0) {
+			if (playTime % 20 == 0) {
 				seg++;
 				playTime = 0;
-			}if(seg==20) {
+			}
+			if (seg == 20) {
 				seg = 0;
 				min++;
 			}
-			 app.fill(0);
-			 app.textFont(font);
-			 app.textSize(30);
-			
-			if(min<10 && seg<10) {
-				
-				app.text("0"+min+":0"+seg, 310, 35);
-				
-			}else if(min<10 && seg>10){
-				
-				app.text("0"+min+":"+seg, 310, 35);
-				
-			}else {
-				
-				app.text(min+":"+seg, 310, 35);
-				
+			app.fill(0);
+			app.textFont(font);
+			app.textSize(30);
+
+			if (min < 10 && seg < 10) {
+
+				app.text("0" + min + ":0" + seg, 310, 35);
+
+			} else if (min < 10 && seg > 10) {
+
+				app.text("0" + min + ":" + seg, 310, 35);
+
+			} else {
+
+				app.text(min + ":" + seg, 310, 35);
+
 			}
 
-	}
-		
-		
-}
+		}
 
-	
+	}
+
 	public void drawData() {
 
 		for (int i = 0; i < user.size(); i++) {
-			user.get(i).drawData(180, 370+(50*i));
+			user.get(i).drawData(180, 370 + (50 * i));
 		}
 	}
-	
+
 	public LinkedList<User> getUser() {
 		return user;
 	}
@@ -273,11 +289,11 @@ public class Interaction {
 	public void setUser(LinkedList<User> user) {
 		this.user = user;
 	}
-	
+
 	public void organizeName() {
-		
+
 		Collections.sort(user, name);
-		
+
 	}
 
 	public Monkey getMonkey() {
@@ -287,6 +303,5 @@ public class Interaction {
 	public void setMonkey(Monkey monkey) {
 		this.monkey = monkey;
 	}
-	
 
 }
