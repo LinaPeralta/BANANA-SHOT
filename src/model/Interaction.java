@@ -301,22 +301,16 @@ public class Interaction {
 	
 	public void drawData() {
 
-		for (int i = 0; i < user.size(); i++) {
-			user.get(i).drawData(180, 370+(50*i));
+		for (int i = 0; i < users.size(); i++) {
+			users.get(i).drawData(180, 370+(50*i));
 		}
 	}
 	
-	public LinkedList<User> getUser() {
-		return user;
-	}
-
-	public void setUser(LinkedList<User> user) {
-		this.user = user;
-	}
+	
 	
 	public void organizeName() {
 		
-		Collections.sort(user, name);
+		Collections.sort(users, name);
 		
 	}
 
