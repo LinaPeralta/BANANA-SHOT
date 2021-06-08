@@ -17,6 +17,7 @@ public class StartScreen {
 	private StartController controller;
 	private boolean userBox, boxFilled;
 	private String noFill;
+	
 
 	public StartScreen(PApplet app, ControlP5 cp5) {
 		this.app = app;
@@ -32,7 +33,7 @@ public class StartScreen {
 		noFill = "";
 		
 		//Controller
-		controller = new StartController();
+		controller = new StartController(app);
 		
 		userTextBox();
 		

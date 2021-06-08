@@ -26,10 +26,8 @@ public class StatScreen {
 		
 		//Image
 		chart = app.loadImage("./data/images/chart.png");
-		
-		//font
-
 		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 12);
+
 		
 	}
 

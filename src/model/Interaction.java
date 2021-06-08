@@ -20,9 +20,10 @@ public class Interaction {
 	
 	private String temporalName;
 	
-	private static Interaction oneInstance;
+	//private static Interaction oneInstance;
 	
-	private LinkedList<User> user;
+	private ArrayList<User> users;
+	
 	private ArrayList<Banana> bananas;
 	
 	private PFont font;
@@ -62,9 +63,12 @@ public class Interaction {
 
 		playTime = 0;
 
-		// Lists
 
-		user = new LinkedList<User>();
+		//Lists
+
+
+		users = new ArrayList<>();
+
 		bananas = new ArrayList<>();
 
 		// Fonts
@@ -77,32 +81,25 @@ public class Interaction {
 
 	}
 
-	public static Interaction getInstance(PApplet app) {
-
-		if (oneInstance == null) {
-
-			oneInstance = new Interaction(app);
-
-		}
-
-		return oneInstance;
-
-	}
-
 	public void draw() {
 		monkey.draw();
 		time = true;
 
 		timer();
 
-		
-
 	}
 	
 	public void registerPlayer(String name) {
+		
 		temporalName=name;
+		
 	}
 
+	public void addUser(String name) {
+		
+		users.add(new User(app, name));
+		
+	}
 	
 	public void charts(){
 		
@@ -114,14 +111,19 @@ public class Interaction {
 		String time = m+":"+s;
 		
 		Date date = new Date();
+	
+
+		//String score = Integer.toString(score);
+		//date = date.toString();
 		
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < users.size(); i++) {
 
-			User newUser = new User (app, temporalName, time);
-			
-			user.add(newUser);
+			//users.get(i).setDate();
+			users.get(i).setTime(time);
+			//users.get(i).setScore(score);
 
-			System.out.println("user" + user.size());
+
+			System.out.println("user" + users.size());
 		}
 		
 	}
@@ -292,6 +294,7 @@ public class Interaction {
 				seg = 0;
 				min++;
 			}
+
 			app.fill(0);
 			app.textFont(font);
 			app.textSize(30);
@@ -308,30 +311,33 @@ public class Interaction {
 
 				app.text(min + ":" + seg, 310, 35);
 
+
+			 app.fill(0);
+			 app.textFont(font);
+			 app.textSize(30);
+			
+			if(min<10 && seg<10) {
+				
+				app.text("0"+min+":00"+seg, 310, 35);
+				
+			}else if(min<10 && seg>10){
+				
+				app.text("0"+min+":"+seg, 310, 35);
+				
+			}else {
+				
+				app.text(min+":"+seg, 310, 35);
+
 			}
 
 		}
-
-	}
-
-	public void drawData() {
-
-		for (int i = 0; i < user.size(); i++) {
-			user.get(i).drawData(180, 370 + (50 * i));
 		}
-	}
 
-	public LinkedList<User> getUser() {
-		return user;
-	}
-
-	public void setUser(LinkedList<User> user) {
-		this.user = user;
 	}
 
 	public void organizeName() {
 
-		Collections.sort(user, name);
+		Collections.sort(users, name);
 
 	}
 

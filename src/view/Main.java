@@ -118,7 +118,7 @@ public class Main extends PApplet{
 			start.showText();
 			//If to hide text, add user and switch to the following screen
 			if (mouseX > 540 && mouseX < 765 && mouseY > 580 && mouseY < 637 && start.isBoxFilled()) {
-				//start.addUser();
+				start.addUser();
 				start.hideText();
 				screen = 1;
 			}
