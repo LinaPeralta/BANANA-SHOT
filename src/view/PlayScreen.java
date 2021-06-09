@@ -92,6 +92,12 @@ public class PlayScreen {
 	
 
 	public void drawController () {
+		
+		if (level == 2) {
+			
+			controller.drawG();
+			
+		}
 		controller.draw();
 		controller.drawLevels(level);
 		
@@ -100,6 +106,11 @@ public class PlayScreen {
 
 	public void monkeyMove(int movement) {
 		controller.monkeyMove(movement);
+
+	}
+	
+	public void gorillaShoot() {
+		controller.gorillaShoot();
 
 	}
 

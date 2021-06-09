@@ -76,6 +76,15 @@ public class Bullet implements Runnable{
 	public void setX(int x) {
 		this.x = x;
 	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+	
 	
 	
 }
