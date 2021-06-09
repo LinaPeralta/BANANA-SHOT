@@ -10,6 +10,7 @@ public class Interaction {
 
 	private PApplet app;
 	private Monkey monkey;
+	private Gorilla gorilla;
 	private Name name;
 	private String temporalName;
 	//private static Interaction oneInstance;
@@ -31,6 +32,7 @@ public class Interaction {
 
 		// Classes
 		monkey = new Monkey(app);
+		gorilla = new Gorilla(app);
 		name = new Name();
 		goldPlatform = new Plataform(app, 939, 286, 195, 50);
 
@@ -59,9 +61,15 @@ public class Interaction {
 
 	public void draw() {
 		monkey.draw();
+		
 		time = true;
 		timer();
 
+	}
+	
+	public void drawG() {
+		
+		gorilla.draw();
 	}
 	
 	public void registerPlayer(String name) {
@@ -176,8 +184,16 @@ public class Interaction {
 
 	}
 
+	public void gorillaMov() {
+		
+		
+
+	}
+	
 	public void gorillaBullet() {
 
+		gorilla.initShoot();
+		
 	}
 
 	public void platforms() {
@@ -330,16 +346,23 @@ public class Interaction {
 
 			}
 
-		}
-		}
 
+		for (int i = 0; i < users.size(); i++) {
+			users.get(i).drawData(180, 370+(50*i));
+		}
 	}
-
+			
+}
+}
+	
+	
 	public void organizeName() {
-
+		
 		Collections.sort(users, name);
+		
 
 	}
+		
 
 	public Monkey getMonkey() {
 		return monkey;

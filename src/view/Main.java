@@ -62,7 +62,7 @@ public class Main extends PApplet{
 		
 		
 		//Variables
-		screen = 0;
+		screen = 2;
 		left = false;
 		right = false;
 		shoot = false;
@@ -91,6 +91,7 @@ public class Main extends PApplet{
 			playScreen.levelScreens();
 			playScreen.drawController();
 			keyMovements();
+			playScreen.gorillaShoot();
 			//playScreen.pass();
 
 			break;
