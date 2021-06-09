@@ -52,6 +52,7 @@ public class Interaction {
 
 		// Inits
 		initBananas();
+		initPlatforms();
 
 
 	}
@@ -95,9 +96,6 @@ public class Interaction {
 			//users.get(i).setDate();
 			users.get(i).setTime(time);
 			//users.get(i).setScore(score);
-
-
-			System.out.println("user" + users.size());
 		}
 		
 	}
@@ -132,17 +130,29 @@ public class Interaction {
 	public void interactionPlatforms(int level) {
 		switch (level) {
 		case 0:
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < 3; i++) {
+				platforms.get(i).draw();
 				
+				if (intersectPlatforms(monkey, platforms.get(i)) && level == 0) {
+					platforms.get(i).setFill(255);
+					monkey.land();
+				} else {
+					platforms.get(i).setFill(0);
+					monkey.setConnected(false);
+				}
+
 			}
 			break;
 		case 1:
-			for (int i = 2; i < 4; i++) {
+			for (int i = 2; i < 8; i++) {
+				platforms.get(i).draw();
 				
+	
 			}
 			break;
 		case 2:
-			for (int i = 4; i < 5; i++) {
+			for (int i = 4; i < 11; i++) {
+				platforms.get(i).draw();
 				
 			}
 			break;
@@ -231,8 +241,8 @@ public class Interaction {
 		
 		//Platforms for level two
 		//Floors
-		platforms.add(new Plataform(app, 0, 675, 506, 25));
-		platforms.add(new Plataform(app, 661, 504, 197, 196));
+		platforms.add(new Plataform(app, 0, 675, 450, 25));
+		platforms.add(new Plataform(app, 707, 504, 80, 196));
 		platforms.add(new Plataform(app, 1011, 421, 289, 279));
 		//Platforms
 		platforms.add(new Plataform(app, 76, 268, 330, 50));
@@ -247,36 +257,27 @@ public class Interaction {
 		
 	}
 	
-	public boolean intersectPlatforms() {
-		return dir;
-
+	public boolean intersectPlatforms(Monkey m, Plataform p) {
+		//Distance apart on x axis
+		float distX = (m.getX() + m.getWidth()/2) - (p.getX() + p.getWidth()/2);
+		//Distance apart on y axis
+		float distY = (m.getY() + m.getHeight()/2) - (p.getY() + p.getHeight()/2);
+		
+		float combinedW = m.getWidth()/2 + p.getWidth()/2;
+		float combinedY = m.getHeight()/2 + p.getHeight()/2;
+		
+		//Check for intersection on x
+		if (app.abs(distX) < combinedW) {
+			if (app.abs(distY) < combinedY) {
+				//They are intersecting
+				return true;
+			}
+		}	
+		return false;
 	}
 
 	public void monkeyMove(int movement) {
-		switch (movement) {
-		// For left movement
-		case 1:
-			monkey.moveLeft();
-			break;
-		// For right movement
-		case 2:
-			monkey.moveRight();
-			break;
-		// For jumping
-		case 3:
-			// monkey.jump();
-			break;
-		// For shooting
-		case 4:
-			monkey.initShoot();
-			break;
-
-		// For fall
-		case 5:
-			// monkey.land();
-			// monkey.connect();
-			break;
-		}
+		monkey.move(movement);
 
 	}
 

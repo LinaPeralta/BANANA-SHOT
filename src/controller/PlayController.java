@@ -22,6 +22,7 @@ public class PlayController {
 	
 	public void drawLevels(int level) {
 		interaction.drawBananas(level);
+		interaction.interactionPlatforms(level);
 
 	}
 	
@@ -34,9 +35,6 @@ public class PlayController {
 		return interaction;
 	}
 
-	public void setInteraction(Interaction interaction) {
-		this.interaction = interaction;
-	}
 	
 	
 

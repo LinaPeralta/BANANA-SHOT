@@ -9,10 +9,10 @@ public class Bullet implements Runnable{
 	private PApplet app;
 	private Monkey monkey;
 	private PImage bullet;
-	private int x, y, width, height, speed, damage;
+	private float x, y, width, height, speed, damage;
 	private boolean visible, dir;
 
-	public Bullet(PApplet app, int x, int y, boolean dir) {
+	public Bullet(PApplet app, float x, float y, boolean dir) {
 		this.app = app;
 		this.x = x;
 		this.y = y;
@@ -61,11 +61,11 @@ public class Bullet implements Runnable{
 		
 	}
 
-	public int getX() {
+	public float getX() {
 		return x;
 	}
 
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 
