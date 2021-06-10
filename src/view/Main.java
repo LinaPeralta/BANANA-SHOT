@@ -133,7 +133,7 @@ public class Main extends PApplet{
 		//Instructions screen
 		case 1:
 			if (mouseX > 530 && mouseX < 775 && mouseY > 590 && mouseY < 650) {
-				screen = 4;
+				screen = 2;
 			}
 			
 			

@@ -12,7 +12,7 @@ public class Interaction {
 
 	private PApplet app;
 	private Monkey monkey;
-
+	//private Coin coins;
 	// private double gravity;
 	// private User user;
 
@@ -25,12 +25,14 @@ public class Interaction {
 	private ArrayList<User> users;
 	
 	private ArrayList<Banana> bananas;
+	private ArrayList<Coin> coins;
 	
 	private PFont font;
 	private int min, seg, playTime;
 	private boolean time;
-	private int x, y;
+	private int x, y, score;
 	private boolean dir;
+
 
 	// private boolean connected;
 
@@ -41,14 +43,14 @@ public class Interaction {
 		// Classes
 		monkey = new Monkey(app);
 		name = new Name();
-		
+	//	coins = new Coin(app,);
 
 		// timer
 		min = 0;
 		seg = 0;
 		time = false;
 		playTime = 0;
-		
+		score=0;
 		temporalName="";
 
 		//Lists
@@ -86,6 +88,7 @@ public class Interaction {
 		time = true;
 
 		timer();
+		score();
 
 	}
 	
@@ -159,7 +162,33 @@ public class Interaction {
 	
 	
 
-	public void coinMonkey() {
+	public void coinMonkey(int level) {
+		//pintar monedas
+		
+		switch (level) {
+		case 0:
+			for (int i = 0; i < 2; i++) {
+				coins.get(i).draw();
+				//new Thread(coins.get(i)).start();
+			}
+			break;
+		case 1:
+			for (int i = 2; i < 4; i++) {
+				coins.get(i).draw();
+				//new Thread(coins.get(i)).start();
+			}
+			break;
+		case 2:
+			for (int i = 4; i < 6; i++) {
+				coins.get(i).draw();
+				//new Thread(coins.get(i)).start();
+			}
+			break;
+		}
+		
+		
+		
+		
 
 	}
 
@@ -204,6 +233,8 @@ public class Interaction {
 	}
 
 	public void initCoins() {
+		
+		coins.add(new Coin(app, 682, 588);
 
 	}
 
@@ -239,6 +270,7 @@ public class Interaction {
 				
 				if (app.dist(monkey.getBullets().get(j).getX(),monkey.getBullets().get(j).getY(), bananas.get(i).getX(), bananas.get(i).getY()) < 60) {
 					bananas.get(i).setVisible(false);
+					score += 4;
 				//	bananas.remove(i);
 					
 					
@@ -333,6 +365,17 @@ public class Interaction {
 		}
 		}
 
+	}
+	
+	public void score() {
+		
+
+			 app.fill(0);
+			 app.textFont(font);
+			 app.textSize(30);
+			 app.text("Score: "+score, 1000, 35);
+		
+		
 	}
 
 	public void organizeName() {
