@@ -52,12 +52,12 @@ public class Monkey{
 		}
 		
 		//Apply gravity when not on a platform
-		if (connected == false) {
+		/*if (connected == false) {
 			speedY = speedY + gravity; 
-		}
+		}*/
 		
 		//Movement
-		y += speedY;
+		//y += speedY;
 		
 		//Drawing bullets, moving bullets and eliminating
 		shoot();
@@ -82,6 +82,7 @@ public class Monkey{
 		// For jumping
 		case 3:
 			speedY = -20;
+			y += speedY;
 			connected = false;
 			break;
 		// To go down
