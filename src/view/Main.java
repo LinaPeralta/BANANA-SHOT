@@ -24,7 +24,7 @@ public class Main extends PApplet{
 	private Interaction interaction;
 	//Variables
 	private int screen;
-	private boolean left, right, jump, shoot, land;
+	private boolean left, right, jump, shoot, down;
 	
 	
 	public static void main(String[] args) {
@@ -67,13 +67,13 @@ public class Main extends PApplet{
 		right = false;
 		shoot = false;
 		jump = false;
-		land = false;
+		down = false;
 	}
 	
 	@Override
 	public void draw() {
 		
-		System.out.println(mouseX+","+mouseY);
+		//System.out.println(mouseX+","+mouseY);
 		
 		background(255);
 		
@@ -91,9 +91,6 @@ public class Main extends PApplet{
 			playScreen.levelScreens();
 			playScreen.drawController();
 			keyMovements();
-			playScreen.gorillaShoot();
-			//playScreen.pass();
-
 			break;
 		//Game over screen
 		case 3:
@@ -148,8 +145,7 @@ public class Main extends PApplet{
 			break;
 		//Play screen
 		case 2:
-			
-			interaction.platforms();
+
 			
 			
 			
@@ -206,6 +202,9 @@ public class Main extends PApplet{
 			case ' ':
 				shoot = true;
 				break;
+			case 's':
+				down = true;
+				break;
 			}
 		}
 	}
@@ -222,7 +221,9 @@ public class Main extends PApplet{
 				break;
 			case 'w':
 				jump = false;
-				land = true;
+				break;
+			case 's':
+				down = false;
 				break;
 			}
 		}
@@ -243,13 +244,15 @@ public class Main extends PApplet{
 			playScreen.monkeyMove(3);
 		}
 		
-		if (shoot) {
+		if (down) {
 			playScreen.monkeyMove(4);
+		}
+		
+		if (shoot) {
+			playScreen.monkeyMove(5);
 			shoot = false;
 		}
-		if  (land) {
-			playScreen.monkeyMove(5);
-		}
+
 	}
 
 	

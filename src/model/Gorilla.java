@@ -11,9 +11,15 @@ public class Gorilla {
 	
 	private PImage gorilla;
 	
+<<<<<<< HEAD
 	private int  health, bulletsG, addBullets, frameB;
 	
 	private int x, y, x2, y2, width, height, speedX, speedY, coolDown, vulnerable;
+=======
+	private int  health, bulletsG, coolDown;
+	
+	private int x, y, width, height, vulnerable;
+>>>>>>> 5c75f7cbcbb094c2414a8bfb6b35646f2bfb2fdd
 
 	private boolean dir, visible;
 	
@@ -23,6 +29,7 @@ public class Gorilla {
 		
 		this.app = app;
 		
+		//Attributes
 		x = 920;
 		y = 88;
 		
@@ -31,6 +38,7 @@ public class Gorilla {
 		
 		width = 200;
 		height = 200;
+<<<<<<< HEAD
 		
 		//addBullets = 20;
 		
@@ -38,19 +46,28 @@ public class Gorilla {
 		
 		dir = true;
 		
+=======
+		bulletsG = 30;
+		dir = false;
+>>>>>>> 5c75f7cbcbb094c2414a8bfb6b35646f2bfb2fdd
 		health = 3;
+		coolDown = 150;
 		
+<<<<<<< HEAD
 		//frameB = 20;
 		
+=======
+		//Image
+>>>>>>> 5c75f7cbcbb094c2414a8bfb6b35646f2bfb2fdd
 		gorilla = app.loadImage("./data/images/gorilla.png");
 		
+		//Arraylist
 		bullets = new ArrayList<>();
-		
-		
-		
+
 	}
 	
 	public void draw() {		
+<<<<<<< HEAD
 		System.out.println(bullets.size());
 //		
 //		if (addBullets > 0) {
@@ -75,12 +92,28 @@ public class Gorilla {
 //		}
 		
 		//creates and removes bullets		
+=======
+		app.image(gorilla, x, y, width, height);
+			
+		if(bulletsG>0) {
+			bulletsG--;
+		}
+		
+		//enemyBullets
+		if(bulletsG == 0) {
+			initShoot();
+			bulletsG = 30;
+		}
+
+		//Drawing bullets, moving bullets and eliminating
+>>>>>>> 5c75f7cbcbb094c2414a8bfb6b35646f2bfb2fdd
 		shoot();
 		removeBullet();
 		
 	}
 	
 	public void initShoot() {
+<<<<<<< HEAD
 
 	//	if (addBullets == 0 ) {
 			
@@ -104,10 +137,17 @@ public class Gorilla {
 		
 		//setX(x-speedX);
 	
+=======
+		int xBullet = x+100;
+		int yBullet = y+150;
+		Bullet bullet = new Bullet(app, xBullet, yBullet, dir);
+		bullets.add(bullet);
+>>>>>>> 5c75f7cbcbb094c2414a8bfb6b35646f2bfb2fdd
 	}
 	
 	
 	public void shoot() {
+<<<<<<< HEAD
 		
 		for (int i = 0; i < bullets.size()  ; i++) {
 			
@@ -117,12 +157,17 @@ public class Gorilla {
 			
 			dirBullet();
 			
+=======
+		for (int i = 0; i < bullets.size(); i++) {
+			bullets.get(i).draw();
+>>>>>>> 5c75f7cbcbb094c2414a8bfb6b35646f2bfb2fdd
 			new Thread(bullets.get(i)).start();
 		}
 	}
 	
 	public void removeBullet() {
 		
+<<<<<<< HEAD
 	for (int i = 0; i < bullets.size(); i++) {
 		
 		if(bullets.get(i).getX()<0 || bullets.get(i).getX() < 0) {
@@ -134,6 +179,13 @@ public class Gorilla {
 	}
 	
 }
+=======
+		for (int i = 0; i < bullets.size(); i++) {
+			if(bullets.get(i).getX()<0 || bullets.get(i).isVisible()==true) {
+				bullets.remove(i);
+			}
+	}
+>>>>>>> 5c75f7cbcbb094c2414a8bfb6b35646f2bfb2fdd
 	
 }
 
@@ -191,30 +243,6 @@ public class Gorilla {
 
 	public void setHeight(int height) {
 		this.height = height;
-	}
-
-	public int getSpeedX() {
-		return speedX;
-	}
-
-	public void setSpeedX(int speedX) {
-		this.speedX = speedX;
-	}
-
-	public int getSpeedY() {
-		return speedY;
-	}
-
-	public void setSpeedY(int speedY) {
-		this.speedY = speedY;
-	}
-
-	public int getCoolDown() {
-		return coolDown;
-	}
-
-	public void setCoolDown(int coolDown) {
-		this.coolDown = coolDown;
 	}
 
 	public int getVulnerable() {
