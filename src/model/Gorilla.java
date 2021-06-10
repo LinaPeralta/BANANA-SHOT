@@ -11,29 +11,36 @@ public class Gorilla {
 	
 	private PImage gorilla;
 	
-	private int  health, bulletsG;
+	private int  health, bulletsG, addBullets, frameB;
 	
-	private int x, y, width, height, speedX, speedY, coolDown, vulnerable;
+	private int x, y, x2, y2, width, height, speedX, speedY, coolDown, vulnerable;
 
 	private boolean dir, visible;
 	
 	private ArrayList<Bullet> bullets;
 	
 	public Gorilla(PApplet app) {
+		
 		this.app = app;
 		
 		x = 920;
 		y = 88;
+		
+		x2 = 910;
+		y2 = 118;
+		
 		width = 200;
 		height = 200;
 		
-		bulletsG = 0;
+		//addBullets = 20;
 		
 		speedX = 20;
 		
 		dir = true;
 		
 		health = 3;
+		
+		//frameB = 20;
 		
 		gorilla = app.loadImage("./data/images/gorilla.png");
 		
@@ -44,67 +51,89 @@ public class Gorilla {
 	}
 	
 	public void draw() {		
-		
+		System.out.println(bullets.size());
+//		
+//		if (addBullets > 0) {
+//		
+//			addBullets--;
+//			
+//		}
 			
 		app.image(gorilla, x, y, width, height);
 			
 		
-		//enemyBullets
-		if(bulletsG == 0 && visible) {
-			initShoot();
-			bulletsG = 20;
-		}
+//		//Bullets
 		
-		if(bulletsG>0) {
-			bulletsG--;
-		}
+//		if(bulletsG == 0 && visible) {
+//			initShoot();
+//			bulletsG = 20;
+//		}
 		
+//		//
+//		if(bulletsG>0) {
+//			bulletsG--;
+//		}
 		
-		if (coolDown > 0) {
-			coolDown--;
-		}
-				
+		//creates and removes bullets		
 		shoot();
-		eliminateBullet();
+		removeBullet();
 		
 	}
 	
 	public void initShoot() {
-		
-		dir = true;
-		speedX = -20;
-		x += speedX;
-		
-		
-		Bullet bullet = new Bullet(app, x+100, y+150, dir);
-		bullets.add(bullet);
+
+	//	if (addBullets == 0 ) {
+			
+			Bullet bullet = new Bullet(app, x2+100, y2+150, dir);
+			bullets.add(bullet);
+			
+			//initShoot();
+			//addBullets = 20;
+			
+	//	}
 		
 	}
 	
-	public void shootDir() {
+	public void dirBullet() {
 		
+		dir = true;
+		speedX = 20;
+		//x2 = speedX;
 		
+		//y2 += speedY;
+		
+		//setX(x-speedX);
+	
 	}
+	
 	
 	public void shoot() {
 		
-		for (int i = 0; i < bullets.size(); i++) {
+		for (int i = 0; i < bullets.size()  ; i++) {
+			
+			bullets.get(i).setVisible(true);
 			
 			bullets.get(i).draw();
+			
+			dirBullet();
 			
 			new Thread(bullets.get(i)).start();
 		}
 	}
 	
-	public void eliminateBullet() {
+	public void removeBullet() {
 		
-		for (int i = 0; i < bullets.size(); i++) {
+	for (int i = 0; i < bullets.size(); i++) {
 		
-	if(bullets.get(i).getX()<0 || bullets.get(i).isVisible()==true) {
+		if(bullets.get(i).getX()<0 || bullets.get(i).getX() < 0) {
 		
+//		bullets.get(i).isVisible()==false
+			
 		bullets.remove(i);
+		
 	}
-	}
+	
+}
 	
 }
 
@@ -122,6 +151,14 @@ public class Gorilla {
 
 	public void setGorilla(PImage gorilla) {
 		this.gorilla = gorilla;
+	}
+
+	public int getY2() {
+		return y2;
+	}
+
+	public void setY2(int y2) {
+		this.y2 = y2;
 	}
 
 	public int getX() {
