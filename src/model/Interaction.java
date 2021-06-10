@@ -56,32 +56,24 @@ public class Interaction {
 		initBananas();
 		initPlatforms();
 
-
 	}
 
 	public void draw() {
 		monkey.draw();
-		
 		time = true;
 		timer();
-
 	}
 	
 	public void drawG() {
-		
 		gorilla.draw();
 	}
 	
 	public void registerPlayer(String name) {
-		
 		temporalName=name;
-		
 	}
 
 	public void addUser(String name) {
-		
 		users.add(new User(app, name));
-		
 	}
 	
 	public void charts(){
@@ -134,22 +126,29 @@ public class Interaction {
 		removeBananas();
 	}
 	
+	private void platformCondition(int index) {
+		if (intersectPlatforms(monkey, platforms.get(index))) {
+			platforms.get(index).setFill(255);
+			monkey.land();
+		} else {
+			platforms.get(index).setFill(0);
+			monkey.setConnected(false);
+		}
+	}
+	
 	//Assigning the interaction between platforms based on the level
 	public void interactionPlatforms(int level) {
 		switch (level) {
 		case 0:
 			for (int i = 0; i < 3; i++) {
 				platforms.get(i).draw();
-				
-				if (intersectPlatforms(monkey, platforms.get(i)) && level == 0) {
-					platforms.get(i).setFill(255);
-					monkey.land();
-				} else {
-					platforms.get(i).setFill(0);
-					monkey.setConnected(false);
-				}
-
 			}
+			//Floor platform
+			platformCondition(0);
+			//platformCondition(1);
+			//platformCondition(2);
+			
+			
 			break;
 		case 1:
 			for (int i = 2; i < 8; i++) {
@@ -165,9 +164,8 @@ public class Interaction {
 			}
 			break;
 		}
-
 	}
-
+	
 	public void coinMonkey() {
 
 	}
@@ -181,23 +179,6 @@ public class Interaction {
 	}
 
 	public void monkeyBullet() {
-
-	}
-
-	public void gorillaMov() {
-		
-		
-
-	}
-	
-	public void gorillaBullet() {
-
-		gorilla.initShoot();
-		
-	}
-
-	public void platforms() {
-
 
 	}
 
@@ -231,17 +212,12 @@ public class Interaction {
 
 	public void removeBananas() {
 
-		for (int i = 0; i < bananas.size(); i++) {
-			
+		for (int i = 0; i < bananas.size(); i++) {		
 			for (int j = 0; j < monkey.getBullets().size(); j++) {
-				
 				if (app.dist(monkey.getBullets().get(j).getX(),monkey.getBullets().get(j).getY(), bananas.get(i).getX(), bananas.get(i).getY()) < 60) {
 					bananas.get(i).setVisible(false);
-				//	bananas.remove(i);
-					
-					
+				//	bananas.remove(i);	
 				}
-				
 			}
 		}
 
@@ -294,7 +270,6 @@ public class Interaction {
 
 	public void monkeyMove(int movement) {
 		monkey.move(movement);
-
 	}
 
 	public void timer() {
@@ -345,22 +320,17 @@ public class Interaction {
 				app.text(min+":"+seg, 310, 35);
 
 			}
-
-
-		for (int i = 0; i < users.size(); i++) {
-			users.get(i).drawData(180, 370+(50*i));
+			
+				for (int i = 0; i < users.size(); i++) {
+					users.get(i).drawData(180, 370+(50*i));
+				}
+			}		
 		}
 	}
-			
-}
-}
 	
 	
 	public void organizeName() {
-		
 		Collections.sort(users, name);
-		
-
 	}
 		
 

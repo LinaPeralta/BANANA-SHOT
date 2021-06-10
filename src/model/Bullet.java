@@ -40,7 +40,7 @@ public class Bullet implements Runnable{
 
 	}
 	
-	private void move() {
+	public void move() {
 		if (dir) {
 			x += speed;
 		} else {

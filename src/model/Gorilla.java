@@ -11,9 +11,9 @@ public class Gorilla {
 	
 	private PImage gorilla;
 	
-	private int  health, bulletsG;
+	private int  health, bulletsG, coolDown;
 	
-	private int x, y, width, height, speedX, speedY, coolDown, vulnerable;
+	private int x, y, width, height, vulnerable;
 
 	private boolean dir, visible;
 	
@@ -22,76 +22,53 @@ public class Gorilla {
 	public Gorilla(PApplet app) {
 		this.app = app;
 		
+		//Attributes
 		x = 920;
 		y = 88;
 		width = 200;
 		height = 200;
-		
-		bulletsG = 0;
-		
-		speedX = 20;
-		
-		dir = true;
-		
+		bulletsG = 30;
+		dir = false;
 		health = 3;
+		coolDown = 150;
 		
+		//Image
 		gorilla = app.loadImage("./data/images/gorilla.png");
 		
+		//Arraylist
 		bullets = new ArrayList<>();
-		
-		
-		
+
 	}
 	
 	public void draw() {		
-		
-			
 		app.image(gorilla, x, y, width, height);
 			
-		
-		//enemyBullets
-		if(bulletsG == 0 && visible) {
-			initShoot();
-			bulletsG = 20;
-		}
-		
 		if(bulletsG>0) {
 			bulletsG--;
 		}
 		
-		
-		if (coolDown > 0) {
-			coolDown--;
+		//enemyBullets
+		if(bulletsG == 0) {
+			initShoot();
+			bulletsG = 30;
 		}
-				
+
+		//Drawing bullets, moving bullets and eliminating
 		shoot();
 		eliminateBullet();
 		
 	}
 	
 	public void initShoot() {
-		
-		dir = true;
-		speedX = -20;
-		x += speedX;
-		
-		
-		Bullet bullet = new Bullet(app, x+100, y+150, dir);
+		int xBullet = x+100;
+		int yBullet = y+150;
+		Bullet bullet = new Bullet(app, xBullet, yBullet, dir);
 		bullets.add(bullet);
-		
-	}
-	
-	public void shootDir() {
-		
-		
 	}
 	
 	public void shoot() {
-		
 		for (int i = 0; i < bullets.size(); i++) {
-			
 			bullets.get(i).draw();
-			
 			new Thread(bullets.get(i)).start();
 		}
 	}
@@ -99,11 +76,9 @@ public class Gorilla {
 	public void eliminateBullet() {
 		
 		for (int i = 0; i < bullets.size(); i++) {
-		
 			if(bullets.get(i).getX()<0 || bullets.get(i).isVisible()==true) {
-		
-		bullets.remove(i);
-	}
+				bullets.remove(i);
+			}
 	}
 	
 }
@@ -154,30 +129,6 @@ public class Gorilla {
 
 	public void setHeight(int height) {
 		this.height = height;
-	}
-
-	public int getSpeedX() {
-		return speedX;
-	}
-
-	public void setSpeedX(int speedX) {
-		this.speedX = speedX;
-	}
-
-	public int getSpeedY() {
-		return speedY;
-	}
-
-	public void setSpeedY(int speedY) {
-		this.speedY = speedY;
-	}
-
-	public int getCoolDown() {
-		return coolDown;
-	}
-
-	public void setCoolDown(int coolDown) {
-		this.coolDown = coolDown;
 	}
 
 	public int getVulnerable() {

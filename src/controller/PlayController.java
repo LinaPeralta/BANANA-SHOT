@@ -17,28 +17,19 @@ public class PlayController {
 	
 	public void draw() {
 		interaction.draw();
-
 	}
 	
 	public void drawG() {
 		interaction.drawG();
-
 	}
 	
 	public void drawLevels(int level) {
 		interaction.drawBananas(level);
 		interaction.interactionPlatforms(level);
-
 	}
 	
 	public void monkeyMove(int movement) {
 		interaction.monkeyMove(movement);
-
-	}
-	
-	public void gorillaShoot() {
-		interaction.gorillaBullet();
-
 	}
 
 	public Interaction getInteraction() {
