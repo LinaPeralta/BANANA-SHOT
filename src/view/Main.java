@@ -21,7 +21,9 @@ public class Main extends PApplet{
 	//Stat screen
 	private StatScreen statScreen;
 	//Game over screen
+	private GameoverScreen gOver;
 	private Interaction interaction;
+	
 	//Variables
 	private int screen;
 	private boolean left, right, jump, shoot, down;
@@ -56,7 +58,7 @@ public class Main extends PApplet{
 		statScreen = new StatScreen (this);
 		
 		//Game over screen
-		
+		gOver = new GameoverScreen (this);
 		interaction = new Interaction (this);
 		
 		
@@ -94,6 +96,7 @@ public class Main extends PApplet{
 			break;
 		//Game over screen
 		case 3:
+			gOver.draw();
 	
 			break;
 		//Stat screen
@@ -182,7 +185,7 @@ public class Main extends PApplet{
 			break;
 		}
 		
-		//System.out.println(mouseX + "," + mouseY);
+	System.out.println(mouseX + "," + mouseY);
 
 	}
 
