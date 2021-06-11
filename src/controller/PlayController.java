@@ -17,26 +17,26 @@ public class PlayController {
 	
 	public void draw() {
 		interaction.draw();
-
+	}
+	
+	public void drawG() {
+		interaction.drawG();
 	}
 	
 	public void drawLevels(int level) {
 		interaction.drawBananas(level);
-
+		interaction.coinMonkey(level);
+		//interaction.interactionPlatforms(level);
 	}
 	
 	public void monkeyMove(int movement) {
 		interaction.monkeyMove(movement);
-
 	}
 
 	public Interaction getInteraction() {
 		return interaction;
 	}
 
-	public void setInteraction(Interaction interaction) {
-		this.interaction = interaction;
-	}
 	
 	
 
