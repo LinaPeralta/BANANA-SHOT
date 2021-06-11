@@ -46,6 +46,7 @@ public class Monkey{
 		
 		//Set direction in which the monkey is looking to switch image
 		if (dir) {
+			
 			app.image(monkeyR, x, y, width, height);
 		} else {
 			app.image(monkeyL, x, y, width, height);
