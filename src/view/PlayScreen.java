@@ -19,7 +19,7 @@ public class PlayScreen {
 
 	public PlayScreen(PApplet app) {
 		this.app = app;
-		level = 0;
+		level = 2;
 
 		
 		
@@ -88,12 +88,15 @@ public class PlayScreen {
 		}
 	}
 	
-
-	public void drawController () {
+public void drawControllerG () {
+		
 		//Condition to draw gorilla on last screen
 		if (level == 2) {
 			controller.drawG();
 		}
+}
+	
+	public void drawController () {
 		
 		controller.draw();
 		controller.drawLevels(level);

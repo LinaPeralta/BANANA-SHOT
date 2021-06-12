@@ -10,7 +10,7 @@ public class Monkey{
 
 	private PApplet app;
 	private PImage monkeyL, monkeyR;
-	private float x, y, width, height, speedX, speedY, coolDown, vulnerable;
+	private float x, y, width, height, speedX, speedY, coolDown, vulnerable, damage;
 	private boolean dir, connected;
 	private ArrayList<Bullet> bullets;
 	private float gravity;
@@ -29,7 +29,7 @@ public class Monkey{
 		gravity = 4.2f;
 		coolDown = 10;
 		connected = false;
-		
+		damage = 1;
 		//Images
 		monkeyL = app.loadImage("./data/images/monkeyL.png");
 		monkeyR = app.loadImage("./data/images/monkeyR.png");
@@ -193,6 +193,23 @@ public class Monkey{
 	public void setConnected(boolean connected) {
 		this.connected = connected;
 	}
-	
 
+	public float getVulnerable() {
+		return vulnerable;
+	}
+
+	public void setVulnerable(float vulnerable) {
+		this.vulnerable = vulnerable;
+	}
+
+	public float getDamage() {
+		return damage;
+	}
+
+	public void setDamage(float damage) {
+		this.damage = damage;
+	}
+	
+	
+	
 }

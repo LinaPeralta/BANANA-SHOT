@@ -92,6 +92,7 @@ public class Main extends PApplet{
 		case 2:
 			playScreen.levelScreens();
 			playScreen.drawController();
+			playScreen.drawControllerG();
 			keyMovements();
 			break;
 		//Game over screen
@@ -258,5 +259,4 @@ public class Main extends PApplet{
 
 	}
 
-	
 }
