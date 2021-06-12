@@ -12,7 +12,7 @@ public class Gorilla {
 	private PImage gorilla;
 	
 
-	private int  health, bulletsG, addBullets, frameB;
+	private int  damage, bulletsG, addBullets, frameB;
 	
 	private int x, y, x2, y2, width, height, speedX, speedY, coolDown, vulnerable;
 
@@ -25,6 +25,9 @@ public class Gorilla {
 		
 		this.app = app;
 		
+		//Image
+		gorilla = app.loadImage("./data/images/gorilla.png");
+				
 		//Attributes
 		x = 920;
 		y = 88;
@@ -34,28 +37,17 @@ public class Gorilla {
 		
 		width = 200;
 		height = 200;
-
-		
-		//addBullets = 20;
 		
 		speedX = 20;
 		
-		dir = true;
+		//dir = true;
 
 		bulletsG = 30;
 		dir = false;
 
-		health = 3;
+		damage = 3;
 		coolDown = 150;
-		
-
-		//frameB = 20;
-		
-
-		//Image
-
-		gorilla = app.loadImage("./data/images/gorilla.png");
-		
+	
 		//Arrayslist
 		
 		bullets = new ArrayList<>();
@@ -113,6 +105,7 @@ public class Gorilla {
 			//bullets.get(i).setVisible(true);
 			
 			bullets.get(i).draw();
+			damage ++;
 			new Thread(bullets.get(i)).start();
 			
 	}
@@ -212,6 +205,62 @@ public class Gorilla {
 		this.bullets = bullets;
 	}
 
+	public int getDamage() {
+		return damage;
+	}
 
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+
+	public int getBulletsG() {
+		return bulletsG;
+	}
+
+	public void setBulletsG(int bulletsG) {
+		this.bulletsG = bulletsG;
+	}
+
+	public int getAddBullets() {
+		return addBullets;
+	}
+
+	public void setAddBullets(int addBullets) {
+		this.addBullets = addBullets;
+	}
+
+	public int getSpeedX() {
+		return speedX;
+	}
+
+	public void setSpeedX(int speedX) {
+		this.speedX = speedX;
+	}
+
+	public int getSpeedY() {
+		return speedY;
+	}
+
+	public void setSpeedY(int speedY) {
+		this.speedY = speedY;
+	}
+
+	public int getCoolDown() {
+		return coolDown;
+	}
+
+	public void setCoolDown(int coolDown) {
+		this.coolDown = coolDown;
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+
+	
 	
 }

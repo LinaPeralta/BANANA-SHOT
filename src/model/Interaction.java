@@ -13,13 +13,14 @@ public class Interaction {
 	private Gorilla gorilla;
 	private Name name;
 	private String temporalName;
+	
 	//private static Interaction oneInstance;
 	private ArrayList<User> users;
 	private ArrayList<Banana> bananas;
 	private ArrayList<Plataform> platforms;
 	private Plataform goldPlatform;
 	private PFont font;
-	private int min, seg, playTime;
+	private int min, seg, playTime, vulnerable, lifeGorilla;
 	private boolean time;
 	private int x, y;
 	private boolean dir;
@@ -44,6 +45,9 @@ public class Interaction {
 		temporalName="";
 		playTime = 0;
 
+		this.vulnerable = 0;
+		this.lifeGorilla = 0;
+		
 		//Lists
 		users = new ArrayList<>();
 		bananas = new ArrayList<>();
@@ -61,6 +65,13 @@ public class Interaction {
 	public void draw() {
 		monkey.draw();
 		time = true;
+		
+		if (vulnerable > 0) {
+			
+			vulnerable--;
+			
+		}
+		
 		timer();
 	}
 	
@@ -175,7 +186,17 @@ public class Interaction {
 	}
 
 	public void bananaBullet() {
+			
+			//monkey - gorilla
 
+	
+}
+	
+
+	
+	public double distance(int x1, float x2, int y1, float y2) {
+		
+		return Math.sqrt((y2 - y1)*(y2 - y1) + (x2 - x1)*(x2 - x1));
 	}
 
 	public void monkeyBullet() {
@@ -214,6 +235,7 @@ public class Interaction {
 
 		for (int i = 0; i < bananas.size(); i++) {		
 			for (int j = 0; j < monkey.getBullets().size(); j++) {
+				
 				if (app.dist(monkey.getBullets().get(j).getX(),monkey.getBullets().get(j).getY(), bananas.get(i).getX(), bananas.get(i).getY()) < 60) {
 					bananas.get(i).setVisible(false);
 				//	bananas.remove(i);	
@@ -342,4 +364,6 @@ public class Interaction {
 		this.monkey = monkey;
 	}
 
+	
+	
 }
