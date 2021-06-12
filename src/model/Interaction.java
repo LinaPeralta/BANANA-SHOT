@@ -267,7 +267,7 @@ public class Interaction {
 			}
 			break;
 		case 2:
-			for (int i = 8; i < 9; i++) {
+			for (int i = 7; i < 8; i++) {
 				coins.get(i).draw();
 				
 
@@ -302,13 +302,13 @@ public class Interaction {
 		coins.add(new Coin(app, 570,  369));
 
 		// coins level 2
-		coins.add(new Coin(app, 121, 220));
-		coins.add(new Coin(app, 230, 220));
-		coins.add(new Coin(app, 334, 220));
+		coins.add(new Coin(app, 104, 212));
+		coins.add(new Coin(app, 206, 212));
+		coins.add(new Coin(app, 315, 212));
 
-		coins.add(new Coin(app, 540, 500));
+		coins.add(new Coin(app, 502, 99));
 
-		coins.add(new Coin(app, 800, 500));
+		coins.add(new Coin(app, 725, 419));
 
 		// coins level 3
 		coins.add(new Coin(app, 39, 345));
