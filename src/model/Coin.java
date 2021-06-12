@@ -23,7 +23,7 @@ public class Coin {
 	
 	
 	public void draw() {
-		if (visible == false) {
+		if (visible == true) {
 		//app.imageMode(PConstants.CENTER);
 		app.image(coin, x, y,60,60);
 		}
@@ -58,6 +58,16 @@ public class Coin {
 	public void setY(int y) {
 		this.y = y;
 	}
+
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+	
 	
 	
 
