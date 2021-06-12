@@ -12,11 +12,10 @@ public class Gorilla {
 	private PImage gorilla;
 	
 
-	private int  damage, bulletsG, addBullets, frameB;
+	private float Gbullets, addBullets, frameB;
 	
-	private int x, y, x2, y2, width, height, speedX, speedY, coolDown, vulnerable;
-
-
+	private float x, y, width, height, speedX, damage, vulnerable;
+	
 	private boolean dir, visible;
 	
 	private ArrayList<Bullet> bullets;
@@ -32,24 +31,16 @@ public class Gorilla {
 		x = 920;
 		y = 88;
 		
-		x2 = 910;
-		y2 = 118;
-		
 		width = 200;
 		height = 200;
 		
 		speedX = 20;
 		
-		//dir = true;
-
-		bulletsG = 30;
 		dir = false;
 
 		damage = 3;
-		coolDown = 150;
 	
 		//Arrayslist
-		
 		bullets = new ArrayList<>();
 
 	}
@@ -60,14 +51,14 @@ public class Gorilla {
 			
 		app.image(gorilla, x, y, width, height);
 			
-		if(bulletsG>0) {
-			bulletsG--;
+		if(Gbullets>0) {
+			Gbullets--;
 		}
 		
 		//enemyBullets
-		if(bulletsG == 0) {
+		if(Gbullets == 0) {
 			initShoot();
-			bulletsG = 30;
+			Gbullets = 30;
 		}
 
 		//moving bullets and eliminating
@@ -80,22 +71,14 @@ public class Gorilla {
 	public void initShoot() {
 
 
-		int xBullet = x+100;
-		int yBullet = y+40;
+		int xBullet = (int) (x + 100);
+		int yBullet = (int) (y + 40);
 		Bullet bullet = new Bullet(app, xBullet, yBullet, dir);
 		bullets.add(bullet);
 
 
 		
 	}
-	
-	public void dirBullet() {
-		
-		dir = false;
-		speedX = 20;
-		
-	}
-	
 	
 	public void shoot() {
 
@@ -105,7 +88,7 @@ public class Gorilla {
 			//bullets.get(i).setVisible(true);
 			
 			bullets.get(i).draw();
-			damage ++;
+			
 			new Thread(bullets.get(i)).start();
 			
 	}
@@ -116,21 +99,17 @@ public class Gorilla {
 		
 	for (int i = 0; i < bullets.size(); i++) {
 		
-			if(bullets.get(i).getX()<0 || bullets.get(i).isVisible()==false) {
-				
+			if(bullets.get(i).getX() > 1300 || bullets.get(i).getX() < 0) {
+				//
 				bullets.remove(i);
 			}
 	}
-
+//bullets.get(i).getX() < 0 || bullets.get(i).isVisible()==false
 	
 }
 
 	public PApplet getApp() {
 		return app;
-	}
-
-	public void setApp(PApplet app) {
-		this.app = app;
 	}
 
 	public PImage getGorilla() {
@@ -141,51 +120,75 @@ public class Gorilla {
 		this.gorilla = gorilla;
 	}
 
-	public int getY2() {
-		return y2;
+	public float getAddBullets() {
+		return addBullets;
 	}
 
-	public void setY2(int y2) {
-		this.y2 = y2;
+	public void setAddBullets(float addBullets) {
+		this.addBullets = addBullets;
 	}
 
-	public int getX() {
+	public float getFrameB() {
+		return frameB;
+	}
+
+	public void setFrameB(float frameB) {
+		this.frameB = frameB;
+	}
+
+	public float getX() {
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setX(float x) {
 		this.x = x;
 	}
 
-	public int getY() {
+	public float getY() {
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setY(float y) {
 		this.y = y;
 	}
 
-	public int getWidth() {
+	public float getWidth() {
 		return width;
 	}
 
-	public void setWidth(int width) {
+	public void setWidth(float width) {
 		this.width = width;
 	}
 
-	public int getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 
-	public int getVulnerable() {
+	public float getSpeedX() {
+		return speedX;
+	}
+
+	public void setSpeedX(float speedX) {
+		this.speedX = speedX;
+	}
+
+	public float getDamage() {
+		return damage;
+	}
+
+	public void setDamage(float damage) {
+		this.damage = damage;
+	}
+
+	public float getVulnerable() {
 		return vulnerable;
 	}
 
-	public void setVulnerable(int vulnerable) {
+	public void setVulnerable(float vulnerable) {
 		this.vulnerable = vulnerable;
 	}
 
@@ -197,62 +200,6 @@ public class Gorilla {
 		this.dir = dir;
 	}
 
-	public ArrayList<Bullet> getBullets() {
-		return bullets;
-	}
-
-	public void setBullets(ArrayList<Bullet> bullets) {
-		this.bullets = bullets;
-	}
-
-	public int getDamage() {
-		return damage;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
-
-	public int getBulletsG() {
-		return bulletsG;
-	}
-
-	public void setBulletsG(int bulletsG) {
-		this.bulletsG = bulletsG;
-	}
-
-	public int getAddBullets() {
-		return addBullets;
-	}
-
-	public void setAddBullets(int addBullets) {
-		this.addBullets = addBullets;
-	}
-
-	public int getSpeedX() {
-		return speedX;
-	}
-
-	public void setSpeedX(int speedX) {
-		this.speedX = speedX;
-	}
-
-	public int getSpeedY() {
-		return speedY;
-	}
-
-	public void setSpeedY(int speedY) {
-		this.speedY = speedY;
-	}
-
-	public int getCoolDown() {
-		return coolDown;
-	}
-
-	public void setCoolDown(int coolDown) {
-		this.coolDown = coolDown;
-	}
-
 	public boolean isVisible() {
 		return visible;
 	}
@@ -261,6 +208,18 @@ public class Gorilla {
 		this.visible = visible;
 	}
 
+	public ArrayList<Bullet> getBullets() {
+		return bullets;
+	}
+
+	public void setBullets(ArrayList<Bullet> bullets) {
+		this.bullets = bullets;
+	}
+
+	public void setApp(PApplet app) {
+		this.app = app;
+	}
+
 	
-	
+
 }

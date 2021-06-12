@@ -17,12 +17,8 @@ public class Interaction {
 	private Gorilla gorilla;
 	private Name name;
 	private String temporalName;
-<<<<<<< HEAD
 	
 	//private static Interaction oneInstance;
-=======
-	// private static Interaction oneInstance;
->>>>>>> 2704ba6fdf69eeb5ee1c2e4ee8d6a0136781691c
 	private ArrayList<User> users;
 	private ArrayList<Banana> bananas;
 	private ArrayList<Coin> coins;
@@ -30,11 +26,10 @@ public class Interaction {
 	private ArrayList<Plataform> platforms;
 	private Plataform goldPlatform;
 	private PFont font;
-<<<<<<< HEAD
-	private int min, seg, playTime, vulnerable, lifeGorilla;
-=======
+
+
 	private int min, seg, playTime, vulnerable, life;
->>>>>>> 2704ba6fdf69eeb5ee1c2e4ee8d6a0136781691c
+
 	private boolean time;
 	private int x, y, score;
 	private boolean dir, gameOver;
@@ -63,15 +58,11 @@ public class Interaction {
 		gameOver = false;
 		vulnerable = 0;
 		life = 5;
-
-<<<<<<< HEAD
 		this.vulnerable = 0;
-		this.lifeGorilla = 0;
+		//this.lifeGorilla = 0;
 		
 		//Lists
-=======
-		// Lists
->>>>>>> 2704ba6fdf69eeb5ee1c2e4ee8d6a0136781691c
+		
 		users = new ArrayList<>();
 		bananas = new ArrayList<>();
 		platforms = new ArrayList<>();
@@ -101,14 +92,13 @@ public class Interaction {
 		score();
 		lifes();
 
-		if (vulnerable > 0) {
-			vulnerable--;
-		}
 
 	}
 
 	public void drawG() {
+		
 		gorilla.draw();
+	
 	}
 
 	public void registerPlayer(String name) {
@@ -288,13 +278,60 @@ public class Interaction {
 	public void bananaBullet() {
 			
 			//monkey - gorilla
+		
+			
+			for (int i = 0; i < monkey.getBullets().size(); i++) {
 
+				
+				if (PApplet.dist(monkey.getBullets().get(i).getX(),
+						monkey.getBullets().get(i).getY(), gorilla.getX(), 
+						gorilla.getY()) < 60) {
+
+				if (PApplet.dist(monkey.getBullets().get(i).getX(), 
+						monkey.getBullets().get(i).getY(),gorilla.getX(), 
+						gorilla.getY()) < 60 && gorilla.isVisible()) {
+
+					gorilla.setVisible(false);
+					if (vulnerable == 0) {
+						life -= 1;
+						vulnerable = 60;
+					}
+					score += 5;
+
+				}
+			}
+		}
+			
+			
+			//gorilla - monkey 
+			
+			for (int i = 0; i < gorilla.getBullets().size(); i++) {
+
+				
+//				if (distance(gorilla.getBullets().get(i).getX(),
+//						gorilla.getBullets().get(i).getY(), monkey.getX(), 
+//						monkey.getY()) < 90) {
+
+				if (distance(gorilla.getBullets().get(i).getX(), 
+						gorilla.getBullets().get(i).getY(),monkey.getX(), 
+						monkey.getY()) < 150) {
+
+					gorilla.setVisible(false);
+					if (vulnerable == 0) {
+						life -= 2;
+						vulnerable = 60;
+					}
+					score += 5;
+
+				}
+			}
+		
 	
 }
 	
 
 	
-	public double distance(int x1, float x2, int y1, float y2) {
+	public double distance(float x1, float x2, float y1, float y2) {
 		
 		return Math.sqrt((y2 - y1)*(y2 - y1) + (x2 - x1)*(x2 - x1));
 	}
@@ -351,12 +388,12 @@ public class Interaction {
 
 		for (int i = 0; i < bananas.size(); i++) {
 			for (int j = 0; j < monkey.getBullets().size(); j++) {
-<<<<<<< HEAD
+
 				
 				if (app.dist(monkey.getBullets().get(j).getX(),monkey.getBullets().get(j).getY(), bananas.get(i).getX(), bananas.get(i).getY()) < 60) {
-=======
+
 				if (app.dist(monkey.getBullets().get(j).getX(), monkey.getBullets().get(j).getY(),bananas.get(i).getX(), bananas.get(i).getY()) < 60 && bananas.get(i).isVisible()) {
->>>>>>> 2704ba6fdf69eeb5ee1c2e4ee8d6a0136781691c
+
 					bananas.get(i).setVisible(false);
 					score += 5;
 
@@ -365,6 +402,7 @@ public class Interaction {
 		}
 
 	}
+}
 
 
 
