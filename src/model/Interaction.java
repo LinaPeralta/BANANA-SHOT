@@ -69,7 +69,7 @@ public class Interaction {
 		// Fonts
 		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 17);
 
-		// Inits
+		//Inits
 		initBananas();
 		initCoins();
 		initPlatforms();
@@ -153,16 +153,6 @@ public class Interaction {
 		removeBananas();
 	}
 	
-	private void platformCondition(int index) {
-		if (intersectPlatforms(monkey, platforms.get(index))) {
-			platforms.get(index).setFill(255);
-			monkey.land();
-		} else {
-			platforms.get(index).setFill(0);
-			monkey.setConnected(false);
-		}
-	}
-	
 	//Assigning the interaction between platforms based on the level
 	public void interactionPlatforms(int level) {
 		switch (level) {
@@ -195,7 +185,6 @@ public class Interaction {
 			} else {
 				monkey.setConnected(false);
 			}
-			
 			break;
 		}
 	}
