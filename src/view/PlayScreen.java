@@ -19,7 +19,7 @@ public class PlayScreen {
 
 	public PlayScreen(PApplet app) {
 		this.app = app;
-		level = 2;
+		level = 0;
 
 		
 		

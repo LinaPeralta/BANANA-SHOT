@@ -25,7 +25,9 @@ public class PlayController {
 	
 	public void drawLevels(int level) {
 		interaction.drawBananas(level);
-		//interaction.interactionPlatforms(level);
+		interaction.interactionPlatforms(level);
+		interaction.coinMonkey(level);
+
 	}
 	
 	public void monkeyMove(int movement) {
