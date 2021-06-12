@@ -149,7 +149,7 @@ public class Monkey{
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setY(float y) {
 		this.y = y;
 	}
 

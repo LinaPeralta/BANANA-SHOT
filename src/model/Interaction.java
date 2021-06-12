@@ -41,7 +41,7 @@ public class Interaction {
 		gorilla = new Gorilla(app);
 		name = new Name();
 		// coins = new Coin(app,)
-		goldPlatform = new Plataform(app, 939, 286, 195, 50);
+		goldPlatform = new Plataform(app, 980, 286, 120, 5);
 
 		// timer
 		min = 0;
@@ -169,18 +169,30 @@ public class Interaction {
 		}
 		removeBananas();
 	}
+	
+	private void setYMonkey(int index) {
+		if (intersectPlatforms(monkey, platforms.get(index))) {
+			monkey.setY(platforms.get(index).getY()-(monkey.getHeight()-10));
+		}
+	}
 
 	// Assigning the interaction between platforms based on the level
 	public void interactionPlatforms(int level) {
 		switch (level) {
 		case 0:
-				//Platforms for level 1
+			//Platforms for level 1
 				if (intersectPlatforms(monkey, platforms.get(0)) || (intersectPlatforms(monkey, platforms.get(1))
 						|| (intersectPlatforms(monkey, platforms.get(2))))) {
 					monkey.land();
+					
+					//Specifically so that the monkey doesn't land in the middle of the platform 
+					setYMonkey(0);
+					setYMonkey(1);
+					setYMonkey(2);
+					
 				} else {
 					monkey.setConnected(false);
-				}	
+				}
 			break;
 		case 1:
 			//Platforms for level 2
@@ -188,24 +200,40 @@ public class Interaction {
 					|| intersectPlatforms(monkey, platforms.get(5)) || intersectPlatforms(monkey, platforms.get(6))
 					|| intersectPlatforms(monkey, platforms.get(7))) {
 				monkey.land();
+				
+				//Specifically so that the monkey doesn't land in the middle of the platform 
+				setYMonkey(3);
+				setYMonkey(4);
+				setYMonkey(5);
+				setYMonkey(6);
+				setYMonkey(7);
+				
 			} else {
 				monkey.setConnected(false);
 
 			}
-			
 			break;
 		case 2:
 			//Platforms for level 3
 			if (intersectPlatforms(monkey, platforms.get(8)) || intersectPlatforms(monkey, platforms.get(9))
 					|| intersectPlatforms(monkey, platforms.get(10)) || intersectPlatforms(monkey, goldPlatform)) {
 				monkey.land();
+				
+				//Specifically so that the monkey doesn't land in the middle of the platform 
+				setYMonkey(8);
+				setYMonkey(9);
+				setYMonkey(10);
+				
+				if (intersectPlatforms(monkey, goldPlatform)) {
+					monkey.setY(goldPlatform.getY()-(monkey.getHeight()-10));
+				}
+				
 			} else {
 				monkey.setConnected(false);
 			}
 			break;
-		
 		}
-			}
+	}
 		
 
 	public void coinMonkey(int level) {
@@ -216,42 +244,30 @@ public class Interaction {
 			for (int i = 0; i < 2; i++) {
 				coins.get(i).draw();
 				
-
 				if (app.dist(monkey.getX()+50, monkey.getY()+150, coins.get(i).getX(), coins.get(i).getY()) < 60 && coins.get(i).isVisible()) {
 				    coins.get(i).setVisible(false);
 					score += 10;
-
 				}
-				
-				
-
 			}
 			break;
 		case 1:
-			for (int i = 2; i < 8; i++) {
-			
+			for (int i = 2; i < 7; i++) {
 				coins.get(i).draw();
 				
-
 				if (app.dist(monkey.getX()+50, monkey.getY()+150, coins.get(i).getX(), coins.get(i).getY()) < 60 && coins.get(i).isVisible()) {
 				    coins.get(i).setVisible(false);
 					score += 10;
-
 				}
-
 			}
 			break;
 		case 2:
 			for (int i = 7; i < 8; i++) {
 				coins.get(i).draw();
 				
-
 				if (app.dist(monkey.getX()+50, monkey.getY()+150, coins.get(i).getX(), coins.get(i).getY()) < 60 && coins.get(i).isVisible()) {
 				    coins.get(i).setVisible(false);
 					score += 10;
-
 				}
-
 			}
 			break;
 		}
@@ -290,14 +306,6 @@ public class Interaction {
 
 	}
 
-	public void removeCoins() {
-
-	}
-
-	public void initCoinsGrabbed() {
-
-	}
-
 	public void initBananas() {
 
 		// Bananas for level one
@@ -321,38 +329,34 @@ public class Interaction {
 				if (app.dist(monkey.getBullets().get(j).getX(), monkey.getBullets().get(j).getY(),bananas.get(i).getX(), bananas.get(i).getY()) < 60 && bananas.get(i).isVisible()) {
 					bananas.get(i).setVisible(false);
 					score += 5;
-
 				}
 			}
 		}
-
 	}
-
-
 
 	public void initPlatforms() {
 		// Platforms for level one
 		// Floor
 		platforms.add(new Plataform(app, 0, 675, 1300, 25));
 		// Platforms
-		platforms.add(new Plataform(app, 353, 427, 330, 50));
-		platforms.add(new Plataform(app, 699, 267, 461, 50));
+		platforms.add(new Plataform(app, 420, 427, 130, 5));
+		platforms.add(new Plataform(app, 830, 267, 200, 5));
 
 		// Platforms for level two
 		// Floors
 		platforms.add(new Plataform(app, 0, 675, 450, 25));
-		platforms.add(new Plataform(app, 707, 504, 80, 196));
-		platforms.add(new Plataform(app, 1011, 421, 289, 279));
+		platforms.add(new Plataform(app, 707, 504, 80, 10));
+		platforms.add(new Plataform(app, 1110, 421, 240, 10));
 		// Platforms
-		platforms.add(new Plataform(app, 76, 268, 330, 50));
-		platforms.add(new Plataform(app, 430, 151, 330, 50));
+		platforms.add(new Plataform(app, 100, 268, 150, 5));
+		platforms.add(new Plataform(app, 550, 151, 80, 5));
 
 		// Platforms for level three
 		// Floors
 		platforms.add(new Plataform(app, 0, 421, 214, 279));
 		platforms.add(new Plataform(app, 214, 675, 1086, 25));
 		// Platform
-		platforms.add(new Plataform(app, 434, 213, 330, 50));
+		platforms.add(new Plataform(app, 500, 213, 220, 5));
 
 	}
 
