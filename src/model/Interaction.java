@@ -191,29 +191,47 @@ public class Interaction {
 	public void interactionPlatforms(int level) {
 		switch (level) {
 		case 0:
-			for (int i = 0; i < 3; i++) {
-				platforms.get(i).draw();
-			}
-			// Floor platform
-			platformCondition(0);
-			// platformCondition(1);
-			// platformCondition(2);
 
+				//Platforms for level 1
+				if (intersectPlatforms(monkey, platforms.get(0)) || (intersectPlatforms(monkey, platforms.get(1))
+						|| (intersectPlatforms(monkey, platforms.get(2))))) {
+					monkey.land();
+				} else {
+					monkey.setConnected(false);
+				
+			
 			break;
+			}
 		case 1:
-			for (int i = 2; i < 8; i++) {
-				platforms.get(i).draw();
+			//Platforms for level 2
+			if (intersectPlatforms(monkey, platforms.get(3)) || intersectPlatforms(monkey, platforms.get(4))
+					|| intersectPlatforms(monkey, platforms.get(5)) || intersectPlatforms(monkey, platforms.get(6))
+					|| intersectPlatforms(monkey, platforms.get(7))) {
+				monkey.land();
+			} else {
+				monkey.setConnected(false);
 
 			}
+			
 			break;
 		case 2:
-			for (int i = 4; i < 11; i++) {
-				platforms.get(i).draw();
+
+		
+
+			//Platforms for level 3
+			if (intersectPlatforms(monkey, platforms.get(8)) || intersectPlatforms(monkey, platforms.get(9))
+					|| intersectPlatforms(monkey, platforms.get(10)) || intersectPlatforms(monkey, goldPlatform)) {
+				monkey.land();
+			} else {
+				monkey.setConnected(false);
 
 			}
+			
 			break;
+		
 		}
-	}
+			}
+		
 
 	public void coinMonkey(int level) {
 		// pintar monedas
@@ -387,7 +405,6 @@ public class Interaction {
 	}
 
 	public void timer() {
-
 		if (time == true) {
 
 			playTime++;

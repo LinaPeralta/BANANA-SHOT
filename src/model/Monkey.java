@@ -53,12 +53,12 @@ public class Monkey{
 		}
 		
 		//Apply gravity when not on a platform
-		/*if (connected == false) {
+		if (connected == false) {
 			speedY = speedY + gravity; 
-		}*/
+		}
 		
 		//Movement
-		//y += speedY;
+		y += speedY;
 		
 		//Drawing bullets, moving bullets and eliminating
 		shoot();
@@ -88,8 +88,8 @@ public class Monkey{
 			break;
 		// To go down
 		case 4:
-			//speedY = 20;
-			//connected = true;
+			speedY = 20;
+			connected = true;
 			break;
 		//To shoot
 		case 5:
@@ -159,6 +159,7 @@ public class Monkey{
 
 	public void setSpeedX(int speedX) {
 		this.speedX = speedX;
+
 	}
 
 	public float getSpeedY() {
