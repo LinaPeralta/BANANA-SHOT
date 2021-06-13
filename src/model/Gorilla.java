@@ -37,7 +37,8 @@ public class Gorilla {
 		speedX = 20;
 		
 		dir = false;
-
+		visible = true;
+		
 		damage = 3;
 		
 		visible = true;
@@ -47,20 +48,19 @@ public class Gorilla {
 
 	}
 	
-	public void draw() {		
-
-		System.out.println(bullets.size());
-			
-		app.image(gorilla, x, y, width, height);
+	public void draw() {	
+		if (visible) {
+			app.image(gorilla, x, y, width, height);
+		}
 			
 		if(Gbullets>0) {
 			Gbullets--;
 		}
 		
 		//enemyBullets
-		if(Gbullets == 0) {
+		if(Gbullets == 0 && visible) {
 			initShoot();
-			Gbullets = 30;
+			Gbullets = 50;
 		}
 
 		//moving bullets and eliminating
@@ -71,35 +71,23 @@ public class Gorilla {
 	}
 	
 	public void initShoot() {
-
-
 		int xBullet = (int) (x + 100);
 		int yBullet = (int) (y + 40);
 		Bullet bullet = new Bullet(app, xBullet, yBullet, dir);
-		bullets.add(bullet);
-
-
-		
+		bullets.add(bullet);	
 	}
 	
 	public void shoot() {
-
-		
 		for (int i = 0; i < bullets.size()  ; i++) {
-			
-			//bullets.get(i).setVisible(true);
-			
 			bullets.get(i).draw();
-			
 			new Thread(bullets.get(i)).start();
 			
-	}
+		}
 	}
 	
 	public void removeBullet() {
-		
-		
 	for (int i = 0; i < bullets.size(); i++) {
+<<<<<<< HEAD
 		
 			if(bullets.get(i).getX() < 0 || bullets.get(i).isVisible()==false) {
 				//
@@ -107,6 +95,12 @@ public class Gorilla {
 			}
 	}
 //, bullets.get(i).getX() > 1300 || bullets.get(i).getX() < 0
+=======
+			if(bullets.get(i).getX() > 1300 || bullets.get(i).getX() < 0) {
+				bullets.remove(i);
+			}
+	}
+>>>>>>> 933294038324fc18e67a7b1828e6f3b76298d26a
 	
 }
 

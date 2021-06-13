@@ -16,9 +16,13 @@ public class PlayController {
 	}
 	
 	public void draw() {
+<<<<<<< HEAD
 		interaction.draw();
 		interaction.monkeyBullet();
 		
+=======
+		interaction.draw();	
+>>>>>>> 933294038324fc18e67a7b1828e6f3b76298d26a
 	}
 	
 	public void drawG() {
@@ -40,8 +44,5 @@ public class PlayController {
 	public Interaction getInteraction() {
 		return interaction;
 	}
-
-	
-	
 
 }

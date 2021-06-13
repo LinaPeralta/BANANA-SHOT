@@ -57,6 +57,12 @@ public class Monkey{
 			speedY = speedY + gravity; 
 		}
 		
+		//Apply gravity if monkey is higher then the top of the screen
+		if (y < -50) {
+			y = -50;
+			connected = false;
+		}
+		
 		//Movement
 		y += speedY;
 		
@@ -149,7 +155,7 @@ public class Monkey{
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setY(float y) {
 		this.y = y;
 	}
 

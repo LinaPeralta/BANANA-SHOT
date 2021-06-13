@@ -6,6 +6,7 @@ import model.Interaction;
 import model.Monkey;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Main extends PApplet{
 
@@ -22,11 +23,11 @@ public class Main extends PApplet{
 	private StatScreen statScreen;
 	//Game over screen
 	private GameoverScreen gOver;
-	private Interaction interaction;
 	
 	//Variables
 	private int screen;
 	private boolean left, right, jump, shoot, down;
+	private PImage youWin;
 	
 	
 	public static void main(String[] args) {
@@ -59,9 +60,9 @@ public class Main extends PApplet{
 		
 		//Game over screen
 		gOver = new GameoverScreen (this);
-		interaction = new Interaction (this);
 		
-		
+		//You win image
+		youWin = loadImage("./data/images/youwon.png");
 		
 		//Variables
 		screen = 2;
@@ -74,8 +75,6 @@ public class Main extends PApplet{
 	
 	@Override
 	public void draw() {
-		
-		//System.out.println(mouseX+","+mouseY);
 		
 		background(255);
 		
@@ -95,17 +94,29 @@ public class Main extends PApplet{
 			playScreen.drawController();
 			
 			keyMovements();
+			
+			//To switch to game over screen
+			if (playScreen.getController().getInteraction().isGameOver()) {
+				screen = 3;
+			}
+			
+			//To switch to you win screen
+			if (playScreen.getController().getInteraction().isYouWin()) {
+				screen = 5;
+			}
 			break;
 		//Game over screen
 		case 3:
 			gOver.draw();
-	
 			break;
 		//Stat screen
 		case 4:
-			
 			statScreen.draw();
 			statScreen.charts();
+			break;
+		case 5:
+			imageMode(CORNER);
+			image(youWin, 0, 0, 1300, 700);
 			break;
 		}	
 		
@@ -125,69 +136,28 @@ public class Main extends PApplet{
 				start.hideText();
 				screen = 1;
 			}
-			
-			
-			
-			
-			
-			
-			
 			break;
 		//Instructions screen
 		case 1:
 			if (mouseX > 530 && mouseX < 775 && mouseY > 590 && mouseY < 650) {
 				screen = 2;
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			break;
 		//Play screen
 		case 2:
 
-			
-			
-			
-			
-			
-			
-			
 			break;
 		//Game over screen
 		case 3:
-	
-			
-			
-			
-			
-			
-			
 			
 			break;
 		//Stat screen
 		case 4:
-			
-			
 			if(mouseX > 528 && mouseX < 771 && mouseY > 589 && mouseY < 647) {
-				
 				screen = 0;
-				
 			}
-			
-			
-			
-			
-			
 			break;
 		}
-		
-	System.out.println(mouseX + "," + mouseY);
 
 	}
 

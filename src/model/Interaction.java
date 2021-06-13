@@ -13,28 +13,25 @@ public class Interaction {
 	// private Coin coins;
 	// private double gravity;
 	// private User user;
-
 	private Gorilla gorilla;
 	private Name name;
 	private String temporalName;
-	
 	//private static Interaction oneInstance;
 	private ArrayList<User> users;
 	private ArrayList<Banana> bananas;
 	private ArrayList<Coin> coins;
+<<<<<<< HEAD
 	private ArrayList<Bullet> bullet;
 
+=======
+>>>>>>> 933294038324fc18e67a7b1828e6f3b76298d26a
 	private ArrayList<Plataform> platforms;
 	private Plataform goldPlatform;
 	private PFont font;
-
-
-	private int min, seg, playTime, vulnerable, life;
-
+	private int min, seg, playTime, vulnerable, life, lifeG, vulnerableG;
 	private boolean time;
 	private int x, y, score;
-	private boolean dir, gameOver;
-
+	private boolean dir, gameOver, youWin;
 	// private boolean connected;
 
 	public Interaction(PApplet app) {
@@ -46,9 +43,9 @@ public class Interaction {
 		gorilla = new Gorilla(app);
 		name = new Name();
 		// coins = new Coin(app,)
-		goldPlatform = new Plataform(app, 939, 286, 195, 50);
+		goldPlatform = new Plataform(app, 980, 286, 120, 5);
 
-		// timer
+		//Attributes
 		min = 0;
 		seg = 0;
 		time = false;
@@ -57,13 +54,14 @@ public class Interaction {
 		temporalName = "";
 		playTime = 0;
 		gameOver = false;
+		youWin = false;
 		vulnerable = 0;
-		life = 5;
-		this.vulnerable = 0;
-		//this.lifeGorilla = 0;
+		life = 2;
+		lifeG = 3;
+		vulnerable = 0;
+		vulnerableG = 0;
 		
 		//Lists
-		
 		users = new ArrayList<>();
 		bananas = new ArrayList<>();
 		platforms = new ArrayList<>();
@@ -84,19 +82,28 @@ public class Interaction {
 		time = true;
 		
 		if (vulnerable > 0) {
-			
 			vulnerable--;
-			
+		}
+		
+		if (vulnerableG > 0) {
+			vulnerableG--;
 		}
 		
 		timer();
 		score();
 		lifes();
+<<<<<<< HEAD
+=======
+		monkeyGorilla();
+		monkeyBanana();
+		
+		//Game finished
+		gameOver();
+>>>>>>> 933294038324fc18e67a7b1828e6f3b76298d26a
 		
 	}
 
 	public void drawG() {
-		
 		gorilla.draw();
 	
 	}
@@ -141,8 +148,8 @@ public class Interaction {
 				new Thread(bananas.get(i)).start();
 
 				//Take life from monkey on this level
-				if (app.dist(monkey.getX(), monkey.getY() + 100, bananas.get(i).getX(), bananas.get(i).getY()) < 60) {
-
+				if (app.dist(monkey.getX(), monkey.getY() + 100, bananas.get(i).getX(), bananas.get(i).getY()) < 60 &&	
+						bananas.get(i).isVisible()) {
 					if (vulnerable == 0) {
 						life -= 1;
 						vulnerable = 60;
@@ -156,8 +163,8 @@ public class Interaction {
 				new Thread(bananas.get(i)).start();
 				
 				//Take life from monkey on this level
-				if (app.dist(monkey.getX(), monkey.getY() + 100, bananas.get(i).getX(), bananas.get(i).getY()) < 60) {
-
+				if (app.dist(monkey.getX(), monkey.getY() + 100, bananas.get(i).getX(), bananas.get(i).getY()) < 60 &&	
+						bananas.get(i).isVisible()) {
 					if (vulnerable == 0) {
 						life -= 1;
 						vulnerable = 60;
@@ -171,7 +178,8 @@ public class Interaction {
 				new Thread(bananas.get(i)).start();
 				
 				//Take life from monkey on this level
-				if (app.dist(monkey.getX(), monkey.getY() + 100, bananas.get(i).getX(), bananas.get(i).getY()) < 60) {
+				if (app.dist(monkey.getX(), monkey.getY() + 100, bananas.get(i).getX(), bananas.get(i).getY()) < 60 &&	
+						bananas.get(i).isVisible()) {
 					if (vulnerable == 0) {
 						life -= 1;
 						vulnerable = 60;
@@ -182,18 +190,30 @@ public class Interaction {
 		}
 		removeBananas();
 	}
+	
+	private void setYMonkey(int index) {
+		if (intersectPlatforms(monkey, platforms.get(index))) {
+			monkey.setY(platforms.get(index).getY()-(monkey.getHeight()-10));
+		}
+	}
 
 	// Assigning the interaction between platforms based on the level
 	public void interactionPlatforms(int level) {
 		switch (level) {
 		case 0:
-				//Platforms for level 1
+			//Platforms for level 1
 				if (intersectPlatforms(monkey, platforms.get(0)) || (intersectPlatforms(monkey, platforms.get(1))
 						|| (intersectPlatforms(monkey, platforms.get(2))))) {
 					monkey.land();
+					
+					//Specifically so that the monkey doesn't land in the middle of the platform 
+					setYMonkey(0);
+					setYMonkey(1);
+					setYMonkey(2);
+					
 				} else {
 					monkey.setConnected(false);
-				}	
+				}
 			break;
 		case 1:
 			//Platforms for level 2
@@ -201,78 +221,84 @@ public class Interaction {
 					|| intersectPlatforms(monkey, platforms.get(5)) || intersectPlatforms(monkey, platforms.get(6))
 					|| intersectPlatforms(monkey, platforms.get(7))) {
 				monkey.land();
+				
+				//Specifically so that the monkey doesn't land in the middle of the platform 
+				setYMonkey(3);
+				setYMonkey(4);
+				setYMonkey(5);
+				setYMonkey(6);
+				setYMonkey(7);
+				
 			} else {
 				
 				monkey.setConnected(false);
 
 			}
-			
 			break;
 		case 2:
 			//Platforms for level 3
 			if (intersectPlatforms(monkey, platforms.get(8)) || intersectPlatforms(monkey, platforms.get(9))
 					|| intersectPlatforms(monkey, platforms.get(10)) || intersectPlatforms(monkey, goldPlatform)) {
 				monkey.land();
+				
+				//Specifically so that the monkey doesn't land in the middle of the platform 
+				setYMonkey(8);
+				setYMonkey(9);
+				setYMonkey(10);
+				
+				if (intersectPlatforms(monkey, goldPlatform)) {
+					monkey.setY(goldPlatform.getY()-(monkey.getHeight()-10));
+					youWin = true;
+				}
+				
 			} else {
 				monkey.setConnected(false);
 			}
 			break;
-		
 		}
-			}
+	}
 		
 
 	public void coinMonkey(int level) {
 		// pintar monedas
-
 		switch (level) {
 		case 0:
 			for (int i = 0; i < 2; i++) {
 				coins.get(i).draw();
 				
-
 				if (app.dist(monkey.getX()+50, monkey.getY()+150, coins.get(i).getX(), coins.get(i).getY()) < 60 && coins.get(i).isVisible()) {
 				    coins.get(i).setVisible(false);
 					score += 10;
-
 				}
-				
-				
-
 			}
 			break;
 		case 1:
-			for (int i = 2; i < 8; i++) {
-			
+			for (int i = 2; i < 7; i++) {
 				coins.get(i).draw();
 				
-
 				if (app.dist(monkey.getX()+50, monkey.getY()+150, coins.get(i).getX(), coins.get(i).getY()) < 60 && coins.get(i).isVisible()) {
 				    coins.get(i).setVisible(false);
 					score += 10;
-
 				}
-
 			}
 			break;
 		case 2:
 			for (int i = 7; i < 8; i++) {
 				coins.get(i).draw();
 				
-
 				if (app.dist(monkey.getX()+50, monkey.getY()+150, coins.get(i).getX(), coins.get(i).getY()) < 60 && coins.get(i).isVisible()) {
 				    coins.get(i).setVisible(false);
 					score += 10;
-
 				}
-
 			}
 			break;
 		}
 
 	}
 
+	//Takes away monkeys life from gorilla bullets
 	public void monkeyBanana() {
+<<<<<<< HEAD
 		
 
 		
@@ -369,6 +395,43 @@ public class Interaction {
 			}
 		}
 	}
+=======
+		for (int i = 0; i < gorilla.getBullets().size(); i++) {
+			if (app.dist(gorilla.getBullets().get(i).getX(), gorilla.getBullets().get(i).getY(), monkey.getX()+50, monkey.getY()+150) < 100 
+					&& gorilla.getBullets().get(i).isVisible()) {
+				gorilla.getBullets().get(i).setVisible(false);
+				if (vulnerable == 0) {
+					life -= 1;
+					vulnerable = 60;
+				}
+			}
+		}
+	}
+
+	//Takes away gorilla life from monkey bullets
+	public void monkeyGorilla() {
+		for (int i = 0; i < monkey.getBullets().size(); i++) {
+			for (int j = 0; j < gorilla.getBullets().size(); j++) {
+				
+			if (app.dist(monkey.getBullets().get(i).getX(), monkey.getBullets().get(i).getY(), gorilla.getX(), gorilla.getY()) < 100 &&
+					monkey.getBullets().get(i).isVisible()) {
+				monkey.getBullets().get(i).setVisible(false);
+				if (vulnerableG == 0) {
+					lifeG -= 1;
+					vulnerableG = 20;
+				}
+				
+				if (lifeG == 0) {
+					gorilla.setVisible(false);
+					score += 30;
+					gorilla.getBullets().get(j).setVisible(false);
+				}
+			}
+		}
+	}
+	
+}
+>>>>>>> 933294038324fc18e67a7b1828e6f3b76298d26a
 
 }
 
@@ -389,14 +452,6 @@ public class Interaction {
 
 		// coins level 3
 		coins.add(new Coin(app, 39, 345));
-
-	}
-
-	public void removeCoins() {
-
-	}
-
-	public void initCoinsGrabbed() {
 
 	}
 
@@ -421,45 +476,42 @@ public class Interaction {
 		for (int i = 0; i < bananas.size(); i++) {
 			
 			for (int j = 0; j < monkey.getBullets().size(); j++) {
-
-				
-				if (app.dist(monkey.getBullets().get(j).getX(),monkey.getBullets().get(j).getY(), bananas.get(i).getX(), bananas.get(i).getY()) < 60) {
-
 				if (app.dist(monkey.getBullets().get(j).getX(), monkey.getBullets().get(j).getY(),bananas.get(i).getX(), bananas.get(i).getY()) < 60 && bananas.get(i).isVisible()) {
-
 					bananas.get(i).setVisible(false);
+					monkey.getBullets().get(j).setVisible(false);
 					score += 5;
-
-				}
 			}
 		}
 	}
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 933294038324fc18e67a7b1828e6f3b76298d26a
 	public void initPlatforms() {
 		// Platforms for level one
 		// Floor
 		platforms.add(new Plataform(app, 0, 675, 1300, 25));
 		// Platforms
-		platforms.add(new Plataform(app, 353, 427, 330, 50));
-		platforms.add(new Plataform(app, 699, 267, 461, 50));
+		platforms.add(new Plataform(app, 420, 427, 130, 5));
+		platforms.add(new Plataform(app, 830, 267, 200, 5));
 
 		// Platforms for level two
 		// Floors
 		platforms.add(new Plataform(app, 0, 675, 450, 25));
-		platforms.add(new Plataform(app, 707, 504, 80, 196));
-		platforms.add(new Plataform(app, 1011, 421, 289, 279));
+		platforms.add(new Plataform(app, 707, 504, 80, 10));
+		platforms.add(new Plataform(app, 1110, 421, 240, 10));
 		// Platforms
-		platforms.add(new Plataform(app, 76, 268, 330, 50));
-		platforms.add(new Plataform(app, 430, 151, 330, 50));
+		platforms.add(new Plataform(app, 100, 268, 150, 5));
+		platforms.add(new Plataform(app, 550, 151, 80, 5));
 
 		// Platforms for level three
 		// Floors
 		platforms.add(new Plataform(app, 0, 421, 214, 279));
 		platforms.add(new Plataform(app, 214, 675, 1086, 25));
 		// Platform
-		platforms.add(new Plataform(app, 434, 213, 330, 50));
+		platforms.add(new Plataform(app, 500, 213, 220, 5));
 
 	}
 
@@ -543,21 +595,27 @@ public class Interaction {
 	}
 
 	public void score() {
-
 		app.fill(0);
 		app.textFont(font);
 		app.textSize(30);
 		app.text("Score: " + score, 700, 35);
-
 	}
 
 	public void lifes() {
-
 		app.fill(0);
 		app.textFont(font);
 		app.textSize(30);
 		app.text("Life: " + life, 1000, 35);
-
+	}
+	
+	public void gameOver() {
+		if (life == 0) {
+			gameOver = true;
+		}
+		
+		if (monkey.getY() > 700) {
+			gameOver = true;
+		}
 	}
 
 	public void organizeName() {
@@ -572,6 +630,12 @@ public class Interaction {
 		this.monkey = monkey;
 	}
 
+	public boolean isGameOver() {
+		return gameOver;
+	}
 	
+	public boolean isYouWin() {
+		return youWin;
+	}
 	
 }
