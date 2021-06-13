@@ -1,6 +1,6 @@
 package view;
 import controlP5.ControlP5;
-
+import excepcion.message;
 import model.Interaction;
 
 import model.Monkey;
@@ -93,6 +93,12 @@ public class Main extends PApplet{
 			playScreen.drawController();
 			playScreen.drawControllerG();
 			keyMovements();
+			try {
+				playScreen.excep();
+			} catch (message e) {
+				
+				e.printStackTrace();
+			}
 			
 			//To switch to game over screen
 			if (playScreen.getController().getInteraction().isGameOver()) {

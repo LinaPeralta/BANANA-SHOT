@@ -93,6 +93,8 @@ public class Interaction {
 		//Game finished
 		gameOver();
 		
+
+		
 	}
 
 	public void drawG() {
@@ -286,6 +288,10 @@ public class Interaction {
 		}
 
 	}
+	
+	
+	
+
 
 	//Takes away monkeys life from gorilla bullets
 	public void monkeyBanana() {

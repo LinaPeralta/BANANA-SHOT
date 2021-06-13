@@ -2,6 +2,7 @@ package view;
 
 
 import controller.PlayController;
+import excepcion.message;
 import model.Monkey;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -97,12 +98,29 @@ public void drawControllerG () {
 	public void drawController () {
 		controller.draw();
 		controller.drawLevels(level);
+		
 	}
 
 	public void monkeyMove(int movement) {
 		controller.monkeyMove(movement);
 
+		
 	}
+	
+	public void excep () throws message {
+		
+		try {
+			
+			if (level == 2) {
+				throw new message("Remember not to fall into the abyss!");
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	
+	}
+	
 	
 	public int getLevel() {
 		return level;
