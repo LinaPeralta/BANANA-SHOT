@@ -88,18 +88,20 @@ public class PlayScreen {
 		}
 	}
 	
-public void drawControllerG () {
+	public void drawControllerG () {
 		
 		//Condition to draw gorilla on last screen
 		if (level == 2) {
 			controller.drawG();
 		}
-}
+		
+	}
 	
 	public void drawController () {
 		
 		controller.draw();
 		controller.drawLevels(level);
+		drawControllerG();
 		
 	}
 

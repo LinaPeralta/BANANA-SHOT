@@ -22,6 +22,7 @@ public class Interaction {
 	private ArrayList<User> users;
 	private ArrayList<Banana> bananas;
 	private ArrayList<Coin> coins;
+	private ArrayList<Bullet> bullet;
 
 	private ArrayList<Plataform> platforms;
 	private Plataform goldPlatform;
@@ -91,8 +92,7 @@ public class Interaction {
 		timer();
 		score();
 		lifes();
-
-
+		
 	}
 
 	public void drawG() {
@@ -202,6 +202,7 @@ public class Interaction {
 					|| intersectPlatforms(monkey, platforms.get(7))) {
 				monkey.land();
 			} else {
+				
 				monkey.setConnected(false);
 
 			}
@@ -272,73 +273,104 @@ public class Interaction {
 	}
 
 	public void monkeyBanana() {
+		
 
+		
 	}
 
+	
 	public void bananaBullet() {
 			
-			//monkey - gorilla
-		
+		//monkey - gorilla
 			
-			for (int i = 0; i < monkey.getBullets().size(); i++) {
+		for (int j = 0; j < monkey.getBullets().size(); j++) {
 
+			
+			if (PApplet.dist(monkey.getBullets().get(j).getX(),monkey.getBullets().get(j).getY(), 
+					gorilla.getX(), gorilla.getY()) < 60) {
+
+			if (PApplet.dist(monkey.getBullets().get(j).getX(),monkey.getBullets().get(j).getY(),
+					gorilla.getX(), gorilla.getY()) < 60 && gorilla.isVisible()) {
+
+				gorilla.setVisible(false);
 				
-				if (PApplet.dist(monkey.getBullets().get(i).getX(),
-						monkey.getBullets().get(i).getY(), gorilla.getX(), 
-						gorilla.getY()) < 60) {
-
-				if (PApplet.dist(monkey.getBullets().get(i).getX(), 
-						monkey.getBullets().get(i).getY(),gorilla.getX(), 
-						gorilla.getY()) < 60 && gorilla.isVisible()) {
-
-					gorilla.setVisible(false);
-					if (vulnerable == 0) {
-						life -= 1;
-						vulnerable = 60;
-					}
-					score += 5;
-
+				score += 20;
+				
+				if (vulnerable == 0) {
+					
+					life += gorilla.getDamage();
+					
+					vulnerable = 60;
 				}
+				
+//				if (vulnerable == 0) {
+//					
+//					life += monkey.getDamage();
+//					
+//					vulnerable = 60;
+//				}
+
 			}
 		}
-			
-			
-			//gorilla - monkey 
-			
-			for (int i = 0; i < gorilla.getBullets().size(); i++) {
-
-				
-//				if (distance(gorilla.getBullets().get(i).getX(),
-//						gorilla.getBullets().get(i).getY(), monkey.getX(), 
-//						monkey.getY()) < 90) {
-
-				if (distance(gorilla.getBullets().get(i).getX(), 
-						gorilla.getBullets().get(i).getY(),monkey.getX(), 
-						monkey.getY()) < 150) {
-
-					gorilla.setVisible(false);
-					if (vulnerable == 0) {
-						life -= 2;
-						vulnerable = 60;
-					}
-					score += 5;
-
-				}
-			}
-		
-	
-}
-	
-
-	
-	public double distance(float x1, float x2, float y1, float y2) {
-		
-		return Math.sqrt((y2 - y1)*(y2 - y1) + (x2 - x1)*(x2 - x1));
 	}
+}
+
+//		for (int i = 0; i < monkey.getBullets().size(); i++) {
+//			
+//			double distanceb = distance(monkey.getBullets().get(i).getX(), gorilla.getX(), monkey.getBullets().get(i).getY(), gorilla.getX());
+//			
+//				if (vulnerable == 0) {
+//					
+//					life += monkey.getBullets().get(i).getDamage();
+//					
+//					vulnerable = 60;
+//					
+//		}
+//	}
+		
+
+	
+	
+//	public double distance(double x1, double x2, double y1, double y2) {
+//		
+//		return Math.sqrt((y2 - y1)*(y2 - y1) + (x2 - x1)*(x2 - x1));
+//		
+//	}
 
 	public void monkeyBullet() {
+		
+		for (int j = 0; j < monkey.getBullets().size(); j++) {
 
+			
+			if (PApplet.dist(monkey.getBullets().get(j).getX(),monkey.getBullets().get(j).getY(), 
+					gorilla.getX(), gorilla.getY()) < 60) {
+
+			if (PApplet.dist(monkey.getBullets().get(j).getX(),monkey.getBullets().get(j).getY(),
+					gorilla.getX(), gorilla.getY()) < 60 && gorilla.isVisible()) {
+
+				gorilla.setVisible(false);
+				
+				score += 20;
+				
+				if (vulnerable == 0) {
+					
+					life += monkey.getDamage();
+					
+					vulnerable = 60;
+				}
+				
+//				if (vulnerable == 0) {
+//					
+//					life += monkey.getDamage();
+//					
+//					vulnerable = 60;
+//				}
+
+			}
+		}
 	}
+
+}
 
 	public void initCoins() {
 
@@ -387,6 +419,7 @@ public class Interaction {
 	public void removeBananas() {
 
 		for (int i = 0; i < bananas.size(); i++) {
+			
 			for (int j = 0; j < monkey.getBullets().size(); j++) {
 
 				
@@ -400,10 +433,8 @@ public class Interaction {
 				}
 			}
 		}
-
 	}
 }
-
 
 
 	public void initPlatforms() {
@@ -443,7 +474,9 @@ public class Interaction {
 
 		// Check for intersection on x
 		if (app.abs(distX) < combinedW) {
+			
 			if (app.abs(distY) < combinedY) {
+				
 				// They are intersecting
 				return true;
 			}

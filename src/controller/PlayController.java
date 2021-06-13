@@ -17,9 +17,12 @@ public class PlayController {
 	
 	public void draw() {
 		interaction.draw();
+		interaction.monkeyBullet();
+		
 	}
 	
 	public void drawG() {
+		interaction.bananaBullet();
 		interaction.drawG();
 	}
 	
@@ -27,7 +30,7 @@ public class PlayController {
 		interaction.drawBananas(level);
 		interaction.interactionPlatforms(level);
 		interaction.coinMonkey(level);
-
+		
 	}
 	
 	public void monkeyMove(int movement) {

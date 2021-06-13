@@ -91,8 +91,9 @@ public class Main extends PApplet{
 		//Play screen
 		case 2:
 			playScreen.levelScreens();
+			
 			playScreen.drawController();
-			playScreen.drawControllerG();
+			
 			keyMovements();
 			break;
 		//Game over screen

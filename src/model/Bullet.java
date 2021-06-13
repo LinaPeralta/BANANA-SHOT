@@ -84,6 +84,16 @@ public class Bullet implements Runnable{
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
+
+	public float getDamage() {
+		return damage;
+	}
+
+	public void setDamage(float damage) {
+		this.damage = damage;
+	}
+	
+	
 	
 	
 	
