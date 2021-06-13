@@ -28,7 +28,7 @@ public class Main extends PApplet{
 	private int screen;
 	private boolean left, right, jump, shoot, down;
 	private PImage youWin;
-	
+	private boolean nullMessage;
 	
 	public static void main(String[] args) {
 		PApplet.main("view.Main");
@@ -65,7 +65,7 @@ public class Main extends PApplet{
 		youWin = loadImage("./data/images/youwon.png");
 		
 		//Variables
-		screen = 2;
+		screen = 0;
 		left = false;
 		right = false;
 		shoot = false;
@@ -82,6 +82,13 @@ public class Main extends PApplet{
 		//Start screen
 		case 0:
 			start.draw();
+			
+			if(nullMessage) {
+				
+				fill(200);
+				text("Please fully fill", 480, 542);
+				
+			}
 			break;
 		//Instructions screen
 		case 1:
@@ -89,9 +96,10 @@ public class Main extends PApplet{
 			break;
 		//Play screen
 		case 2:
-			playScreen.levelScreens();
-			playScreen.drawController();
-			playScreen.drawControllerG();
+			//playScreen.levelScreens();
+			
+			//playScreen.drawController();
+			
 			keyMovements();
 			try {
 				playScreen.excep();
@@ -127,6 +135,23 @@ public class Main extends PApplet{
 		
 	}
 	
+private void nameExc() {
+		
+		try {
+			
+			if(start.toString().equals(null)) {
+				
+				throw new NullPointerException();
+				
+				}else {
+					nullMessage = false;
+				}
+		}catch(NullPointerException e) {
+				nullMessage = true;
+		}	
+		
+	}
+	
 	@Override
 	public void mousePressed() {
 		
@@ -135,12 +160,19 @@ public class Main extends PApplet{
 		case 0:
 			//Show text when restart
 			start.showText();
+
 			//If to hide text, add user and switch to the following screen
 			if (mouseX > 540 && mouseX < 765 && mouseY > 580 && mouseY < 637 && start.isBoxFilled()) {
 				start.addUser();
 				start.hideText();
 				screen = 1;
-			}
+				nameExc();
+			}else {
+		
+		nullMessage = false;
+		
+	}
+	
 			break;
 		//Instructions screen
 		case 1:
@@ -154,7 +186,15 @@ public class Main extends PApplet{
 			break;
 		//Game over screen
 		case 3:
+			if (mouseX > 554 && mouseX < 777 && mouseY > 524 && mouseY < 580) {
+				screen = 0;
+			}
 			
+			if (mouseX > 585 && mouseX < 745 && mouseY > 605 && mouseY < 647) {
+				screen = 4;
+			}
+				
+				
 			break;
 		//Stat screen
 		case 4:

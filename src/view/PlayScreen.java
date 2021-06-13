@@ -87,6 +87,7 @@ public class PlayScreen {
 			break;
 		}
 	}
+
 	
 public void drawControllerG () {
 		//Condition to draw gorilla on last screen
@@ -101,6 +102,24 @@ public void drawControllerG () {
 		
 	}
 
+		
+//	public void drawControllerG () {
+//		//Condition to draw gorilla on last screen
+//		if (level == 2) {
+//			controller.drawG();
+//		}
+//		
+//	}
+//	
+//	public void drawController () {
+//		controller.draw();
+//		controller.drawLevels(level);
+//
+//		drawControllerG();
+//		
+//	}
+
+
 	public void monkeyMove(int movement) {
 		controller.monkeyMove(movement);
 
@@ -111,7 +130,7 @@ public void drawControllerG () {
 		
 		try {
 			
-			if (level == 2) {
+			if (level == 0) {
 				throw new message("Remember not to fall into the abyss!");
 			}
 			
@@ -119,6 +138,7 @@ public void drawControllerG () {
 			System.out.println(e.getMessage());
 		}
 	
+		
 	}
 	
 	

@@ -3,31 +3,48 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+
+import controlP5.ControlP5;
 import processing.core.PApplet;
 import processing.core.PFont;
+import view.StartScreen;
 
 public class Interaction {
 
 	private PApplet app;
+	private ControlP5 cp5;
+	
+	//classes
 	private Monkey monkey;
 	// private Coin coins;
 	// private double gravity;
 	// private User user;
 	private Gorilla gorilla;
 	private Name name;
+	private Plataform goldPlatform;
+	private StartScreen startS;	
+	
+	//strigs
 	private String temporalName;
 	//private static Interaction oneInstance;
+	
+	//arrays
 	private ArrayList<User> users;
 	private ArrayList<Banana> bananas;
 	private ArrayList<Coin> coins;
 	private ArrayList<Plataform> platforms;
-	private Plataform goldPlatform;
-	private PFont font;
-	private int min, seg, playTime, vulnerable, life, lifeG, vulnerableG;
+	
+	//booleans
+	private boolean nullMessage;
 	private boolean time;
-	private int x, y, score;
 	private boolean dir, gameOver, youWin;
+	
+	//ints
+	private int min, seg, playTime, vulnerable, life, lifeG, vulnerableG;
+	private int x, y, score;
+	
 	// private boolean connected;
+	private PFont font;
 
 	public Interaction(PApplet app) {
 
@@ -37,9 +54,10 @@ public class Interaction {
 		monkey = new Monkey(app);
 		gorilla = new Gorilla(app);
 		name = new Name();
+		startS = new StartScreen(app, cp5);
 		// coins = new Coin(app,)
 		goldPlatform = new Plataform(app, 980, 286, 120, 5);
-
+		
 		//Attributes
 		min = 0;
 		seg = 0;
@@ -87,11 +105,18 @@ public class Interaction {
 		timer();
 		score();
 		lifes();
+
 		monkeyGorilla();
 		monkeyBanana();
 		
 		//Game finished
 		gameOver();
+
+//		if(nullMessage) {
+//			
+//			app.fill(200);
+//			app.text("Please fully fill", 480, 542);
+//		}
 		
 
 		
@@ -101,6 +126,23 @@ public class Interaction {
 		gorilla.draw();
 	
 	}
+	
+//	private void nameExc() {
+//		
+//		try {
+//			
+//			if(startS.toString().equals(null)) {
+//				
+//				throw new NullPointerException();
+//				
+//				}else {
+//					nullMessage = false;
+//				}
+//		}catch(NullPointerException e) {
+//				nullMessage = true;
+//		}	
+//		
+//	}
 
 	public void registerPlayer(String name) {
 		temporalName = name;
@@ -224,6 +266,7 @@ public class Interaction {
 				setYMonkey(7);
 				
 			} else {
+				
 				monkey.setConnected(false);
 
 			}
@@ -295,10 +338,75 @@ public class Interaction {
 
 	//Takes away monkeys life from gorilla bullets
 	public void monkeyBanana() {
+	
 		for (int i = 0; i < gorilla.getBullets().size(); i++) {
-			if (app.dist(gorilla.getBullets().get(i).getX(), gorilla.getBullets().get(i).getY(), monkey.getX()+50, monkey.getY()+150) < 100 
-					&& gorilla.getBullets().get(i).isVisible()) {
+			for (int j = 0; j < monkey.getBullets().size(); j++) {
+				
+			if (app.dist(gorilla.getBullets().get(i).getX(), gorilla.getBullets().get(i).getY(), monkey.getX(), monkey.getY()) < 100 &&
+					gorilla.getBullets().get(i).isVisible()) {
 				gorilla.getBullets().get(i).setVisible(false);
+				if (vulnerable == 0) {
+					life -= 1;
+					vulnerable = 20;
+				}
+				
+				if (lifeG == 0) {
+					gorilla.setVisible(false);
+					score += 30;
+					monkey.getBullets().get(j).setVisible(false);
+				}
+			}
+		}
+	}
+	}
+
+	
+	public void bananaBullet() {
+			
+		//monkey - gorilla
+			
+		for (int j = 0; j < monkey.getBullets().size(); j++) {
+
+			
+			if (PApplet.dist(monkey.getBullets().get(j).getX(),monkey.getBullets().get(j).getY(), 
+					gorilla.getX(), gorilla.getY()) < 60) {
+
+			if (PApplet.dist(monkey.getBullets().get(j).getX(),monkey.getBullets().get(j).getY(),
+					gorilla.getX(), gorilla.getY()) < 60 && gorilla.isVisible()) {
+
+				gorilla.setVisible(false);
+				
+				score += 20;
+				
+				if (vulnerable == 0) {
+					life += gorilla.getDamage();
+					vulnerable = 60;
+				}
+				
+//				if (vulnerable == 0) {
+//					
+//					life += monkey.getDamage();
+//					
+//					vulnerable = 60;
+//				}
+
+			}
+		}
+	}
+}
+
+
+
+	public void monkeyBullet() {
+		
+
+		for (int i = 0; i < gorilla.getBullets().size(); i++) {
+			
+			if (app.dist(gorilla.getBullets().get(i).getX(), gorilla.getBullets().get(i).getY(),
+					monkey.getX()+50, monkey.getY()+150) < 100 && gorilla.getBullets().get(i).isVisible()) {
+				
+				gorilla.getBullets().get(i).setVisible(false);
+				
 				if (vulnerable == 0) {
 					life -= 1;
 					vulnerable = 60;
@@ -330,6 +438,7 @@ public class Interaction {
 	}
 	
 }
+
 
 	public void initCoins() {
 
@@ -370,6 +479,7 @@ public class Interaction {
 	public void removeBananas() {
 
 		for (int i = 0; i < bananas.size(); i++) {
+			
 			for (int j = 0; j < monkey.getBullets().size(); j++) {
 				if (app.dist(monkey.getBullets().get(j).getX(), monkey.getBullets().get(j).getY(),bananas.get(i).getX(), bananas.get(i).getY()) < 60 && bananas.get(i).isVisible()) {
 					bananas.get(i).setVisible(false);
@@ -417,7 +527,9 @@ public class Interaction {
 
 		// Check for intersection on x
 		if (app.abs(distX) < combinedW) {
+			
 			if (app.abs(distY) < combinedY) {
+				
 				// They are intersecting
 				return true;
 			}

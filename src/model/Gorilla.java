@@ -40,6 +40,8 @@ public class Gorilla {
 		visible = true;
 		
 		damage = 3;
+		
+		visible = true;
 	
 		//Arrayslist
 		bullets = new ArrayList<>();
@@ -85,12 +87,15 @@ public class Gorilla {
 	
 	public void removeBullet() {
 	for (int i = 0; i < bullets.size(); i++) {
+
+
 			if(bullets.get(i).getX() > 1300 || bullets.get(i).getX() < 0) {
 				bullets.remove(i);
 			}
+		}
 	}
+
 	
-}
 
 	public PApplet getApp() {
 		return app;
@@ -203,7 +208,5 @@ public class Gorilla {
 	public void setApp(PApplet app) {
 		this.app = app;
 	}
-
-	
 
 }

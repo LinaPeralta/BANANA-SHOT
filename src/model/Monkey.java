@@ -11,7 +11,7 @@ public class Monkey{
 	private PApplet app;
 	private PImage monkeyL, monkeyR;
 	private float x, y, width, height, speedX, speedY, coolDown, vulnerable, damage;
-	private boolean dir, connected;
+	private boolean dir, connected, visible;
 	private ArrayList<Bullet> bullets;
 	private float gravity;
 
