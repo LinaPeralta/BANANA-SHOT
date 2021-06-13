@@ -17,7 +17,7 @@ public class Coin {
 		this.y =y;
 		visible = true;
 		
-	coin = app.loadImage("./data/images/coin.png");
+	//coin = app.loadImage("./data/images/banana.png");
 		
 	}
 	
@@ -25,7 +25,9 @@ public class Coin {
 	public void draw() {
 		if (visible == true) {
 		//app.imageMode(PConstants.CENTER);
-		app.image(coin, x, y,60,60);
+		//app.image(coin, x, y,60,60);
+		app.fill(200,200,0); 
+		app.rect(x,y,60,60); 
 		}
 	}
 

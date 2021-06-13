@@ -26,7 +26,7 @@ public class Bullet implements Runnable{
 		damage = 2;
 		
 		//Image
-		bullet = app.loadImage("./data/images/banana.png");
+		//bullet = app.loadImage("./data/images/banana.png");
 		
 		monkey = new Monkey(app);
 		
@@ -35,7 +35,9 @@ public class Bullet implements Runnable{
 	public void draw() {
 		if (visible) {
 			app.imageMode(PConstants.CENTER);
-			app.image(bullet, x, y, width, height);
+			//app.image(bullet, x, y, width, height);
+			app.fill(0,200,200); 
+			app.rect(x,y,width,height); 
 		}
 
 	}

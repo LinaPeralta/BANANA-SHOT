@@ -24,8 +24,8 @@ public class StartScreen {
 		this.cp5 = cp5;
 		
 		//Image and fonts
-		start = app.loadImage("./data/images/startscreen.png");
-		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 20);
+		//start = app.loadImage("./data/images/banana.png");
+		//font = app.createFont("./data/fonts/Montserrat-Regular.otf", 20);
 		
 		//Variables
 		userBox  = true;
@@ -43,7 +43,6 @@ public class StartScreen {
 		cp5.addTextfield("username")
 		.setPosition(485, 505)
 		.setSize(335, 35)
-		.setFont(font)
 		.setAutoClear(true)
 		.setColor(80)
 		.setColorActive(app.color(255, 0, 0, 1))
@@ -65,7 +64,7 @@ public class StartScreen {
 	public void draw() {
 		//Background for the start screen
 		app.imageMode(PConstants.CORNER);
-		app.image(start, 0, 0, 1300, 700);
+		//app.image(start, 0, 0, 1300, 700);
 		
 		fillConfirmation();
 

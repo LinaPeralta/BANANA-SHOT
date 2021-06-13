@@ -25,7 +25,7 @@ public class Gorilla {
 		this.app = app;
 		
 		//Image
-		gorilla = app.loadImage("./data/images/gorilla.png");
+		//gorilla = app.loadImage("./data/images/banana.png");
 				
 		//Attributes
 		x = 920;
@@ -50,7 +50,9 @@ public class Gorilla {
 	
 	public void draw() {	
 		if (visible) {
-			app.image(gorilla, x, y, width, height);
+			//app.image(gorilla, x, y, width, height);
+			app.fill(200,200,0);
+			app.rect(x,y,width, height);
 		}
 			
 		if(Gbullets>0) {
@@ -101,13 +103,13 @@ public class Gorilla {
 		return app;
 	}
 
-	public PImage getGorilla() {
+	/*public PImage getGorilla() {
 		return gorilla;
 	}
 
 	public void setGorilla(PImage gorilla) {
 		this.gorilla = gorilla;
-	}
+	}*/
 
 	public float getAddBullets() {
 		return addBullets;
