@@ -13,7 +13,6 @@ public class PlayScreen {
 	private PImage screenOne;
 	private PImage screenTwo;
 	private PImage screenThree;
-
 	private int level;
 	private PlayController controller;
 
@@ -89,7 +88,6 @@ public class PlayScreen {
 	}
 	
 public void drawControllerG () {
-		
 		//Condition to draw gorilla on last screen
 		if (level == 2) {
 			controller.drawG();
@@ -97,10 +95,8 @@ public void drawControllerG () {
 }
 	
 	public void drawController () {
-		
 		controller.draw();
 		controller.drawLevels(level);
-		
 	}
 
 	public void monkeyMove(int movement) {
@@ -116,4 +112,7 @@ public void drawControllerG () {
 		this.level = level;
 	}
 	
+	public PlayController getController() {
+		return controller;
+	}
 }

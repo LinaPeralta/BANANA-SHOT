@@ -17,8 +17,8 @@ public class GameoverScreen {
 	}
 	
 	public void draw () {
-		//app.imageMode(PConstants.CORNER);
-		app.image(gOver, 0, 0);
+		app.imageMode(PConstants.CORNER);
+		app.image(gOver, 0, 0, 1300, 700);
 	}
 
 }

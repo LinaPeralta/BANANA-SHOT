@@ -16,7 +16,7 @@ public class PlayController {
 	}
 	
 	public void draw() {
-		interaction.draw();
+		interaction.draw();	
 	}
 	
 	public void drawG() {
@@ -37,8 +37,5 @@ public class PlayController {
 	public Interaction getInteraction() {
 		return interaction;
 	}
-
-	
-	
 
 }
