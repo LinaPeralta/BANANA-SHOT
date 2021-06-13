@@ -87,22 +87,15 @@ public class Gorilla {
 	
 	public void removeBullet() {
 	for (int i = 0; i < bullets.size(); i++) {
-<<<<<<< HEAD
-		
-			if(bullets.get(i).getX() < 0 || bullets.get(i).isVisible()==false) {
-				//
-				bullets.remove(i);
-			}
-	}
-//, bullets.get(i).getX() > 1300 || bullets.get(i).getX() < 0
-=======
+
+
 			if(bullets.get(i).getX() > 1300 || bullets.get(i).getX() < 0) {
 				bullets.remove(i);
 			}
+		}
 	}
->>>>>>> 933294038324fc18e67a7b1828e6f3b76298d26a
+
 	
-}
 
 	public PApplet getApp() {
 		return app;
