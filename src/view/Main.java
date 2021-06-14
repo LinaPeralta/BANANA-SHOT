@@ -71,6 +71,7 @@ public class Main extends PApplet{
 		shoot = false;
 		jump = false;
 		down = false;
+		
 	}
 	
 	@Override
@@ -101,6 +102,7 @@ public class Main extends PApplet{
 			//playScreen.drawController();
 			
 			keyMovements();
+			
 			try {
 				playScreen.excep();
 			} catch (message e) {
