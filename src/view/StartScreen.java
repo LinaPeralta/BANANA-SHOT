@@ -3,6 +3,7 @@ package view;
 import controlP5.ControlP5;
 import controlP5.Textfield;
 import controller.StartController;
+import model.User;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PFont;
@@ -75,7 +76,6 @@ public class StartScreen {
 		}
 		
 		fillConfirmation();
-
 	}
 	
 	public void hideText() {

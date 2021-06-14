@@ -24,13 +24,6 @@ public class User implements Comparable<User> {
 		date = "";
 		time = "";
 		score = "";
-
-<<<<<<< HEAD
-		//VARIABLES
-		//The variables are blank for now, to later be filled with the information from the game
-
-=======
->>>>>>> e370e21b082139142ac3fcaba16f75e1ef5d9037
 		
 	}
 	

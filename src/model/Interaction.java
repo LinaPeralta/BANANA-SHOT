@@ -17,9 +17,8 @@ public class Interaction {
 	private Gorilla gorilla;
 	private Name name;
 	private Plataform goldPlatform;
-	//strigs
-	private String temporalName;
-	//private static Interaction oneInstance;
+	
+	//strings
 	private String datePlayer, scorePlayer;
 	
 	//arrays
@@ -55,7 +54,6 @@ public class Interaction {
 		time = false;
 		playTime = 0;
 		score = 0;
-		temporalName = "";
 		playTime = 0;
 		gameOver = false;
 		youWin = false;
@@ -102,14 +100,11 @@ public class Interaction {
 		
 		//Game finished
 		gameOver();	
+
 	}
 
 	public void drawG() {
 		gorilla.draw();
-	}
-
-	public void registerPlayer(String name) {
-		temporalName = name;
 	}
 
 	public void addUser(String name) {
@@ -130,22 +125,11 @@ public class Interaction {
 		datePlayer = simpleDateFormat.format(new Date());
 	
 		scorePlayer = Integer.toString(score);
-
-<<<<<<< HEAD
-		//Variables for products
-=======
-		Date date = new Date();
-
-		//String score = Integer.toString(score);
-		// date = date.toString();
-
->>>>>>> e370e21b082139142ac3fcaba16f75e1ef5d9037
+		
 		for (int i = 0; i < users.size(); i++) {
-
 			users.get(i).setDate(datePlayer);
 			users.get(i).setTime(time);
 			users.get(i).setScore(scorePlayer);
-			
 		}
 
 	}
@@ -272,7 +256,7 @@ public class Interaction {
 		
 
 	public void coinMonkey(int level) {
-		// pintar monedas
+		//Draw coins
 		switch (level) {
 		case 0:
 			for (int i = 0; i < 2; i++) {
@@ -506,7 +490,6 @@ public class Interaction {
 		
 		int yTemp = 210; 
 		
-		
 		for (int i = 0; i < users.size(); i++) {
 			users.get(i).drawData(yTemp + (i*35), font);
 		}
@@ -542,36 +525,22 @@ public class Interaction {
 	public void sortList(char key) {
 		
 		switch (key) {
-		
 		case 'h':
-			
 			//Collections.sort(users, name);
-		
-		break;
-		
+			break;
 		case 'j':
 		
 		
-			
-		break;
-		
-		
+			break;
 		case 'k':
 		
-		
-		
-		break;
-		
+			break;
 		case 'l':
 		
-		
-		
-		break;
+			break;
 		}
 		
 	}
-
-
 
 	public Monkey getMonkey() {
 		return monkey;
@@ -587,6 +556,10 @@ public class Interaction {
 	
 	public boolean isYouWin() {
 		return youWin;
+	}
+	
+	public ArrayList<User> getUsers() {
+		return users;
 	}
 	
 }
