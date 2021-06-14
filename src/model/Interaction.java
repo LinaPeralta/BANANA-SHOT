@@ -227,6 +227,7 @@ public class Interaction {
 				setYMonkey(6);
 				setYMonkey(7);
 				
+				
 			} else {
 				
 				monkey.setConnected(false);

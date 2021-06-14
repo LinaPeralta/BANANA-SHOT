@@ -189,6 +189,8 @@ public class Main extends PApplet{
 			imageMode(CORNER);
 			image(youWin, 0, 0, 1300, 700);
 			break;
+			
+			
 		}	
 		
 	}
@@ -223,25 +225,45 @@ public class Main extends PApplet{
 			break;
 		//Game over screen
 		case 3:
+			
 			if (mouseX > 554 && mouseX < 777 && mouseY > 524 && mouseY < 580) {
-				screen = 0;
+				//screen = 0;
+				exit();
+				
 			}
 			
 			if (mouseX > 585 && mouseX < 745 && mouseY > 605 && mouseY < 647) {
 				screen = 4;
 			}
-				
+			
+			
+	
 				
 			break;
 		//Stat screen
 		case 4:
 			if(mouseX > 528 && mouseX < 771 && mouseY > 589 && mouseY < 647) {
-				screen = 0;
+				//screen = 0;
+				exit();
 			}
 			break;
+			
+		case 5:
+			
+			if (mouseX > 554 && mouseX < 777 && mouseY > 524 && mouseY < 580) {
+				//screen = 0;
+				exit();
+				
+			}
+			
+			if (mouseX > 585 && mouseX < 745 && mouseY > 605 && mouseY < 647) {
+				screen = 4;
+			}
+			
+		}	
 		}
 
-	}
+	
 
 	@Override
 	public void keyPressed() {
