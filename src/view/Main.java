@@ -122,8 +122,10 @@ public class Main extends PApplet{
 			break;
 		//Stat screen
 		case 4:
+			
 			statScreen.draw();
-			//statScreen.charts();
+			
+			
 			break;
 		case 5:
 			imageMode(CORNER);
