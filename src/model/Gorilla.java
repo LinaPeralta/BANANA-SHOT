@@ -25,34 +25,27 @@ public class Gorilla {
 		this.app = app;
 		
 		//Image
-		//gorilla = app.loadImage("./data/images/banana.png");
+		gorilla = app.loadImage("./data/images/gorilla.png");
 				
 		//Attributes
 		x = 920;
 		y = 88;
-		
 		width = 200;
 		height = 200;
-		
 		speedX = 20;
-		
 		dir = false;
 		visible = true;
-		
 		damage = 3;
-		
-		visible = true;
 	
-		//Arrayslist
+		//Array list
 		bullets = new ArrayList<>();
 
 	}
 	
 	public void draw() {	
 		if (visible) {
-			//app.image(gorilla, x, y, width, height);
+			app.image(gorilla, x, y, width, height);
 			app.fill(200,200,0);
-			app.rect(x,y,width, height);
 		}
 			
 		if(Gbullets>0) {
@@ -66,7 +59,6 @@ public class Gorilla {
 		}
 
 		//moving bullets and eliminating
-
 		shoot();
 		removeBullet();
 		
@@ -89,28 +81,12 @@ public class Gorilla {
 	
 	public void removeBullet() {
 	for (int i = 0; i < bullets.size(); i++) {
-
-
 			if(bullets.get(i).getX() > 1300 || bullets.get(i).getX() < 0) {
 				bullets.remove(i);
 			}
 		}
 	}
-
 	
-
-	public PApplet getApp() {
-		return app;
-	}
-
-	/*public PImage getGorilla() {
-		return gorilla;
-	}
-
-	public void setGorilla(PImage gorilla) {
-		this.gorilla = gorilla;
-	}*/
-
 	public float getAddBullets() {
 		return addBullets;
 	}

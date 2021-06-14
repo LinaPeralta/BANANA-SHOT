@@ -15,7 +15,7 @@ public class StartScreen {
 	private PImage start;
 	private PFont font;
 	private StartController controller;
-	private boolean userBox, boxFilled;
+	private boolean userBox, boxFilled, nullMessage;
 	private String noFill;
 	
 
@@ -24,8 +24,8 @@ public class StartScreen {
 		this.cp5 = cp5;
 		
 		//Image and fonts
-		//start = app.loadImage("./data/images/banana.png");
-		//font = app.createFont("./data/fonts/Montserrat-Regular.otf", 20);
+		start = app.loadImage("./data/images/startscreen.png");
+		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 20);
 		
 		//Variables
 		userBox  = true;
@@ -43,6 +43,7 @@ public class StartScreen {
 		cp5.addTextfield("username")
 		.setPosition(485, 505)
 		.setSize(335, 35)
+		.setFont(font)
 		.setAutoClear(true)
 		.setColor(80)
 		.setColorActive(app.color(255, 0, 0, 1))
@@ -64,10 +65,18 @@ public class StartScreen {
 	public void draw() {
 		//Background for the start screen
 		app.imageMode(PConstants.CORNER);
-		//app.image(start, 0, 0, 1300, 700);
+		app.image(start, 0, 0, 1300, 700);
+		
+		if(nullMessage) {
+			app.fill(80);
+			app.textFont(font);
+			app.textSize(16);
+			app.text("Please fill", 600, 560);
+		}
 		
 		fillConfirmation();
-
+		
+		System.out.println(nullMessage);
 	}
 	
 	public void hideText() {
@@ -82,7 +91,19 @@ public class StartScreen {
 	}
 	
 	public void addUser() {
-		//controller.addUser(cp5.get(Textfield.class, "username").getText());
+		controller.addUser(cp5.get(Textfield.class, "username").getText());
+	}
+	
+	public void excep() throws NullPointerException{
+		try {
+			if(boxFilled == false) {
+				throw new NullPointerException();
+			} else {
+				nullMessage = false;
+			}
+		}catch(Exception e) {
+				nullMessage = true;
+		}	
 	}
 	
 	public boolean isBoxFilled() {

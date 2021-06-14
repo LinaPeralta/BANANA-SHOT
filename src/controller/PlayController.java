@@ -16,14 +16,10 @@ public class PlayController {
 	}
 
 	public void draw() {
-
 		interaction.draw();
-		interaction.monkeyBullet();
-
 	}
 
 	public void drawG() {
-		interaction.bananaBullet();
 		interaction.drawG();
 	}
 

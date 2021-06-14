@@ -7,7 +7,6 @@ import processing.core.PImage;
 public class Bullet implements Runnable{
 	
 	private PApplet app;
-	private Monkey monkey;
 	private PImage bullet;
 	private float x, y, width, height, speed, damage;
 	private boolean visible, dir;
@@ -26,18 +25,14 @@ public class Bullet implements Runnable{
 		damage = 2;
 		
 		//Image
-		//bullet = app.loadImage("./data/images/banana.png");
-		
-		monkey = new Monkey(app);
+		bullet = app.loadImage("./data/images/banana.png");
 		
 	}
 	
 	public void draw() {
 		if (visible) {
 			app.imageMode(PConstants.CENTER);
-			//app.image(bullet, x, y, width, height);
-			app.fill(0,200,200); 
-			app.rect(x,y,width,height); 
+			app.image(bullet, x, y, width, height);
 		}
 
 	}

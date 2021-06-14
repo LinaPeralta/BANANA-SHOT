@@ -1,11 +1,13 @@
 package view;
 
+import javax.swing.Box.Filler;
 
 import controller.PlayController;
 import excepcion.message;
 import model.Monkey;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PFont;
 import processing.core.PImage;
 
 public class PlayScreen {
@@ -16,12 +18,16 @@ public class PlayScreen {
 	private PImage screenThree;
 	private int level;
 	private PlayController controller;
+	private String exMessage;
+	private boolean message;
+	private PFont font;
 
 	public PlayScreen(PApplet app) {
 		this.app = app;
 		level = 0;
+		message = false;
 
-		
+		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 20);
 		
 		// game screen one level 1
 		screenOne = app.loadImage("./data/images/juego1.png");
@@ -100,6 +106,11 @@ public void drawControllerG () {
 		controller.draw();
 		controller.drawLevels(level);
 		
+		if (message) {
+			app.fill(80);
+			app.textFont(font);
+			app.text(exMessage, 480, 70);
+		}
 	}
 
 	public void monkeyMove(int movement) {
@@ -108,18 +119,15 @@ public void drawControllerG () {
 	
 	
 	public void excep () throws message {
-		
 		try {
-			
-			if (level == 0) {
+			if (level == 1) {
 				throw new message("Remember not to fall into the abyss!");
 			}
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			exMessage = e.getMessage();
+			message = true;
 		}
-	
-		
 	}
 	
 	

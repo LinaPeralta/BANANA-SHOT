@@ -31,8 +31,8 @@ public class Monkey{
 		connected = false;
 		damage = 1;
 		//Images
-		//monkeyL = app.loadImage("./data/images/banana.png");
-		//monkeyR = app.loadImage("./data/images/banana.png");
+		monkeyL = app.loadImage("./data/images/monkeyL.png");
+		monkeyR = app.loadImage("./data/images/monkeyR.png");
 		
 		bullets = new ArrayList<>();
 		
@@ -46,12 +46,9 @@ public class Monkey{
 		
 		//Set direction in which the monkey is looking to switch image
 		if (dir) {
-			
-			//app.image(monkeyR, x, y, width, height);
-			app.rect(x, y, width, height); 
+			app.image(monkeyR, x, y, width, height);
 		} else {
-			//app.image(monkeyL, x, y, width, height);
-			app.rect(x, y, width, height); 
+			app.image(monkeyL, x, y, width, height);
 		}
 		
 		//Apply gravity when not on a platform
@@ -69,7 +66,7 @@ public class Monkey{
 		y += speedY;
 		
 		//Drawing bullets, moving bullets and eliminating
-		//shoot();
+		shoot();
 		eliminateBullet();
 		
 	}
@@ -101,7 +98,7 @@ public class Monkey{
 			break;
 		//To shoot
 		case 5:
-			//initShoot();
+			initShoot();
 			break;
 		}
 		

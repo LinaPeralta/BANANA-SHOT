@@ -27,16 +27,14 @@ public class Banana implements Runnable{
 		visible = true;
 		
 		//Image
-		//peel = app.loadImage("./data/images/banana.png");
+		peel = app.loadImage("./data/images/peel.png");
 		
 	}
 	
 	public void draw() {
 		if (visible) {
 			app.imageMode(PConstants.CORNER);
-			//app.image(peel, x, y, width, height);
-			app.fill(0,200,0); 
-			app.rect(x,y,width, height); 
+			app.image(peel, x, y, width, height);
 		}
 	}
 	
