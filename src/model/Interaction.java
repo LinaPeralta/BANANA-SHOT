@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -19,6 +20,7 @@ public class Interaction {
 	//strigs
 	private String temporalName;
 	//private static Interaction oneInstance;
+	private String datePlayer, scorePlayer;
 	
 	//arrays
 	private ArrayList<User> users;
@@ -122,17 +124,20 @@ public class Interaction {
 		String s = Integer.toString(seg);
 
 		String time = m + ":" + s;
+		
+		String pattern = "MM-dd-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		datePlayer = simpleDateFormat.format(new Date());
+	
+		scorePlayer = Integer.toString(score);
 
-		Date date = new Date();
-
-		// String score = Integer.toString(score);
-		// date = date.toString();
-
+		//Variables for products
 		for (int i = 0; i < users.size(); i++) {
 
-			// users.get(i).setDate();
+			users.get(i).setDate(datePlayer);
 			users.get(i).setTime(time);
-			// users.get(i).setScore(score);
+			users.get(i).setScore(scorePlayer);
+			
 		}
 
 	}
@@ -247,6 +252,7 @@ public class Interaction {
 				if (intersectPlatforms(monkey, goldPlatform)) {
 					monkey.setY(goldPlatform.getY()-(monkey.getHeight()-10));
 					youWin = true;
+					charts();
 				}
 				
 			} else {
@@ -484,12 +490,19 @@ public class Interaction {
 					app.text(min + ":" + seg, 310, 35);
 
 				}
-
-				for (int i = 0; i < users.size(); i++) {
-					users.get(i).drawData(180, 370 + (50 * i));
-				}
 			}
 		}
+	}
+	
+	public void data(PFont font) {
+		
+		int yTemp = 210; 
+		
+		
+		for (int i = 0; i < users.size(); i++) {
+			users.get(i).drawData(yTemp + (i*35), font);
+		}
+		
 	}
 
 	public void score() {
@@ -509,16 +522,48 @@ public class Interaction {
 	public void gameOver() {
 		if (life == 0) {
 			gameOver = true;
+			charts();
 		}
 		
 		if (monkey.getY() > 700) {
 			gameOver = true;
+			charts();
 		}
 	}
-
-	public void organizeName() {
-		Collections.sort(users, name);
+	
+	public void sortList(char key) {
+		
+		switch (key) {
+		
+		case 'h':
+			
+			//Collections.sort(users, name);
+		
+		break;
+		
+		case 'j':
+		
+		
+			
+		break;
+		
+		
+		case 'k':
+		
+		
+		
+		break;
+		
+		case 'l':
+		
+		
+		
+		break;
+		}
+		
 	}
+
+
 
 	public Monkey getMonkey() {
 		return monkey;

@@ -20,6 +20,8 @@ public class Main extends PApplet{
 	//Game over screen
 	private GameoverScreen gOver;
 	
+	
+	
 	//Variables
 	private int screen;
 	private boolean left, right, jump, shoot, down;
@@ -60,7 +62,7 @@ public class Main extends PApplet{
 		youWin = loadImage("./data/images/youwon.png");
 		
 		//Variables
-		screen = 2;
+		screen = 0;
 		left = false;
 		right = false;
 		shoot = false;
@@ -121,7 +123,7 @@ public class Main extends PApplet{
 		//Stat screen
 		case 4:
 			statScreen.draw();
-			statScreen.charts();
+			//statScreen.charts();
 			break;
 		case 5:
 			imageMode(CORNER);
@@ -130,29 +132,8 @@ public class Main extends PApplet{
 		}	
 		
 	}
-<<<<<<< HEAD
-	
-	private void nameExc() {
-		
-		try {
-			
-			if(start.toString().equals(null)) {
-				
-				throw new NullPointerException();
-				
-				}else {
-					nullMessage = false;
-				}
-		}catch(NullPointerException e) {
-			System.out.println(e.getMessage());
-				nullMessage = true;
-		}	
-		
-	}
-	
-=======
 
->>>>>>> 34c430ba37d07ad789bff193ff4f5a7e50f72423
+
 	@Override
 	public void mousePressed() {
 		
