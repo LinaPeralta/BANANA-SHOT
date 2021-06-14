@@ -20,11 +20,9 @@ public class Main extends PApplet{
 	//Game over screen
 	private GameoverScreen gOver;
 	
-	
-	
 	//Variables
 	private int screen;
-	private boolean left, right, jump, shoot, down;
+	private boolean left, right, jump, shoot, down, addUser;
 	private PImage youWin;
 	
 	public static void main(String[] args) {
@@ -68,6 +66,7 @@ public class Main extends PApplet{
 		shoot = false;
 		jump = false;
 		down = false;
+		addUser = false;
 	}
 	
 	@Override
@@ -90,10 +89,12 @@ public class Main extends PApplet{
 			break;
 		//Instructions screen
 		case 1:
+			startScreen.hideText();
 			instructions.draw();
 			break;
 		//Play screen
 		case 2:
+			startScreen.hideText();
 			playScreen.levelScreens();
 			playScreen.drawController();
 			playScreen.drawControllerG();
@@ -118,16 +119,20 @@ public class Main extends PApplet{
 			break;
 		//Game over screen
 		case 3:
+			startScreen.hideText();
 			gOver.draw();
 			break;
 		//Stat screen
 		case 4:
-			
+
+			startScreen.hideText();
+
 			statScreen.draw();
 			
 			
 			break;
 		case 5:
+			startScreen.hideText();
 			imageMode(CORNER);
 			image(youWin, 0, 0, 1300, 700);
 			break;
@@ -148,13 +153,13 @@ public class Main extends PApplet{
 			//If to hide text, add user and switch to the following screen
 			if (mouseX > 540 && mouseX < 765 && mouseY > 580 && mouseY < 637 && startScreen.isBoxFilled()) {
 				startScreen.addUser();
-				startScreen.hideText();
 				screen = 1;
 			} 
 	
 			break;
 		//Instructions screen
 		case 1:
+			
 			if (mouseX > 530 && mouseX < 775 && mouseY > 590 && mouseY < 650) {
 				screen = 2;
 			}

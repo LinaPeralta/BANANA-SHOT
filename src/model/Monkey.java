@@ -13,7 +13,6 @@ public class Monkey{
 	private float x, y, width, height, speedX, speedY, coolDown, vulnerable, damage;
 	private boolean dir, connected, visible;
 	private ArrayList<Bullet> bullets;
-	private ArrayList<Thread> threads;
 	private float gravity;
 
 	public Monkey(PApplet app) {
@@ -36,7 +35,6 @@ public class Monkey{
 		monkeyR = app.loadImage("./data/images/monkeyR.png");
 		
 		bullets = new ArrayList<>();
-		threads = new ArrayList<>();
 		
 	}
 	
@@ -70,9 +68,6 @@ public class Monkey{
 		//Drawing bullets, moving bullets and eliminating
 		shoot();
 		eliminateBullet();
-		
-		//System.out.println(threads.size());
-		System.out.println(bullets.size());
 	}
 	
 	public void move(int movement) {

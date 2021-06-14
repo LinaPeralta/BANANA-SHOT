@@ -25,7 +25,6 @@ public class User implements Comparable<User> {
 		time = "";
 		score = "";
 
-		
 	}
 	
 	public void drawData(int y, PFont font) {
