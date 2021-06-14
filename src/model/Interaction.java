@@ -125,7 +125,7 @@ public class Interaction {
 		datePlayer = simpleDateFormat.format(new Date());
 	
 		scorePlayer = Integer.toString(score);
-		
+
 		for (int i = 0; i < users.size(); i++) {
 			users.get(i).setDate(datePlayer);
 			users.get(i).setTime(time);
@@ -526,7 +526,9 @@ public class Interaction {
 		
 		switch (key) {
 		case 'h':
+			
 			//Collections.sort(users, name);
+			
 			break;
 		case 'j':
 		

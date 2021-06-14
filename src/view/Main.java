@@ -177,9 +177,12 @@ public class Main extends PApplet{
 			break;
 		//Stat screen
 		case 4:
+
 			startScreen.hideText();
+
 			statScreen.draw();
-			//statScreen.charts();
+			
+			
 			break;
 		case 5:
 			startScreen.hideText();
