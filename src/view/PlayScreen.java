@@ -24,7 +24,7 @@ public class PlayScreen {
 
 	public PlayScreen(PApplet app) {
 		this.app = app;
-		level = 2;
+		level = 0;
 		message = false;
 
 		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 20);

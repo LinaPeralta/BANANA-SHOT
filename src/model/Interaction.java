@@ -61,7 +61,7 @@ public class Interaction {
 		gameOver = false;
 		youWin = false;
 		vulnerable = 0;
-		life = 2;
+		life = 5;
 		lifeG = 3;
 		vulnerable = 0;
 		vulnerableG = 0;
@@ -244,7 +244,7 @@ public class Interaction {
 				setYMonkey(9);
 				setYMonkey(10);
 				
-				if (intersectPlatforms(monkey, goldPlatform)) {
+				if (intersectPlatforms(monkey, goldPlatform) && lifeG == 0) {
 					monkey.setY(goldPlatform.getY()-(monkey.getHeight()-10));
 					youWin = true;
 					charts();
