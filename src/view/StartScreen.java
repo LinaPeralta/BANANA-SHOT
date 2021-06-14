@@ -15,7 +15,7 @@ public class StartScreen {
 	private PImage start;
 	private PFont font;
 	private StartController controller;
-	private boolean userBox, boxFilled;
+	private boolean userBox, boxFilled, nullMessage;
 	private String noFill;
 	
 
@@ -67,6 +67,13 @@ public class StartScreen {
 		app.imageMode(PConstants.CORNER);
 		app.image(start, 0, 0, 1300, 700);
 		
+		if(nullMessage) {
+			app.fill(80);
+			app.textFont(font);
+			app.textSize(16);
+			app.text("Please fill", 600, 560);
+		}
+		
 		fillConfirmation();
 
 	}
@@ -83,7 +90,19 @@ public class StartScreen {
 	}
 	
 	public void addUser() {
-		//controller.addUser(cp5.get(Textfield.class, "username").getText());
+		controller.addUser(cp5.get(Textfield.class, "username").getText());
+	}
+	
+	public void excep() throws NullPointerException{
+		try {
+			if(boxFilled == false) {
+				throw new NullPointerException();
+			} else {
+				nullMessage = false;
+			}
+		}catch(Exception e) {
+				nullMessage = true;
+		}	
 	}
 	
 	public boolean isBoxFilled() {

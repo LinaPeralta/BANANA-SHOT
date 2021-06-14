@@ -7,7 +7,6 @@ import processing.core.PImage;
 public class Bullet implements Runnable{
 	
 	private PApplet app;
-	private Monkey monkey;
 	private PImage bullet;
 	private float x, y, width, height, speed, damage;
 	private boolean visible, dir;
@@ -27,8 +26,6 @@ public class Bullet implements Runnable{
 		
 		//Image
 		bullet = app.loadImage("./data/images/banana.png");
-		
-		monkey = new Monkey(app);
 		
 	}
 	

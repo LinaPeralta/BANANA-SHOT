@@ -1,10 +1,6 @@
 package view;
 import controlP5.ControlP5;
-
-import model.Interaction;
-
-import model.Monkey;
-
+import excepcion.message;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -14,7 +10,7 @@ public class Main extends PApplet{
 	private ControlP5 cp5;
 	
 	//Start screen
-	private StartScreen start;
+	private StartScreen startScreen;
 	//Instruction screen
 	private InstructionScreen instructions;
 	//Play screen
@@ -28,7 +24,6 @@ public class Main extends PApplet{
 	private int screen;
 	private boolean left, right, jump, shoot, down;
 	private PImage youWin;
-	private boolean nullMessage;
 	
 	public static void main(String[] args) {
 		PApplet.main("view.Main");
@@ -47,7 +42,7 @@ public class Main extends PApplet{
 		cp5 = new ControlP5(this);
 		
 		//Start screen
-		start = new StartScreen(this, cp5);
+		startScreen = new StartScreen(this, cp5);
 		
 		//Instruction screen
 		instructions = new InstructionScreen(this);
@@ -65,7 +60,7 @@ public class Main extends PApplet{
 		youWin = loadImage("./data/images/youwon.png");
 		
 		//Variables
-		screen = 0;
+		screen = 2;
 		left = false;
 		right = false;
 		shoot = false;
@@ -81,14 +76,15 @@ public class Main extends PApplet{
 		switch (screen) {
 		//Start screen
 		case 0:
-			start.draw();
+			startScreen.draw();
 			
-			if(nullMessage) {
-				
-				fill(200);
-				text("Please fully fill", 480, 542);
-				
+			//Exception for text box
+			try {
+				startScreen.excep();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+			
 			break;
 		//Instructions screen
 		case 1:
@@ -96,11 +92,17 @@ public class Main extends PApplet{
 			break;
 		//Play screen
 		case 2:
-			//playScreen.levelScreens();
-			
-			//playScreen.drawController();
-			
+			playScreen.levelScreens();
+			playScreen.drawController();
+			playScreen.drawControllerG();
 			keyMovements();
+			
+			//Exception for level 2
+			try {
+				playScreen.excep();
+			} catch (message e) {
+				e.printStackTrace();
+			}
 			
 			//To switch to game over screen
 			if (playScreen.getController().getInteraction().isGameOver()) {
@@ -128,6 +130,7 @@ public class Main extends PApplet{
 		}	
 		
 	}
+<<<<<<< HEAD
 	
 	private void nameExc() {
 		
@@ -147,6 +150,9 @@ public class Main extends PApplet{
 		
 	}
 	
+=======
+
+>>>>>>> 34c430ba37d07ad789bff193ff4f5a7e50f72423
 	@Override
 	public void mousePressed() {
 		
@@ -154,19 +160,14 @@ public class Main extends PApplet{
 		//Start screen
 		case 0:
 			//Show text when restart
-			start.showText();
+			startScreen.showText();
 
 			//If to hide text, add user and switch to the following screen
-			if (mouseX > 540 && mouseX < 765 && mouseY > 580 && mouseY < 637 && start.isBoxFilled()) {
-				start.addUser();
-				start.hideText();
+			if (mouseX > 540 && mouseX < 765 && mouseY > 580 && mouseY < 637 && startScreen.isBoxFilled()) {
+				startScreen.addUser();
+				startScreen.hideText();
 				screen = 1;
-				nameExc();
-			}else {
-		
-		nullMessage = false;
-		
-	}
+			} 
 	
 			break;
 		//Instructions screen
