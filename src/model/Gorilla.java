@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PImage;
 
 public class Gorilla {
@@ -44,8 +45,8 @@ public class Gorilla {
 	
 	public void draw() {	
 		if (visible) {
+			app.imageMode(PConstants.CORNER);
 			app.image(gorilla, x, y, width, height);
-			app.fill(200,200,0);
 		}
 			
 		if(Gbullets>0) {
@@ -74,8 +75,11 @@ public class Gorilla {
 	public void shoot() {
 		for (int i = 0; i < bullets.size()  ; i++) {
 			bullets.get(i).draw();
-			new Thread(bullets.get(i)).start();
-			
+			Thread t = new Thread(bullets.get(i));
+			t.start();
+			if (bullets.get(i).getX() > 1300 || bullets.get(i).getX() < 0) {
+				t.stop();
+			}
 		}
 	}
 	

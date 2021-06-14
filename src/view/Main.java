@@ -60,7 +60,7 @@ public class Main extends PApplet{
 		youWin = loadImage("./data/images/youwon.png");
 		
 		//Variables
-		screen = 0;
+		screen = 2;
 		left = false;
 		right = false;
 		shoot = false;

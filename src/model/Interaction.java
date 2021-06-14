@@ -16,7 +16,6 @@ public class Interaction {
 	private Gorilla gorilla;
 	private Name name;
 	private Plataform goldPlatform;
-	
 	//strigs
 	private String temporalName;
 	//private static Interaction oneInstance;
@@ -34,7 +33,6 @@ public class Interaction {
 	//ints
 	private int min, seg, playTime, vulnerable, life, lifeG, vulnerableG, score;
 	
-	// private boolean connected;
 	private PFont font;
 
 	public Interaction(PApplet app) {
@@ -325,7 +323,7 @@ public class Interaction {
 		for (int i = 0; i < monkey.getBullets().size(); i++) {
 			for (int j = 0; j < gorilla.getBullets().size(); j++) {
 				
-			if (app.dist(monkey.getBullets().get(i).getX(), monkey.getBullets().get(i).getY(), gorilla.getX(), gorilla.getY()) < 100 &&
+			if (app.dist(monkey.getBullets().get(i).getX(), monkey.getBullets().get(i).getY(), gorilla.getX(), gorilla.getY()+50) < 100 &&
 					monkey.getBullets().get(i).isVisible()) {
 				monkey.getBullets().get(i).setVisible(false);
 				if (vulnerableG == 0) {
@@ -357,12 +355,6 @@ public class Interaction {
 
 		// coins level 3
 		coins.add(new Coin(app, 39, 345));
-		/*for (int i = 0; i < 6; i++) {
-			int xTemp = 340;
-			int yTemp = 570;
-			coins.add(new Coin(app, xTemp+(i*80), yTemp));
-		}*/
-
 	}
 
 	public void initBananas() {

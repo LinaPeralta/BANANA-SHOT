@@ -75,8 +75,7 @@ public class StartScreen {
 		}
 		
 		fillConfirmation();
-		
-		System.out.println(nullMessage);
+
 	}
 	
 	public void hideText() {
