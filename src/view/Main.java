@@ -129,7 +129,7 @@ public class Main extends PApplet{
 		
 	}
 	
-private void nameExc() {
+	private void nameExc() {
 		
 		try {
 			
@@ -141,6 +141,7 @@ private void nameExc() {
 					nullMessage = false;
 				}
 		}catch(NullPointerException e) {
+			System.out.println(e.getMessage());
 				nullMessage = true;
 		}	
 		
