@@ -245,6 +245,9 @@ public class Main extends PApplet{
 
 	@Override
 	public void keyPressed() {
+		
+		statScreen.sortList(key);
+		
 		if (screen == 2) {
 			switch (key) {
 			case 'a':

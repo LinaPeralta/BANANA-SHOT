@@ -22,5 +22,11 @@ public class StatController {
 		interaction.data(font);
 	
 	}
+	
+	public void sortList(char key) {
+		
+		interaction.sortList(key);
+	
+	}
 
 }

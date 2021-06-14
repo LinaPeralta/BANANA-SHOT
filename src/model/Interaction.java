@@ -13,10 +13,11 @@ public class Interaction {
 	
 	//classes
 	private Monkey monkey;
-	// private User user;
 	private Gorilla gorilla;
-	private Name name;
 	private Plataform goldPlatform;
+	private UserDate userDate;
+	private UserScore userScore;
+	private UserTime userTime;
 	
 	//strings
 	private String datePlayer, scorePlayer;
@@ -43,7 +44,9 @@ public class Interaction {
 		// Classes
 		monkey = new Monkey(app);
 		gorilla = new Gorilla(app);
-		name = new Name();
+		userDate = new UserDate();
+		userScore = new UserScore();
+		userTime = new UserTime();
 		
 		// coins = new Coin(app,)
 		goldPlatform = new Plataform(980, 286, 120, 5);
@@ -527,18 +530,23 @@ public class Interaction {
 		switch (key) {
 		case 'h':
 			
-			//Collections.sort(users, name);
+			Collections.sort(users);
 			
 			break;
 		case 'j':
 		
+			Collections.sort(users, userDate);
 		
 			break;
 		case 'k':
+			
+			Collections.sort(users, userScore);
 		
 			break;
 		case 'l':
 		
+			Collections.sort(users, userTime);
+			
 			break;
 		}
 		
