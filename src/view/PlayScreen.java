@@ -111,6 +111,10 @@ public void drawControllerG () {
 			app.textFont(font);
 			app.text(exMessage, 480, 70);
 		}
+		
+		if (level == 2) {
+			message = false;
+		}
 	}
 
 	public void monkeyMove(int movement) {
@@ -122,6 +126,8 @@ public void drawControllerG () {
 		try {
 			if (level == 1) {
 				throw new message("Remember not to fall into the abyss!");
+			} else {
+				message = false;
 			}
 			
 		} catch (Exception e) {

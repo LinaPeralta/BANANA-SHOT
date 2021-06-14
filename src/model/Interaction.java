@@ -131,7 +131,15 @@ public class Interaction {
 	
 		scorePlayer = Integer.toString(score);
 
+<<<<<<< HEAD
 		//Variables for products
+=======
+		Date date = new Date();
+
+		//String score = Integer.toString(score);
+		// date = date.toString();
+
+>>>>>>> e370e21b082139142ac3fcaba16f75e1ef5d9037
 		for (int i = 0; i < users.size(); i++) {
 
 			users.get(i).setDate(datePlayer);

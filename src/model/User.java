@@ -17,16 +17,20 @@ public class User implements Comparable<User> {
 	public User(PApplet app, String name) {
 		
 		this.app = app;
-		
 		this.name = name;
 				
+		//VARIABLES
+		//The variables are blank for now, to later be filled with the information from the game
 		date = "";
 		time = "";
 		score = "";
 
+<<<<<<< HEAD
 		//VARIABLES
 		//The variables are blank for now, to later be filled with the information from the game
 
+=======
+>>>>>>> e370e21b082139142ac3fcaba16f75e1ef5d9037
 		
 	}
 	
@@ -40,14 +44,6 @@ public class User implements Comparable<User> {
 		app.text(score, 749, y);
 		app.text(time, 969, y);
 		
-	}
-	
-	public PApplet getApp() {
-		return app;
-	}
-
-	public void setApp(PApplet app) {
-		this.app = app;
 	}
 
 	public String getDate() {
