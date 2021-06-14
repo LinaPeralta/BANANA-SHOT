@@ -1,10 +1,17 @@
 package view;
+import java.io.IOException;
+import java.net.URL;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.Mixer;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import controlP5.ControlP5;
 import excepcion.message;
-import model.Interaction;
-
-import model.Monkey;
-
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -14,7 +21,7 @@ public class Main extends PApplet{
 	private ControlP5 cp5;
 	
 	//Start screen
-	private StartScreen start;
+	private StartScreen startScreen;
 	//Instruction screen
 	private InstructionScreen instructions;
 	//Play screen
@@ -26,9 +33,12 @@ public class Main extends PApplet{
 	
 	//Variables
 	private int screen;
-	private boolean left, right, jump, shoot, down;
+	private boolean left, right, jump, shoot, down, addUser;
 	private PImage youWin;
-	private boolean nullMessage;
+	
+	//sound
+	public static Mixer mixer;
+	public static Clip clip;
 	
 	public static void main(String[] args) {
 		PApplet.main("view.Main");
@@ -47,7 +57,7 @@ public class Main extends PApplet{
 		cp5 = new ControlP5(this);
 		
 		//Start screen
-		start = new StartScreen(this, cp5);
+		startScreen = new StartScreen(this, cp5);
 		
 		//Instruction screen
 		instructions = new InstructionScreen(this);
@@ -71,7 +81,45 @@ public class Main extends PApplet{
 		shoot = false;
 		jump = false;
 		down = false;
+		addUser = false;
 		
+		//sound
+		Mixer.Info[]mixerInfo = AudioSystem.getMixerInfo();
+		
+		mixer =  AudioSystem.getMixer(mixerInfo[0]);
+		DataLine.Info dataInfo = new DataLine.Info(Clip.class, null);
+		
+		try {
+			clip = (Clip)mixer.getLine(dataInfo);
+		} catch (LineUnavailableException er) {
+			er.printStackTrace();
+		}
+		
+		try
+		{
+			URL soundURL = Main.class.getResource("/view/music.wav"); 
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundURL);
+			clip.open(audioStream);
+		}
+		catch(LineUnavailableException lue)
+		{
+			lue.printStackTrace();
+		}
+		catch(UnsupportedAudioFileException uafe)
+		{
+			uafe.printStackTrace();
+		}
+		catch(IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
+		catch(NullPointerException npe)
+		{
+			npe.printStackTrace();
+		}
+		
+		clip.start();
+
 	}
 	
 	@Override
@@ -82,31 +130,33 @@ public class Main extends PApplet{
 		switch (screen) {
 		//Start screen
 		case 0:
-			start.draw();
+			startScreen.draw();
 			
-			if(nullMessage) {
-				
-				fill(200);
-				text("Please fully fill", 480, 542);
-				
+			//Exception for text box
+			try {
+				startScreen.excep();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+			
 			break;
 		//Instructions screen
 		case 1:
+			startScreen.hideText();
 			instructions.draw();
 			break;
 		//Play screen
 		case 2:
-			//playScreen.levelScreens();
-			
-			//playScreen.drawController();
-			
+			startScreen.hideText();
+			playScreen.levelScreens();
+			playScreen.drawController();
+			playScreen.drawControllerG();
 			keyMovements();
 			
+	//Exception for level 2
 			try {
 				playScreen.excep();
 			} catch (message e) {
-				
 				e.printStackTrace();
 			}
 			
@@ -122,38 +172,25 @@ public class Main extends PApplet{
 			break;
 		//Game over screen
 		case 3:
+			startScreen.hideText();
 			gOver.draw();
 			break;
 		//Stat screen
 		case 4:
+			startScreen.hideText();
 			statScreen.draw();
-			statScreen.charts();
+			//statScreen.charts();
 			break;
 		case 5:
+			startScreen.hideText();
 			imageMode(CORNER);
 			image(youWin, 0, 0, 1300, 700);
 			break;
 		}	
 		
 	}
-	
-private void nameExc() {
-		
-		try {
-			
-			if(start.toString().equals(null)) {
-				
-				throw new NullPointerException();
-				
-				}else {
-					nullMessage = false;
-				}
-		}catch(NullPointerException e) {
-				nullMessage = true;
-		}	
-		
-	}
-	
+
+
 	@Override
 	public void mousePressed() {
 		
@@ -161,23 +198,18 @@ private void nameExc() {
 		//Start screen
 		case 0:
 			//Show text when restart
-			start.showText();
+			startScreen.showText();
 
 			//If to hide text, add user and switch to the following screen
-			if (mouseX > 540 && mouseX < 765 && mouseY > 580 && mouseY < 637 && start.isBoxFilled()) {
-				start.addUser();
-				start.hideText();
+			if (mouseX > 540 && mouseX < 765 && mouseY > 580 && mouseY < 637 && startScreen.isBoxFilled()) {
+				startScreen.addUser();
 				screen = 1;
-				nameExc();
-			}else {
-		
-		nullMessage = false;
-		
-	}
+			} 
 	
 			break;
 		//Instructions screen
 		case 1:
+			
 			if (mouseX > 530 && mouseX < 775 && mouseY > 590 && mouseY < 650) {
 				screen = 2;
 			}

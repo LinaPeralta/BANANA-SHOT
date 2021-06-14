@@ -4,23 +4,14 @@ import processing.core.PApplet;
 
 public class Plataform {
 	
-	private PApplet app;
-	private int x, y, width, height, fill;
+	private int x, y, width, height;
 
-	public Plataform(PApplet app, int x, int y, int width, int height) {
-		this.app = app;
+	public Plataform(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		this.fill = 0;
 		
-	}
-	
-	public void draw() {
-		app.fill(fill);
-		app.rect(x, y, width, height);
-
 	}
 	
 	public int getX() {
@@ -38,12 +29,5 @@ public class Plataform {
 	public int getHeight() {
 		return height;
 	}
-	
-	public void setFill(int fill) {
-		this.fill = fill;
-	}
-	
-	
-	
 
 }

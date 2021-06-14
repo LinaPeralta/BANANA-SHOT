@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Set;
 
 import processing.core.PApplet;
+import processing.core.PFont;
 
 public class User implements Comparable<User> {
 	
@@ -13,40 +14,29 @@ public class User implements Comparable<User> {
 	private String name, time, date, score;
 	
 
-	public User(PApplet app, String name ) {
+	public User(PApplet app, String name) {
 		
 		this.app = app;
-		
 		this.name = name;
 				
+		//VARIABLES
+		//The variables are blank for now, to later be filled with the information from the game
 		date = "";
 		time = "";
 		score = "";
-
-		
-		//VARIABLES
-		//The variables are blank for now, to later be filled with the information from the game
-
 		
 	}
 	
-	public void drawData(int x, int y) {
+	public void drawData(int y, PFont font) {
 		
 		app.fill(0);
-		app.textSize(25);
-		app.text(name, x, y);
-		app.text(time, x + 800 , 200 );
-		app.text(date, 400, 200);
-		app.text(score, x+ 600, 200 );
-
-	}
-	
-	public PApplet getApp() {
-		return app;
-	}
-
-	public void setApp(PApplet app) {
-		this.app = app;
+		app.textFont(font);
+		
+		app.text(name, 269, y);
+		app.text(date, 529, y);
+		app.text(score, 749, y);
+		app.text(time, 969, y);
+		
 	}
 
 	public String getDate() {

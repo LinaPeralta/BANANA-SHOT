@@ -2,6 +2,7 @@ package controller;
 
 import model.Interaction;
 import processing.core.PApplet;
+import processing.core.PFont;
 
 public class StatController {
 	
@@ -16,19 +17,10 @@ public class StatController {
 		
 	}
 	
-	public void drawData() {
-	
-	}
-	
-	public void charts() {
+	public void drawData(PFont font) {
 		
-		interaction.charts();
-	}
+		interaction.data(font);
 	
-	public void Names() {
-		
-		interaction.organizeName();
-		
 	}
 
 }

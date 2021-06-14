@@ -26,27 +26,26 @@ public class StatScreen {
 		
 		//Image
 		chart = app.loadImage("./data/images/chart.png");
-		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 12);
+		font = app.createFont("./data/fonts/Montserrat-Regular.otf", 16);
 
 		
 	}
 
 	public void draw() {
+		
 		app.imageMode(PConstants.CORNER);
 		app.image(chart, 0, 0, 1300, 700);
 		
-		controller.drawData();
-
-	}
-	
-	public void charts() {
+		controller.drawData(font);
 		
-		controller.charts();
-
-	}
-	
-	
-
-	
+		app.textFont(font);
+		app.fill(80);
+		
+		app.text("Press 'h'", 269, 165);
+		app.text("Press 'j'", 529, 165);
+		app.text("Press 'k'", 749, 165);
+		app.text("Press 'l'", 969, 165);
+		
+	}	
 	
 }

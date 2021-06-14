@@ -17,14 +17,14 @@ public class Coin {
 		this.y =y;
 		visible = true;
 		
-	coin = app.loadImage("./data/images/coin.png");
+		coin = app.loadImage("./data/images/coin.png");
 		
 	}
 	
 	
 	public void draw() {
 		if (visible == true) {
-		//app.imageMode(PConstants.CENTER);
+		app.imageMode(PConstants.CENTER);
 		app.image(coin, x, y,60,60);
 		}
 	}

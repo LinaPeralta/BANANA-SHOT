@@ -46,7 +46,6 @@ public class Monkey{
 		
 		//Set direction in which the monkey is looking to switch image
 		if (dir) {
-			
 			app.image(monkeyR, x, y, width, height);
 		} else {
 			app.image(monkeyL, x, y, width, height);
@@ -69,7 +68,6 @@ public class Monkey{
 		//Drawing bullets, moving bullets and eliminating
 		shoot();
 		eliminateBullet();
-		
 	}
 	
 	public void move(int movement) {
@@ -129,7 +127,11 @@ public class Monkey{
 	public void shoot() {
 		for (int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).draw();
-			new Thread(bullets.get(i)).start();
+			Thread t = new Thread(bullets.get(i));
+			t.start();
+			if (bullets.get(i).getX() > 1300 || bullets.get(i).getX() < 0) {
+				t.stop();
+			}
 		}
 	}
 	

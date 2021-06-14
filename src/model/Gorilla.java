@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PImage;
 
 public class Gorilla {
@@ -30,26 +31,21 @@ public class Gorilla {
 		//Attributes
 		x = 920;
 		y = 88;
-		
 		width = 200;
 		height = 200;
-		
 		speedX = 20;
-		
 		dir = false;
 		visible = true;
-		
 		damage = 3;
-		
-		visible = true;
 	
-		//Arrayslist
+		//Array list
 		bullets = new ArrayList<>();
 
 	}
 	
 	public void draw() {	
 		if (visible) {
+			app.imageMode(PConstants.CORNER);
 			app.image(gorilla, x, y, width, height);
 		}
 			
@@ -64,7 +60,6 @@ public class Gorilla {
 		}
 
 		//moving bullets and eliminating
-
 		shoot();
 		removeBullet();
 		
@@ -80,35 +75,22 @@ public class Gorilla {
 	public void shoot() {
 		for (int i = 0; i < bullets.size()  ; i++) {
 			bullets.get(i).draw();
-			new Thread(bullets.get(i)).start();
-			
+			Thread t = new Thread(bullets.get(i));
+			t.start();
+			if (bullets.get(i).getX() > 1300 || bullets.get(i).getX() < 0) {
+				t.stop();
+			}
 		}
 	}
 	
 	public void removeBullet() {
 	for (int i = 0; i < bullets.size(); i++) {
-
-
 			if(bullets.get(i).getX() > 1300 || bullets.get(i).getX() < 0) {
 				bullets.remove(i);
 			}
 		}
 	}
-
 	
-
-	public PApplet getApp() {
-		return app;
-	}
-
-	public PImage getGorilla() {
-		return gorilla;
-	}
-
-	public void setGorilla(PImage gorilla) {
-		this.gorilla = gorilla;
-	}
-
 	public float getAddBullets() {
 		return addBullets;
 	}
