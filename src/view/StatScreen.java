@@ -48,4 +48,10 @@ public class StatScreen {
 		
 	}	
 	
+	public void sortList(char key) {
+		
+		controller.sortList(key);
+	
+	}
+	
 }
