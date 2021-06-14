@@ -125,7 +125,7 @@ public class Interaction {
 
 		Date date = new Date();
 
-		// String score = Integer.toString(score);
+		//String score = Integer.toString(score);
 		// date = date.toString();
 
 		for (int i = 0; i < users.size(); i++) {
